@@ -12,7 +12,8 @@ CREATE PROCEDURE sp_GetLedgerList
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT L.*, G.LedgerGroup_Name 
+    SELECT L.*, G.LedgerGroup_Name,
+    L.Created_Date AS CreatedDate 
     FROM Ledger_Table L
     LEFT JOIN LedgerGroup_Table G ON L.LedgerGroup_no = G.LedgerGroup_Sno
     WHERE L.Company_No = @Company_No

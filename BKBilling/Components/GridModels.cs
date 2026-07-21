@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BKBilling.Components
 {
-    // MUST be Serializable to stay in ViewState
+    // MUST be serializable for ViewState
     [Serializable]
     public class GridColumnDef
     {
@@ -12,17 +12,15 @@ namespace BKBilling.Components
         public string Format { get; set; }
         public string Width { get; set; }
         public bool Bold { get; set; }
-        public string CssClassFromField { get; set; }
-        public string CssClassPrefix { get; set; } = "";
         public bool Visible { get; set; } = true;
+        public string Align { get; set; } // NEW optional: "Left"|"Right"|"Center"
     }
 
-    // Already marked, but keep it here
     [Serializable]
-    public class ColumnFilterState
+    public class FilterCriteria
     {
+        public string Operator { get; set; } = "Contains";
         public string Value { get; set; }
-        public string Operator { get; set; } = "LIKE";
     }
 
     [Serializable]
@@ -30,8 +28,6 @@ namespace BKBilling.Components
     {
         public string Key { get; set; }
         public string Icon { get; set; }
-        public string Label { get; set; }
-        public string CssClass { get; set; }
         public string Tooltip { get; set; }
     }
 

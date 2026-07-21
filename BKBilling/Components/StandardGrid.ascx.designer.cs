@@ -15,58 +15,49 @@ namespace BKBilling.Components
     {
 
         /// <summary>
-        /// txtInternalSearch control.
+        /// txtSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInternalSearch;
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
-        /// btnRefresh control.
+        /// txtFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnRefresh;
+        protected global::System.Web.UI.WebControls.TextBox txtFrom;
 
         /// <summary>
-        /// btnExport control.
+        /// txtTo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnExport;
+        protected global::System.Web.UI.WebControls.TextBox txtTo;
 
         /// <summary>
-        /// btnAddNew control.
+        /// btnSync control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddNew;
+        protected global::System.Web.UI.WebControls.LinkButton btnSync;
 
         /// <summary>
-        /// litBtnText control.
+        /// btnXls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litBtnText;
-
-        /// <summary>
-        /// cblColumns control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList cblColumns;
+        protected global::System.Web.UI.WebControls.LinkButton btnXls;
 
         /// <summary>
         /// gvInternal control.
@@ -78,13 +69,22 @@ namespace BKBilling.Components
         protected global::System.Web.UI.WebControls.GridView gvInternal;
 
         /// <summary>
-        /// litCount control.
+        /// litTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litCount;
+        protected global::System.Web.UI.WebControls.Literal litTotal;
+
+        /// <summary>
+        /// litVisible control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litVisible;
 
         /// <summary>
         /// btnPrev control.
@@ -105,12 +105,12 @@ namespace BKBilling.Components
         protected global::System.Web.UI.WebControls.LinkButton btnNext;
 
         /// <summary>
-        /// ddlPageSize control.
+        /// ddlSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPageSize;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSize;
     }
 }
