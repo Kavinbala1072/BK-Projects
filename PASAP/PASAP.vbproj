@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{80BB1D8D-192D-486D-87C2-5D6331864F4F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>PASAP.My.MyApplication</StartupObject>
+    <RootNamespace>PASAP</RootNamespace>
+    <AssemblyName>PASAP</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>PASAP.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>PASAP.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>community.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Docking">
+      <HintPath>..\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\latest GS\ComponentFactory.Krypton.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Navigator">
+      <HintPath>..\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\latest GS\ComponentFactory.Krypton.Navigator.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Toolkit">
+      <HintPath>..\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\latest GS\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.3.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\latest GS\ComponentFactory.Krypton.Workspace.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI2, Version=2.0.0.1, Culture=neutral, PublicKeyToken=ad275b4be6718d4b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.1.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression">
+      <HintPath>..\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\latest GS\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ValueTuple" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\dbtable.vb" />
+    <Compile Include="Forms\AccountsForm.Designer.vb">
+      <DependentUpon>AccountsForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AccountsForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LedgerForm.Designer.vb">
+      <DependentUpon>LedgerForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LedgerForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login\DBCheck.Designer.vb">
+      <DependentUpon>DBCheck.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login\DBCheck.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login\Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login\Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Greeting.Designer.vb">
+      <DependentUpon>Greeting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Greeting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login\Install.Designer.vb">
+      <DependentUpon>Install.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login\Install.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login\KeyForm.Designer.vb">
+      <DependentUpon>KeyForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login\KeyForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VoucherReport.Designer.vb">
+      <DependentUpon>VoucherReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VoucherReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.vb">
+      <DependentUpon>MainForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login\PSDForm.Designer.vb">
+      <DependentUpon>PSDForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login\PSDForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MemberShip.Designer.vb">
+      <DependentUpon>MemberShip.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MemberShip.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MSReport.Designer.vb">
+      <DependentUpon>MSReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MSReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Setting.Designer.vb">
+      <DependentUpon>Setting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Setting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Voucher.Designer.vb">
+      <DependentUpon>Voucher.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Voucher.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Class\Tools.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\AccountsForm.resx">
+      <DependentUpon>AccountsForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LedgerForm.resx">
+      <DependentUpon>LedgerForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login\DBCheck.resx">
+      <DependentUpon>DBCheck.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login\Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Greeting.resx">
+      <DependentUpon>Greeting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login\Install.resx">
+      <DependentUpon>Install.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login\KeyForm.resx">
+      <DependentUpon>KeyForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VoucherReport.resx">
+      <DependentUpon>VoucherReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login\PSDForm.resx">
+      <DependentUpon>PSDForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MemberShip.resx">
+      <DependentUpon>MemberShip.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MSReport.resx">
+      <DependentUpon>MSReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Setting.resx">
+      <DependentUpon>Setting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Voucher.resx">
+      <DependentUpon>Voucher.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\DefaultImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cloud-computing_174326.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-backup-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-database-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-database-administrator-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-database-restore-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-data-protection-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-document-in-folder-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-download-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-hamburger-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-item-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-download-641.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-log-in-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-reset-password-66.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-settings-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-update-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer_9654640.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-skip-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngwing.com.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-magnetic-card-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-report-50 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-settings-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-log-out-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20595284.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="community.ico" />
+    <None Include="Resources\encrypted-phone.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

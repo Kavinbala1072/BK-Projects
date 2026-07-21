@@ -1,0 +1,68 @@
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.DBCheck.resources
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.Form1.resources
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.Install.resources
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.KeyForm.resources
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.PSDForm.resources
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.Resources.resources
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.vbproj.GenerateResource.cache
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.vbproj.CoreCompileInputs.cache
+D:\%Soft\Kavin\PASAP\bin\Debug\PASAP.exe.config
+D:\%Soft\Kavin\PASAP\bin\Debug\PASAP.exe
+D:\%Soft\Kavin\PASAP\bin\Debug\PASAP.pdb
+D:\%Soft\Kavin\PASAP\bin\Debug\PASAP.xml
+D:\%Soft\Kavin\PASAP\bin\Debug\Guna.UI2.dll
+D:\%Soft\Kavin\PASAP\bin\Debug\System.IO.Compression.dll
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.vbproj.CopyComplete
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.exe
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.xml
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.pdb
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.MainForm.resources
+D:\%Soft\Kavin\PASAP\bin\Debug\ComponentFactory.Krypton.Docking.dll
+D:\%Soft\Kavin\PASAP\bin\Debug\ComponentFactory.Krypton.Navigator.dll
+D:\%Soft\Kavin\PASAP\bin\Debug\ComponentFactory.Krypton.Toolkit.dll
+D:\%Soft\Kavin\PASAP\bin\Debug\ComponentFactory.Krypton.Workspace.dll
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.Greeting.resources
+D:\%Soft\Kavin\PASAP\bin\Debug\Newtonsoft.Json.dll
+D:\%Soft\Kavin\PASAP\bin\Debug\Newtonsoft.Json.xml
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.MemberShip.resources
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.Voucher.resources
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.MSReport.resources
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.VoucherReport.resources
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.Setting.resources
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.LedgerForm.resources
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.AccountsForm.resources
+D:\%Soft\Kavin\PASAP\obj\Debug\PASAP.vbproj.AssemblyReference.cache
+D:\Application Files\PASAP\bin\Debug\PASAP.exe.config
+D:\Application Files\PASAP\bin\Debug\PASAP.exe
+D:\Application Files\PASAP\bin\Debug\PASAP.pdb
+D:\Application Files\PASAP\bin\Debug\PASAP.xml
+D:\Application Files\PASAP\bin\Debug\ComponentFactory.Krypton.Docking.dll
+D:\Application Files\PASAP\bin\Debug\ComponentFactory.Krypton.Navigator.dll
+D:\Application Files\PASAP\bin\Debug\ComponentFactory.Krypton.Toolkit.dll
+D:\Application Files\PASAP\bin\Debug\ComponentFactory.Krypton.Workspace.dll
+D:\Application Files\PASAP\bin\Debug\Guna.UI2.dll
+D:\Application Files\PASAP\bin\Debug\Newtonsoft.Json.dll
+D:\Application Files\PASAP\bin\Debug\System.IO.Compression.dll
+D:\Application Files\PASAP\bin\Debug\Newtonsoft.Json.xml
+D:\Application Files\PASAP\obj\Debug\PASAP.vbproj.AssemblyReference.cache
+D:\Application Files\PASAP\obj\Debug\PASAP.AccountsForm.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.LedgerForm.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.DBCheck.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.Form1.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.Greeting.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.Install.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.KeyForm.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.VoucherReport.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.MainForm.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.PSDForm.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.MemberShip.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.MSReport.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.Setting.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.Voucher.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.Resources.resources
+D:\Application Files\PASAP\obj\Debug\PASAP.vbproj.GenerateResource.cache
+D:\Application Files\PASAP\obj\Debug\PASAP.vbproj.CoreCompileInputs.cache
+D:\Application Files\PASAP\obj\Debug\PASAP.vbproj.CopyComplete
+D:\Application Files\PASAP\obj\Debug\PASAP.exe
+D:\Application Files\PASAP\obj\Debug\PASAP.xml
+D:\Application Files\PASAP\obj\Debug\PASAP.pdb

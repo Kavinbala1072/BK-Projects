@@ -1,0 +1,105 @@
+/* --- WHATSAPP FLOATING DESIGN --- */
+.whatsapp-btn-container {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Tooltip (Hidden by default, slides out on hover) */
+.whatsapp-tooltip {
+  position: absolute;
+  right: 80px;
+  background: var(--bg-secondary);
+  color: var(--text-main);
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--glass-border);
+  opacity: 0;
+  transform: translateX(20px);
+  transition: 0.4s ease;
+  pointer-events: none;
+}
+
+.whatsapp-btn-container:hover .whatsapp-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* The Green Icon Circle */
+.whatsapp-icon-box {
+  width: 65px;
+  height: 65px;
+  background: #25D366; /* Official WA Green */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+  position: relative;
+  z-index: 2;
+}
+
+.whatsapp-icon-box img {
+  width: 35px;
+  height: 35px;
+}
+
+/* The "Attention Grabber" Pulse Effect */
+.whatsapp-pulse {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: #25D366;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0.6;
+  animation: wa-pulse-glow 2s infinite;
+}
+
+@keyframes wa-pulse-glow {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Hover Animation for the whole button */
+.whatsapp-btn-container:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* --- MOBILE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+  .whatsapp-btn-container {
+    bottom: 25px;
+    right: 25px;
+  }
+  
+  .whatsapp-icon-box {
+    width: 55px;
+    height: 55px;
+  }
+
+  .whatsapp-icon-box img {
+    width: 30px;
+  }
+
+  /* Hide tooltip on mobile to avoid blocking content */
+  .whatsapp-tooltip {
+    display: none;
+  }
+}

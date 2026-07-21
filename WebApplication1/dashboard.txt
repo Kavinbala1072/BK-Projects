@@ -1,0 +1,159 @@
+<%--<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Dashboard.aspx.vb" Inherits="WebApplication1.Dashboard" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Business Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background-color: #f4f7f6; font-family: 'Segoe UI', sans-serif; }
+        .card { border: none; border-radius: 12px; transition: transform 0.3s; height: 100%; }
+        .card:hover { transform: translateY(-3px); }
+        .shadow-sm { box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important; }
+        .chart-container { height: 350px; position: relative; }
+        .stat-label { font-size: 0.75rem; font-weight: bold; color: #6c757d; text-transform: uppercase; }
+        .val-text { font-size: 1.5rem; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- Hidden Fields for Charts -->
+        <asp:HiddenField ID="hfSalesToday" runat="server" Value="0" />
+        <asp:HiddenField ID="hfPurToday" runat="server" Value="0" />
+        <asp:HiddenField ID="hfSalesMonth" runat="server" Value="0" />
+        <asp:HiddenField ID="hfPurMonth" runat="server" Value="0" />
+        <asp:HiddenField ID="hfRec" runat="server" Value="0" />
+        <asp:HiddenField ID="hfPay" runat="server" Value="0" />
+
+        <div class="container-fluid p-3">
+            <h5 class="mb-4 text-dark fw-bold"><i class="fas fa-chart-pie me-2"></i>BUSINESS DASHBOARD</h5>
+
+            <!-- ROW 1: STAT CARDS -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-start border-primary border-5">
+                        <div class="card-body py-2">
+                            <span class="stat-label">Today's Sales</span>
+                            <div class="val-text text-primary">₹ <asp:Literal ID="litSalesToday" runat="server" Text="0.00" /></div>
+                            <hr class="my-1" />
+                            <span class="stat-label">Monthly: </span><span class="fw-bold">₹ <asp:Literal ID="litSalesMonth" runat="server" Text="0.00" /></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-start border-success border-5">
+                        <div class="card-body py-2">
+                            <span class="stat-label">Today's Purchase</span>
+                            <div class="val-text text-success">₹ <asp:Literal ID="litPurToday" runat="server" Text="0.00" /></div>
+                            <hr class="my-1" />
+                            <span class="stat-label">Monthly: </span><span class="fw-bold">₹ <asp:Literal ID="litPurMonth" runat="server" Text="0.00" /></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-start border-info border-5">
+                        <div class="card-body">
+                            <span class="stat-label">Receivable (DR)</span>
+                            <div class="val-text text-info">₹ <asp:Literal ID="litRec" runat="server" Text="0.00" /></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-start border-danger border-5">
+                        <div class="card-body">
+                            <span class="stat-label">Payable (CR)</span>
+                            <div class="val-text text-danger">₹ <asp:Literal ID="litPay" runat="server" Text="0.00" /></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 2: CHARTS -->
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card shadow-sm p-3">
+                        <h6 class="text-center fw-bold text-muted mb-4">TRADING COMPARISON (Outer: Monthly | Inner: Today)</h6>
+                        <div class="chart-container">
+                            <canvas id="chartTrading"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm p-3">
+                        <h6 class="text-center fw-bold text-muted mb-4">OUTSTANDING ANALYSIS (DR VS CR)</h6>
+                        <div class="chart-container">
+                            <canvas id="chartOut"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            window.onload = function () {
+                // Monthly Data
+                const sMonth = parseFloat(document.getElementById('<%= hfSalesMonth.ClientID %>').value) || 0;
+                const pMonth = parseFloat(document.getElementById('<%= hfPurMonth.ClientID %>').value) || 0;
+                // Today Data
+                const sToday = parseFloat(document.getElementById('<%= hfSalesToday.ClientID %>').value) || 0;
+                const pToday = parseFloat(document.getElementById('<%= hfPurToday.ClientID %>').value) || 0;
+                // Outstanding Data
+                const rec = parseFloat(document.getElementById('<%= hfRec.ClientID %>').value) || 0;
+                const pay = parseFloat(document.getElementById('<%= hfPay.ClientID %>').value) || 0;
+
+                // --- 1. NESTED TRADING CHART (Sales vs Purchase) ---
+                new Chart(document.getElementById('chartTrading'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Sales', 'Purchase'],
+                        datasets: [
+                            {
+                                label: 'Monthly',
+                                data: [sMonth, pMonth],
+                                backgroundColor: ['#0d6efd', '#198754'], // Blue and Green
+                                weight: 0.6
+                            },
+                            {
+                                label: 'Today',
+                                data: [sToday, pToday],
+                                backgroundColor: ['#0d6efd', '#198754'], // Lighter shades for Today
+                                weight: 0.4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'bottom' },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        return context.dataset.label + " " + context.label + ": ₹" + context.raw.toLocaleString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // --- 2. OUTSTANDING CHART ---
+                new Chart(document.getElementById('chartOut'), {
+                    type: 'pie',
+                    data: {
+                        labels: ['Receivable (Dr)', 'Payable (Cr)'],
+                        datasets: [{
+                            data: [rec, pay],
+                            backgroundColor: ['#0dcaf0', '#dc3545'],
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            };
+        </script>
+    </form>
+</body>
+</html>--%>

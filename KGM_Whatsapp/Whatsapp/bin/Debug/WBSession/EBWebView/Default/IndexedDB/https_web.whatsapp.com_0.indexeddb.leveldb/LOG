@@ -1,0 +1,71 @@
+2026/05/23-13:58:23.557 2cc Reusing MANIFEST D:\Application Files\KGM_Whatsapp\Whatsapp\bin\Debug\WBSession\EBWebView\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/05/23-13:58:23.562 2cc Recovering log #7201
+2026/05/23-13:58:23.656 2cc Reusing old log D:\Application Files\KGM_Whatsapp\Whatsapp\bin\Debug\WBSession\EBWebView\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/007201.log 
+2026/05/23-13:58:36.193 2cc Level-0 table #7219: started
+2026/05/23-13:58:36.236 2cc Level-0 table #7219: 1205974 bytes OK
+2026/05/23-13:58:36.239 2cc Delete type=0 #7201
+2026/05/23-13:58:36.243 2cc Compacting 1@0 + 0@1 files
+2026/05/23-13:58:36.283 2cc Generated table #7220@0: 25885 keys, 686473 bytes
+2026/05/23-13:58:36.285 2cc Generated table #7221@0: 35 keys, 4650 bytes
+2026/05/23-13:58:36.288 2cc Generated table #7222@0: 12 keys, 4895 bytes
+2026/05/23-13:58:36.288 2cc Compacted 1@0 + 0@1 files => 696018 bytes
+2026/05/23-13:58:36.289 2cc compacted to: files[ 0 3 29 0 0 0 0 ]
+2026/05/23-13:58:36.294 2cc Compacting 1@1 + 10@2 files
+2026/05/23-13:58:36.357 2cc Generated table #7223@1: 8531 keys, 2133104 bytes
+2026/05/23-13:58:36.398 2cc Generated table #7224@1: 4667 keys, 2124670 bytes
+2026/05/23-13:58:36.535 2cc Generated table #7225@1: 99553 keys, 2248004 bytes
+2026/05/23-13:58:36.672 2cc Generated table #7226@1: 106680 keys, 2259045 bytes
+2026/05/23-13:58:36.772 2cc Generated table #7227@1: 106019 keys, 2256663 bytes
+2026/05/23-13:58:36.870 2cc Generated table #7228@1: 106197 keys, 2258135 bytes
+2026/05/23-13:58:36.948 2cc Generated table #7229@1: 106630 keys, 2258232 bytes
+2026/05/23-13:58:37.037 2cc Generated table #7230@1: 87942 keys, 2239307 bytes
+2026/05/23-13:58:37.120 2cc Generated table #7231@1: 99494 keys, 2250938 bytes
+2026/05/23-13:58:37.168 2cc Generated table #7232@1: 29924 keys, 1638862 bytes
+2026/05/23-13:58:37.168 2cc Compacted 1@1 + 10@2 files => 21666960 bytes
+2026/05/23-13:58:37.170 2cc compacted to: files[ 0 2 29 0 0 0 0 ]
+2026/05/23-13:58:37.171 2cc Delete type=2 #7206
+2026/05/23-13:58:37.171 2cc Delete type=2 #7207
+2026/05/23-13:58:37.171 2cc Delete type=2 #7208
+2026/05/23-13:58:37.171 2cc Delete type=2 #7209
+2026/05/23-13:58:37.171 2cc Delete type=2 #7210
+2026/05/23-13:58:37.171 2cc Delete type=2 #7211
+2026/05/23-13:58:37.171 2cc Delete type=2 #7212
+2026/05/23-13:58:37.171 2cc Delete type=2 #7213
+2026/05/23-13:58:37.171 2cc Delete type=2 #7214
+2026/05/23-13:58:37.172 2cc Delete type=2 #7215
+2026/05/23-13:58:37.172 2cc Delete type=2 #7219
+2026/05/23-13:58:37.172 2cc Delete type=2 #7220
+2026/05/23-13:58:57.944 2cc Level-0 table #7234: started
+2026/05/23-13:58:57.973 2cc Level-0 table #7234: 1115619 bytes OK
+2026/05/23-13:58:57.975 2cc Delete type=0 #7218
+2026/05/23-13:58:57.979 2cc Compacting 1@0 + 1@1 files
+2026/05/23-13:58:58.027 2cc Generated table #7235@0: 23544 keys, 653845 bytes
+2026/05/23-13:58:58.030 2cc Generated table #7236@0: 289 keys, 20718 bytes
+2026/05/23-13:58:58.030 2cc Compacted 1@0 + 1@1 files => 674563 bytes
+2026/05/23-13:58:58.031 2cc compacted to: files[ 0 3 29 0 0 0 0 ]
+2026/05/23-13:58:58.036 2cc Compacting 1@1 + 10@2 files
+2026/05/23-13:58:58.086 2cc Generated table #7237@1: 7662 keys, 2129981 bytes
+2026/05/23-13:58:58.125 2cc Generated table #7238@1: 4667 keys, 2123844 bytes
+2026/05/23-13:58:58.233 2cc Generated table #7239@1: 101628 keys, 2252065 bytes
+2026/05/23-13:58:58.326 2cc Generated table #7240@1: 106444 keys, 2256454 bytes
+2026/05/23-13:58:58.422 2cc Generated table #7241@1: 106090 keys, 2256346 bytes
+2026/05/23-13:58:58.519 2cc Generated table #7242@1: 106253 keys, 2258122 bytes
+2026/05/23-13:58:58.620 2cc Generated table #7243@1: 106528 keys, 2258608 bytes
+2026/05/23-13:58:58.710 2cc Generated table #7244@1: 87757 keys, 2238897 bytes
+2026/05/23-13:58:58.793 2cc Generated table #7245@1: 99674 keys, 2252957 bytes
+2026/05/23-13:58:58.850 2cc Generated table #7246@1: 27988 keys, 1600207 bytes
+2026/05/23-13:58:58.851 2cc Compacted 1@1 + 10@2 files => 21627481 bytes
+2026/05/23-13:58:58.852 2cc compacted to: files[ 0 2 29 0 0 0 0 ]
+2026/05/23-13:58:58.853 2cc Delete type=2 #7221
+2026/05/23-13:58:58.853 2cc Delete type=2 #7223
+2026/05/23-13:58:58.853 2cc Delete type=2 #7224
+2026/05/23-13:58:58.853 2cc Delete type=2 #7225
+2026/05/23-13:58:58.853 2cc Delete type=2 #7226
+2026/05/23-13:58:58.853 2cc Delete type=2 #7227
+2026/05/23-13:58:58.853 2cc Delete type=2 #7228
+2026/05/23-13:58:58.853 2cc Delete type=2 #7229
+2026/05/23-13:58:58.853 2cc Delete type=2 #7230
+2026/05/23-13:58:58.853 2cc Delete type=2 #7231
+2026/05/23-13:58:58.853 2cc Delete type=2 #7232
+2026/05/23-13:58:58.853 2cc Delete type=2 #7234
+2026/05/23-13:58:58.853 2cc Delete type=2 #7235

@@ -1,0 +1,153 @@
+/* --- CONTACT HEADER --- */
+.contact-header {
+  margin-bottom: 50px;
+}
+
+/* --- GRID SYSTEM --- */
+.contact-grid-refined {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr; /* Proper balance for desktop */
+  gap: 40px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* --- FORM STYLING --- */
+.form-container-premium {
+  padding: 50px !important;
+}
+
+.trade-form-refined {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.premium-input {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  padding: 18px;
+  border-radius: 12px;
+  color: var(--text-main);
+  margin-bottom: 20px;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-input:focus {
+  border-color: var(--accent-gold);
+  background: var(--bg-primary);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Select dropdown fix for Light Mode */
+select.premium-input option {
+    background: var(--bg-primary);
+    color: var(--text-main);
+}
+
+/* --- BUTTON GLOW EFFECT --- */
+.btn-solid.glow-effect {
+  background: var(--accent-gold);
+  color: #000 !important;
+  border: none;
+  padding: 20px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-solid.glow-effect:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px var(--accent-glow);
+  filter: brightness(1.1);
+}
+
+/* --- OFFICE DETAILS --- */
+.office-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mini-info {
+  display: flex;
+  gap: 20px;
+  padding: 25px !important;
+  align-items: flex-start;
+}
+
+.info-icon {
+    font-size: 1.5rem;
+    background: var(--bg-secondary);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+}
+
+.mini-info h4 {
+  color: var(--accent-gold);
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+.mini-info p {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+.bk-software-contact {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+.bk-software-contact span {
+    color: var(--accent-gold);
+    font-weight: 700;
+}
+
+/* --- RESPONSIVE FIXES (Small Screen) --- */
+@media (max-width: 992px) {
+  .contact-grid-refined {
+    grid-template-columns: 1fr; /* Stack vertically on tablets */
+    gap: 30px;
+  }
+  
+  .form-container-premium {
+    padding: 30px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .input-row {
+      grid-template-columns: 1fr; /* Single column inputs on mobile */
+      gap: 0;
+  }
+  
+  .title {
+      font-size: 2.2rem;
+  }
+  
+  .page-container {
+      padding: 120px 5% 60px 5%;
+  }
+}

@@ -1,0 +1,39 @@
+2026/05/23-13:58:10.409 61b0 Reusing MANIFEST D:\Application Files\KGM_Whatsapp\Whatsapp\bin\Debug\WBSession\EBWebView\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/05/23-13:58:10.413 61b0 Recovering log #7201
+2026/05/23-13:58:10.417 61b0 Reusing old log D:\Application Files\KGM_Whatsapp\Whatsapp\bin\Debug\WBSession\EBWebView\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/007201.log 
+2026/05/23-13:58:10.418 61b0 Delete type=2 #7202
+2026/05/23-13:58:10.418 61b0 Delete type=2 #7205
+2026/05/23-13:58:10.418 61b0 Delete type=2 #7206
+2026/05/23-13:58:10.419 61b0 Delete type=2 #7207
+2026/05/23-13:58:10.419 61b0 Delete type=2 #7208
+2026/05/23-13:58:10.419 61b0 Delete type=2 #7209
+2026/05/23-13:58:11.837 61b0 Compacting 1@1 + 10@2 files
+2026/05/23-13:58:11.881 61b0 Generated table #7206@1: 7363 keys, 2129685 bytes
+2026/05/23-13:58:11.910 61b0 Generated table #7207@1: 4607 keys, 2126456 bytes
+2026/05/23-13:58:12.001 61b0 Generated table #7208@1: 103798 keys, 2254227 bytes
+2026/05/23-13:58:12.105 61b0 Generated table #7209@1: 106362 keys, 2256947 bytes
+2026/05/23-13:58:12.205 61b0 Generated table #7210@1: 106352 keys, 2257923 bytes
+2026/05/23-13:58:12.298 61b0 Generated table #7211@1: 105983 keys, 2256001 bytes
+2026/05/23-13:58:12.401 61b0 Generated table #7212@1: 106663 keys, 2258645 bytes
+2026/05/23-13:58:12.484 61b0 Generated table #7213@1: 87678 keys, 2236986 bytes
+2026/05/23-13:58:12.620 61b0 Generated table #7214@1: 94047 keys, 2373285 bytes
+2026/05/23-13:58:12.696 61b0 Generated table #7215@1: 26930 keys, 1322289 bytes
+2026/05/23-13:58:12.696 61b0 Compacted 1@1 + 10@2 files => 21472444 bytes
+2026/05/23-13:58:12.699 61b0 compacted to: files[ 0 1 29 0 0 0 0 ]
+2026/05/23-13:58:14.097 61b0 Compacting 1@1 + 1@2 files
+2026/05/23-13:58:14.179 61b0 Generated table #7216@1: 20812 keys, 2262154 bytes
+2026/05/23-13:58:14.180 61b0 Compacted 1@1 + 1@2 files => 2262154 bytes
+2026/05/23-13:58:14.181 61b0 compacted to: files[ 0 0 29 0 0 0 0 ]
+2026/05/23-13:58:14.182 61b0 Delete type=2 #7189
+2026/05/23-13:58:14.182 61b0 Delete type=2 #7190
+2026/05/23-13:58:14.182 61b0 Delete type=2 #7191
+2026/05/23-13:58:14.183 61b0 Delete type=2 #7192
+2026/05/23-13:58:14.183 61b0 Delete type=2 #7193
+2026/05/23-13:58:14.183 61b0 Delete type=2 #7194
+2026/05/23-13:58:14.183 61b0 Delete type=2 #7195
+2026/05/23-13:58:14.183 61b0 Delete type=2 #7196
+2026/05/23-13:58:14.183 61b0 Delete type=2 #7197
+2026/05/23-13:58:14.183 61b0 Delete type=2 #7198
+2026/05/23-13:58:14.183 61b0 Delete type=2 #7199
+2026/05/23-13:58:14.183 61b0 Delete type=2 #7203
+2026/05/23-13:58:14.183 61b0 Delete type=2 #7204

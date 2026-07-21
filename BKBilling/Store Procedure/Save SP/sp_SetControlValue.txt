@@ -1,0 +1,20 @@
+﻿/* 2. Set the Active Year in Control_Table (Key-Value Style) */
+CREATE PROCEDURE sp_SetControlValue
+    @Company_No BIGINT,
+    @MtDesc NVARCHAR(100),
+    @Value NVARCHAR(500)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    IF EXISTS (SELECT 1 FROM Control_Table WHERE Company_No = @Company_No AND Ctl_MtDesc = @MtDesc)
+    BEGIN
+        UPDATE Control_Table SET Ctl_Value = @Value, Modified_Date = GETDATE()
+        WHERE Company_No = @Company_No AND Ctl_MtDesc = @MtDesc;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO Control_Table (Company_No, Ctl_MtDesc, Ctl_Value)
+        VALUES (@Company_No, @MtDesc, @Value);
+    END
+END
+GO

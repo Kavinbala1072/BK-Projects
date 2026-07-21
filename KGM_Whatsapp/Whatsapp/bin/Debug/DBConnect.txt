@@ -1,0 +1,4 @@
+SQLServerType=True
+SQLServer=TASTR3LAP096\SQL2016
+SQLDBName=kgm_sms2
+Webview=True

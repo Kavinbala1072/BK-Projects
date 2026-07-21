@@ -1,0 +1,136 @@
+/* --- ABOUT HEADER --- */
+.about-header {
+  margin-bottom: 60px;
+}
+
+/* --- MAIN CARD & GRID FIX --- */
+.about-main-card {
+  max-width: 1200px;
+  margin: 0 auto 60px auto;
+  padding: 60px !important; /* Fixed padding for large screens */
+  background: var(--card-bg);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 80px; /* High-end spacing */
+  align-items: center;
+}
+
+.about-text h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--accent-gold);
+}
+
+.about-text p {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  margin-bottom: 25px;
+  line-height: 1.8;
+}
+
+/* --- STATS STYLING --- */
+.about-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.stat-pill {
+  background: var(--bg-secondary);
+  padding: 25px;
+  border-radius: 20px;
+  border-left: 5px solid var(--accent-gold);
+  border-top: 1px solid var(--glass-border);
+  border-right: 1px solid var(--glass-border);
+  transition: 0.3s;
+}
+
+.stat-pill:hover {
+  transform: translateX(10px);
+  background: var(--accent-glow);
+}
+
+.stat-pill span {
+  display: block;
+  font-size: 2.2rem;
+  color: var(--text-main); /* Fix invisible text in light mode */
+  font-weight: 800;
+  line-height: 1;
+}
+
+.stat-pill p {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+}
+
+/* --- VISION/MISSION SECTION --- */
+.vision-mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mission-box {
+  padding: 40px !important;
+  text-align: center;
+}
+
+.icon-wrap {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.mission-box h4 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--accent-gold);
+}
+
+.mission-box p {
+  color: var(--text-dim);
+  font-size: 1rem;
+}
+
+/* --- MOBILE RESPONSIVE FIXES --- */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  
+  .about-main-card {
+    padding: 40px !important;
+    margin: 0 5% 40px 5%;
+  }
+
+  .about-text {
+    text-align: center;
+  }
+
+  .stat-pill:hover {
+    transform: translateY(-5px);
+  }
+}
+
+@media (max-width: 768px) {
+  .vision-mission-grid {
+    grid-template-columns: 1fr;
+    margin: 0 5%;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .about-main-card {
+    padding: 30px 20px !important;
+  }
+}

@@ -1,0 +1,20 @@
+E:\Project\VB.Net Project\Barcode\WinFormsInstaller\bin\Debug\WinFormsInstaller.exe.config
+E:\Project\VB.Net Project\Barcode\WinFormsInstaller\bin\Debug\WinFormsInstaller.exe
+E:\Project\VB.Net Project\Barcode\WinFormsInstaller\bin\Debug\WinFormsInstaller.pdb
+E:\Project\VB.Net Project\Barcode\WinFormsInstaller\obj\Debug\WinFormsInstaller.csproj.AssemblyReference.cache
+E:\Project\VB.Net Project\Barcode\WinFormsInstaller\obj\Debug\WinFormsInstaller.Form1.resources
+E:\Project\VB.Net Project\Barcode\WinFormsInstaller\obj\Debug\WinFormsInstaller.Properties.Resources.resources
+E:\Project\VB.Net Project\Barcode\WinFormsInstaller\obj\Debug\WinFormsInstaller.csproj.GenerateResource.cache
+E:\Project\VB.Net Project\Barcode\WinFormsInstaller\obj\Debug\WinFormsInstaller.csproj.CoreCompileInputs.cache
+E:\Project\VB.Net Project\Barcode\WinFormsInstaller\obj\Debug\WinFormsInstaller.exe
+E:\Project\VB.Net Project\Barcode\WinFormsInstaller\obj\Debug\WinFormsInstaller.pdb
+D:\%Soft\Kavin\WinFormsInstaller\bin\Debug\WinFormsInstaller.exe.config
+D:\%Soft\Kavin\WinFormsInstaller\bin\Debug\WinFormsInstaller.exe
+D:\%Soft\Kavin\WinFormsInstaller\bin\Debug\WinFormsInstaller.pdb
+D:\%Soft\Kavin\WinFormsInstaller\obj\Debug\WinFormsInstaller.csproj.AssemblyReference.cache
+D:\%Soft\Kavin\WinFormsInstaller\obj\Debug\WinFormsInstaller.Form1.resources
+D:\%Soft\Kavin\WinFormsInstaller\obj\Debug\WinFormsInstaller.Properties.Resources.resources
+D:\%Soft\Kavin\WinFormsInstaller\obj\Debug\WinFormsInstaller.csproj.GenerateResource.cache
+D:\%Soft\Kavin\WinFormsInstaller\obj\Debug\WinFormsInstaller.csproj.CoreCompileInputs.cache
+D:\%Soft\Kavin\WinFormsInstaller\obj\Debug\WinFormsInstaller.exe
+D:\%Soft\Kavin\WinFormsInstaller\obj\Debug\WinFormsInstaller.pdb

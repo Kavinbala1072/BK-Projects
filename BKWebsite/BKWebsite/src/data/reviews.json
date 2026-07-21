@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "SakthiVel",
+    "position": "THANGAM GODOWN",
+    "comment": "The Godown Stock Maintenance application transformed our warehouse. Handling multi-location inventory used to be a nightmare, but BK Softwares built a VB.NET desktop solution that is 100% accurate and fast.",
+    "rating": 5,
+    "category": "Godown ERP"
+  },
+  {
+    "id": 2,
+    "name": "Balamurugan",
+    "position": "PERUNDURAI AATHMA SEVA ARAKATALLAI",
+    "comment": "Managing donor records and transparent reporting was critical for us. The Atma Donation Desktop app is robust, secure, and very professional. It's clear this was built by someone with deep IT industry experience.",
+    "rating": 5,
+    "category": "Atma Donation ERP"
+  }
+]

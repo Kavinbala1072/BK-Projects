@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* DARK THEME */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #121212;
+  --text-main: #ffffff;
+  --text-dim: #a1a1aa;
+  --accent-gold: #ffb300;
+  --accent-glow: rgba(255, 179, 0, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --nav-bg: rgba(10, 10, 10, 0.85);
+}
+
+[data-theme='light'] {
+  --bg-primary: #fcfcfc;
+  --bg-secondary: #f0f4f8;
+  --text-main: #1a202c;
+  --text-dim: #4a5568;
+  /* --accent-gold: #c08400; */
+  --accent-glow: rgba(192, 132, 0, 0.15);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --card-bg: #ffffff;
+  --nav-bg: rgba(255, 255, 255, 0.9);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+}
+.why-card {
+  background-color: var(--card-bg);
+}
+.pill { 
+  display: inline-block; padding: 6px 18px; border: 1px solid var(--accent-gold); 
+  color: var(--accent-gold); border-radius: 50px; font-size: 0.7rem; 
+  font-weight: 800; text-transform: uppercase; letter-spacing: 2px;
+}
+/* --- GLOBAL PAGE TOP FIX --- */
+
+.page-container {
+  padding: 180px 8% 100px 8% !important; /* Increase top padding to 180px */
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* This applies specifically to the Home Page Hero */
+.hero {
+  padding-top: 200px !important; /* Home page usually needs a bit more room */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.bg-blobs {
+  z-index: -1;
+}
+
+/* Ensure the titles have enough breathing room below the Nav */
+.catalog-header, .about-header, .service-header, .contact-header {
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+/* --- MOBILE TOP FIX --- */
+@media (max-width: 992px) {
+  .page-container {
+    /* Mobile nav is often taller or closer to content */
+   padding-top: 140px !important;
+  }
+  
+  .hero {
+    padding-top: 150px !important;
+  }
+}

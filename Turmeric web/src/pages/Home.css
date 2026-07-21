@@ -1,0 +1,86 @@
+/* --- 1. GLOBAL LAYOUT --- */
+.home-wrapper { padding-top: 130px; }
+
+/* --- 2. HERO SECTION --- */
+.home-hero { min-height: 80vh; display: flex; align-items: center; padding: 40px 8%; position: relative; }
+.hero-inner { display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; align-items: center; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.2; color: var(--text-main); }
+
+.gold-gradient {
+  background: linear-gradient(90deg, #ffb300, #ff8c00);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; display: inline-block; font-weight: 900;
+}
+
+.tagline-text { color: var(--accent-gold); font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; }
+.hero-subtitle { font-size: 1.1rem; color: var(--text-dim); line-height: 1.8; margin-bottom: 40px; }
+.hero-button-group { display: flex; gap: 20px; flex-wrap: wrap; }
+
+/* Visual Area */
+.hero-visual-area { position: relative; display: flex; justify-content: center; }
+.image-blob-decoration {
+  position: absolute; width: 95%; height: 95%; background: var(--accent-glow);
+  filter: blur(50px); border-radius: 40% 60%; z-index: -1; animation: rotateBlob 20s infinite linear;
+}
+.hero-floating-img { width: 100%; max-width: 500px; border-radius: 30px; filter: drop-shadow(0 30px 60px rgba(0,0,0,0.4)); animation: floatHero 6s ease-in-out infinite; }
+
+@keyframes rotateBlob { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes floatHero { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+/* --- 3. IMPACT STATS BAR --- */
+.impact-stats-bar {
+    display: flex; justify-content: space-around; background: var(--accent-gold);
+    padding: 40px 10%; margin: 50px 0; color: #000;
+}
+.stat-item h3 { font-size: 2.5rem; font-weight: 900; font-family: 'Playfair Display'; }
+.stat-item p { font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+
+/* --- 4. ABOUT PREVIEW --- */
+.home-about-preview { padding: 100px 8%; }
+.about-preview-card { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; padding: 60px !important; align-items: center; }
+.about-preview-content h2 { font-size: 2.5rem; margin: 15px 0; color: var(--text-main); }
+.about-preview-content p { color: var(--text-dim); margin-bottom: 20px; font-size: 1.1rem; }
+.about-preview-image img { width: 100%; border-radius: 20px; border: 1px solid var(--glass-border); }
+.simple-gold-link { color: var(--accent-gold); font-weight: 700; text-decoration: none; font-size: 1rem; }
+
+/* --- 5. PROCESS JOURNEY --- */
+.process-journey { padding: 100px 8%; background: var(--bg-secondary); }
+.process-grid { display: flex; justify-content: space-between; margin-top: 60px; gap: 20px; }
+.process-node { flex: 1; text-align: center; position: relative; }
+.step-number { font-size: 3rem; font-weight: 900; color: var(--glass-border); font-family: 'Playfair Display'; margin-bottom: 10px; }
+.process-node h4 { color: var(--accent-gold); margin-bottom: 10px; }
+.process-node p { font-size: 0.9rem; color: var(--text-dim); }
+.process-arrow { position: absolute; top: 20%; right: -15%; font-size: 2rem; color: var(--accent-gold); opacity: 0.3; }
+
+/* --- 6. WHY CHOOSE US GRID --- */
+.why-choose-section { padding: 100px 8%; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 60px; }
+.why-card { padding: 40px !important; text-align: center; transition: 0.3s ease; } /* Darker golden-brown for Why cards */
+.why-card:hover { transform: translateY(-10px); border-color: var(--accent-gold); }
+.why-icon { font-size: 2.5rem; margin-bottom: 20px; }
+.why-card h3 { font-size: 1.2rem; margin-bottom: 12px; color: var(--text-main); }
+.why-card p { font-size: 0.9rem; color: var(--text-dim); }
+
+/* --- 7. TRUST CERT BAR --- */
+.trust-cert-bar { padding: 60px 10%; text-align: center; border-top: 1px solid var(--glass-border); }
+.trust-cert-bar p { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-dim); margin-bottom: 30px; letter-spacing: 2px; }
+.cert-logo-container { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; opacity: 0.6; filter: grayscale(1); }
+.cert-logo { font-size: 1.2rem; font-weight: 900; color: var(--text-main); }
+
+/* --- BUTTONS & SLIDER (Existing Styles Fixed) --- */
+.btn-main-gold { background: var(--accent-gold); color: #000 !important; padding: 16px 40px; border-radius: 12px; font-weight: 800; text-decoration: none !important; display: inline-block; }
+.btn-blur-glass { background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: var(--text-main) !important; padding: 16px 40px; border-radius: 12px; font-weight: 800; backdrop-filter: blur(10px); display: inline-block; }
+
+.home-snap-slider { display: flex; overflow-x: auto; gap: 30px; padding: 20px 5px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.home-snap-slider::-webkit-scrollbar { display: none; }
+.home-product-card { min-width: 320px; flex: 0 0 auto; scroll-snap-align: center; padding: 0 !important; }
+
+/* --- MOBILE --- */
+@media (max-width: 1024px) {
+  .hero-inner, .about-preview-card, .process-grid { grid-template-columns: 1fr; flex-direction: column; text-align: center; }
+  .process-arrow { display: none; }
+  .stat-item { margin-bottom: 20px; }
+  .impact-stats-bar { flex-direction: column; }
+}
+
+.pill-premium { display: inline-block; padding: 8px 20px; border: 1px solid var(--accent-gold); border-radius: 50px; font-size: 0.7rem; color: var(--accent-gold); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }

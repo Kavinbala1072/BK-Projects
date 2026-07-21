@@ -1,0 +1,60 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="BKSoftwares.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - BK Softwares</title>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    
+    <style>
+        body { background-color: #f8f9fa; }
+        .sidebar { height: 100vh; width: 250px; position: fixed; background: #2c3e50; color: white; padding-top: 20px; }
+        .sidebar a { padding: 15px 25px; text-decoration: none; font-size: 16px; color: #bdc3c7; display: block; }
+        .sidebar a:hover { background: #34495e; color: white; }
+        .sidebar .active { background: #1abc9c; color: white; }
+        .main-content { margin-left: 250px; padding: 20px; }
+        .navbar-custom { margin-left: 250px; background: white; border-bottom: 1px solid #ddd; padding: 15px; }
+    </style>
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+            </Scripts>
+        </asp:ScriptManager>
+
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <h3 class="text-center">BK Softwares</h3>
+            <hr />
+            <a href="Dashboard.aspx"><i class="fa fa-home"></i> Dashboard</a>
+            <a href="Customers.aspx"><i class="fa fa-users"></i> Customers</a>
+            <a href="Vouchers.aspx?type=Receipt"><i class="fa fa-plus-circle"></i> Receipt Voucher</a>
+            <a href="Vouchers.aspx?type=Payment"><i class="fa fa-minus-circle"></i> Payment Voucher</a>
+            <a href="Reports.aspx"><i class="fa fa-file-alt"></i> Reports</a>
+            <hr />
+            <a href="Logout.aspx"><i class="fa fa-sign-out-alt"></i> Logout</a>
+        </div>
+
+        <!-- Main Body -->
+        <div class="main-content">
+            <div class="container-fluid">
+                <div class="card shadow-sm p-4 bg-white">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            
+            <footer class="mt-4 text-center">
+                <p>&copy; <%: DateTime.Now.Year %> - BK Softwares Management System</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
