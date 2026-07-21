@@ -1,0 +1,441 @@
+G:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe.config
+G:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe
+G:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\Godown Stock.pdb
+G:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\Godown Stock.xml
+G:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\Guna.UI2.dll
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbprojResolveAssemblyReference.cache
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Form1.resources
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Resources.resources
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.GenerateResource.Cache
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown Stock.exe
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown Stock.xml
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown Stock.pdb
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DBConnect.resources
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemForm.resources
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.GodownIn.resources
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.GodownOut.resources
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.WeeklyReport.resources
+G:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Toolkit.dll
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemSetting.resources
+G:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Docking.dll
+G:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Navigator.dll
+G:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Workspace.dll
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemWiseDetail.resources
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockSummary.resources
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Setting.resources
+G:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.LedgerForm.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe.config
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown Stock.exe
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown Stock.xml
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown Stock.pdb
+F:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe
+F:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\Godown Stock.pdb
+F:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\Godown Stock.xml
+F:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Docking.dll
+F:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Workspace.dll
+F:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\Guna.UI2.dll
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DBConnect.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemForm.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.LedgerForm.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemWiseDetail.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockSummary.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.WeeklyReport.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Setting.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Resources.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.GenerateResource.Cache
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Display.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Stock.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Purchase.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Sales.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PSDForm.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Jobcard.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDisplay.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DCcheck.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCReport.resources
+E:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe.config
+E:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown Stock.exe
+E:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown Stock.xml
+E:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown Stock.pdb
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCProcessing.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbprojResolveAssemblyReference.cache
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockFilter.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Repost.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDprocessing.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Printing.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PrintingReport.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Install.resources
+F:\Project\Godown Stock\Godown Stock\Godown Stock\bin\Debug\System.IO.Compression.dll
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe.config
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown Stock.exe
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown Stock.xml
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown Stock.pdb
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\bin\Debug\Godown Stock.pdb
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\bin\Debug\Godown Stock.xml
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Docking.dll
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Navigator.dll
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Workspace.dll
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\bin\Debug\Guna.UI2.dll
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\bin\Debug\System.IO.Compression.dll
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbprojResolveAssemblyReference.cache
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDisplay.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDprocessing.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCProcessing.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCReport.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DBConnect.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Display.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DCcheck.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Install.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PSDForm.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Printing.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PrintingReport.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockFilter.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Repost.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Stock.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Purchase.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Sales.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemForm.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Jobcard.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.LedgerForm.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemWiseDetail.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockSummary.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.WeeklyReport.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Setting.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Resources.resources
+F:\Project\Godown Stock - Copy\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.GenerateResource.Cache
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe.config
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.exe
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.xml
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.pdb
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.pdb
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.xml
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Docking.dll
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Navigator.dll
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Workspace.dll
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Guna.UI2.dll
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbprojResolveAssemblyReference.cache
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDisplay.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDprocessing.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCProcessing.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCReport.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DBConnect.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Display.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Install.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PSDForm.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Printing.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PrintingReport.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockFilter.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Repost.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Stock.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Purchase.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Sales.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemForm.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Jobcard.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.LedgerForm.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemWiseDetail.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockSummary.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.WeeklyReport.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Setting.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Resources.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.GenerateResource.Cache
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DBCheck.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.KeyForm.resources
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Toolkit.dll
+F:\Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\itextsharp.dll
+F:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe.config
+F:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.exe
+F:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.xml
+F:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.pdb
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDisplay.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDprocessing.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCProcessing.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCReport.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DBCheck.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DBConnect.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Display.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Install.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.KeyForm.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PSDForm.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Printing.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PrintingReport.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockFilter.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Repost.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Stock.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Purchase.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Sales.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemForm.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Jobcard.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.LedgerForm.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemWiseDetail.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockSummary.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.WeeklyReport.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Setting.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Resources.resources
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.GenerateResource.cache
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.CoreCompileInputs.cache
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.exe
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.xml
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.pdb
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe.config
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.pdb
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.xml
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Docking.dll
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Workspace.dll
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Guna.UI2.dll
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.CopyComplete
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Buffers.dll
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Memory.dll
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Numerics.Vectors.dll
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Encodings.Web.dll
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Json.dll
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Threading.Tasks.Extensions.dll
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.ValueTuple.dll
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Buffers.xml
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Memory.xml
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Numerics.Vectors.xml
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Encodings.Web.xml
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Json.xml
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Threading.Tasks.Extensions.xml
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.ValueTuple.xml
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Newtonsoft.Json.dll
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Newtonsoft.Json.xml
+E:\Project\VB.Net Project\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Greeting.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe.config
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.pdb
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.xml
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Newtonsoft.Json.dll
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Buffers.dll
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Memory.dll
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Numerics.Vectors.dll
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Encodings.Web.dll
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Json.dll
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.ValueTuple.dll
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Newtonsoft.Json.xml
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Buffers.xml
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Memory.xml
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Numerics.Vectors.xml
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Encodings.Web.xml
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Json.xml
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.ValueTuple.xml
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Greeting.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDisplay.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDprocessing.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCProcessing.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCReport.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DBCheck.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DBConnect.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Display.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Install.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.KeyForm.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PSDForm.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Printing.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PrintingReport.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockFilter.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Repost.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Stock.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Purchase.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Sales.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemForm.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Jobcard.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.LedgerForm.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemWiseDetail.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockSummary.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.WeeklyReport.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Setting.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Resources.resources
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.GenerateResource.cache
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.CoreCompileInputs.cache
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.CopyComplete
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.exe
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.xml
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.pdb
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Workspace.dll
+D:\%Soft\Kavin\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.AssemblyReference.cache
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe.config
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.pdb
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.xml
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Workspace.dll
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Newtonsoft.Json.dll
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Buffers.dll
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Memory.dll
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Numerics.Vectors.dll
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Encodings.Web.dll
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Json.dll
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.ValueTuple.dll
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Newtonsoft.Json.xml
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Buffers.xml
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Memory.xml
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Numerics.Vectors.xml
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Encodings.Web.xml
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Json.xml
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.ValueTuple.xml
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Greeting.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDisplay.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDprocessing.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCProcessing.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCReport.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DBCheck.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DBConnect.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Display.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Install.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.KeyForm.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PSDForm.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Printing.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PrintingReport.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockFilter.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Repost.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Stock.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Purchase.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Sales.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemForm.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Jobcard.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.LedgerForm.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemWiseDetail.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockSummary.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.WeeklyReport.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Setting.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Resources.resources
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.GenerateResource.cache
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.CoreCompileInputs.cache
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.CopyComplete
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.exe
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.xml
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.pdb
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Toolkit.dll
+D:\Application Files\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.AssemblyReference.cache
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe.config
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.exe
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.pdb
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Godown Stock.xml
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Toolkit.dll
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\ComponentFactory.Krypton.Workspace.dll
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Newtonsoft.Json.dll
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Buffers.dll
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Memory.dll
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Numerics.Vectors.dll
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Encodings.Web.dll
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Json.dll
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.ValueTuple.dll
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\Newtonsoft.Json.xml
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Buffers.xml
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Memory.xml
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Numerics.Vectors.xml
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Encodings.Web.xml
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Text.Json.xml
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\System.ValueTuple.xml
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.AssemblyReference.cache
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Greeting.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDisplay.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCDprocessing.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCProcessing.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.JCReport.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DBCheck.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Display.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.DBConnect.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Install.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.KeyForm.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PSDForm.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Printing.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.PrintingReport.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockFilter.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Repost.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Stock.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Purchase.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Sales.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemForm.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Jobcard.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.LedgerForm.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.ItemWiseDetail.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.StockSummary.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.WeeklyReport.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Setting.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown_Stock.Resources.resources
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.GenerateResource.cache
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.CoreCompileInputs.cache
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.vbproj.CopyComplete
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.exe
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.xml
+D:\Application Files\Projects\Godown Stock - New\Godown Stock\Godown Stock\obj\Debug\Godown Stock.pdb
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\Godown Stock.exe.config
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\Godown Stock.exe
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\Godown Stock.pdb
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\Godown Stock.xml
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\Newtonsoft.Json.dll
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Buffers.dll
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Memory.dll
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Numerics.Vectors.dll
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Text.Encodings.Web.dll
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Text.Json.dll
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.ValueTuple.dll
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\Newtonsoft.Json.xml
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Buffers.xml
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Memory.xml
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Numerics.Vectors.xml
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Text.Encodings.Web.xml
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Text.Json.xml
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\bin\Debug\System.ValueTuple.xml
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown Stock.vbproj.AssemblyReference.cache
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.Greeting.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.JCDisplay.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.JCDprocessing.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.JCProcessing.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.JCReport.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.DBCheck.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.Display.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.DBConnect.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.Install.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.KeyForm.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.PSDForm.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.Printing.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.PrintingReport.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.StockFilter.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.Repost.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.Stock.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.Purchase.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.Sales.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.ItemForm.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.Jobcard.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.LedgerForm.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.ItemWiseDetail.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.StockSummary.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.WeeklyReport.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.Setting.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown_Stock.Resources.resources
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown Stock.vbproj.GenerateResource.cache
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown Stock.vbproj.CoreCompileInputs.cache
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown Stock.vbproj.CopyComplete
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown Stock.exe
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown Stock.xml
+D:\BK Application\BK-Projects\Godown Stock - New\Godown Stock\obj\Debug\Godown Stock.pdb

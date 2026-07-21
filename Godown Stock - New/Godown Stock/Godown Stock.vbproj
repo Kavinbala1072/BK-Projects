@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{809E245F-E675-42D4-84C5-F576E1BB0C0D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Godown_Stock.My.MyApplication</StartupObject>
+    <RootNamespace>Godown_Stock</RootNamespace>
+    <AssemblyName>Godown Stock</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Godown Stock.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Godown Stock.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Docking, Version=4.3.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ComponentFactory.Krypton.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.3.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ComponentFactory.Krypton.Navigator.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\PASAP\bin\Debug\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\PASAP\bin\Debug\ComponentFactory.Krypton.Workspace.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI2">
+      <HintPath>..\..\..\Market Billing - Application\Market Billing\bin\Debug\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\Godown Stock\Godown Stock\Godown Stock\bin\Debug\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.5\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\dbtable.vb" />
+    <Compile Include="Class\Festival.vb" />
+    <Compile Include="Class\Tools.vb" />
+    <Compile Include="Form\FrmGreeting.Designer.vb">
+      <DependentUpon>FrmGreeting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmGreeting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Jobcard\JCDisplay.Designer.vb">
+      <DependentUpon>JCDisplay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Jobcard\JCDisplay.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Jobcard\JCDprocessing.Designer.vb">
+      <DependentUpon>JCDprocessing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Jobcard\JCDprocessing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Jobcard\JCProcessing.Designer.vb">
+      <DependentUpon>JCProcessing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Jobcard\JCProcessing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Jobcard\JCReport.Designer.vb">
+      <DependentUpon>JCReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Jobcard\JCReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Login\DBCheck.Designer.vb">
+      <DependentUpon>DBCheck.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Login\DBCheck.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Entry\Display.Designer.vb">
+      <DependentUpon>Display.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Entry\Display.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Login\DBConnect.Designer.vb">
+      <DependentUpon>DBConnect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Login\DBConnect.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Login\Install.Designer.vb">
+      <DependentUpon>Install.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Login\Install.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Login\KeyForm.Designer.vb">
+      <DependentUpon>KeyForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Login\KeyForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Login\PSDForm.Designer.vb">
+      <DependentUpon>PSDForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Login\PSDForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Printing\Printing.Designer.vb">
+      <DependentUpon>Printing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Printing\Printing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Printing\PrintingReport.Designer.vb">
+      <DependentUpon>PrintingReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Printing\PrintingReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\StockFilter.Designer.vb">
+      <DependentUpon>StockFilter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\StockFilter.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Settings\Repost.Designer.vb">
+      <DependentUpon>Repost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Settings\Repost.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Stock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Stock.Designer.vb">
+      <DependentUpon>Stock.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Entry\Purchase.Designer.vb">
+      <DependentUpon>Purchase.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Entry\Purchase.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Entry\Sales.Designer.vb">
+      <DependentUpon>Sales.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Entry\Sales.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Item\ItemForm.Designer.vb">
+      <DependentUpon>ItemForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Item\ItemForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Jobcard\Jobcard.Designer.vb">
+      <DependentUpon>Jobcard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Jobcard\Jobcard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Ledger\LedgerForm.Designer.vb">
+      <DependentUpon>LedgerForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Ledger\LedgerForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\ItemWiseDetail.Designer.vb">
+      <DependentUpon>ItemWiseDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\ItemWiseDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\StockSummary.Designer.vb">
+      <DependentUpon>StockSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\StockSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\WeeklyReport.Designer.vb">
+      <DependentUpon>WeeklyReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\WeeklyReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Settings\Setting.Designer.vb">
+      <DependentUpon>Setting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Settings\Setting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Form\FrmGreeting.resx">
+      <DependentUpon>FrmGreeting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Jobcard\JCDisplay.resx">
+      <DependentUpon>JCDisplay.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Jobcard\JCDprocessing.resx">
+      <DependentUpon>JCDprocessing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Jobcard\JCProcessing.resx">
+      <DependentUpon>JCProcessing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Jobcard\JCReport.resx">
+      <DependentUpon>JCReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Login\DBCheck.resx">
+      <DependentUpon>DBCheck.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Entry\Display.resx">
+      <DependentUpon>Display.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Login\DBConnect.resx">
+      <DependentUpon>DBConnect.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Login\Install.resx">
+      <DependentUpon>Install.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Login\KeyForm.resx">
+      <DependentUpon>KeyForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Login\PSDForm.resx">
+      <DependentUpon>PSDForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Printing\Printing.resx">
+      <DependentUpon>Printing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Printing\PrintingReport.resx">
+      <DependentUpon>PrintingReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\StockFilter.resx">
+      <DependentUpon>StockFilter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Settings\Repost.resx">
+      <DependentUpon>Repost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Stock.resx">
+      <DependentUpon>Stock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Entry\Purchase.resx">
+      <DependentUpon>Purchase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Entry\Sales.resx">
+      <DependentUpon>Sales.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Item\ItemForm.resx">
+      <DependentUpon>ItemForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Jobcard\Jobcard.resx">
+      <DependentUpon>Jobcard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Ledger\LedgerForm.resx">
+      <DependentUpon>LedgerForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\ItemWiseDetail.resx">
+      <DependentUpon>ItemWiseDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\StockSummary.resx">
+      <DependentUpon>StockSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\WeeklyReport.resx">
+      <DependentUpon>WeeklyReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Settings\Setting.resx">
+      <DependentUpon>Setting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
+    <None Include="Resources\IndependenceDay.jpg" />
+    <None Include="Resources\KrishnaJayanti.jpg" />
+    <None Include="Resources\VinayagarChaturthi.jpg" />
+    <None Include="Resources\GandhiJayanthi.jpg" />
+    <None Include="Resources\AyudhaPooja.jpg" />
+    <None Include="Resources\Vijayadasami.jpg" />
+    <None Include="Resources\Deepavali.jpg" />
+    <None Include="Resources\Christmas.jpg" />
+    <None Include="Resources\RepublicDay.jpg" />
+    <None Include="Resources\Thaipusam.jpg" />
+    <None Include="Resources\Ramzan.jpg" />
+    <None Include="Resources\MahavirJayanti.jpg" />
+    <None Include="Resources\TamilNewYear.jpg" />
+    <None Include="Resources\LabourDay.jpg" />
+    <None Include="Resources\DefaultImage.jpg" />
+    <None Include="Resources\Year.jpg" />
+    <None Include="Resources\MattuPongal.jpg" />
+    <None Include="Resources\UzhavarThirunal.jpg" />
+    <None Include="Resources\Pongal.jpg" />
+    <None Include="Resources\Copy.png" />
+    <None Include="Resources\key.png" />
+    <None Include="Resources\icons8-report-50 %281%291.png" />
+    <None Include="Resources\icons8-plus-501.png" />
+    <None Include="Resources\icons8-report-50 %281%29.png" />
+    <None Include="Resources\icons8-video-card-50.png" />
+    <None Include="Resources\icons8-plus-50.png" />
+    <None Include="Resources\icons8-report-card-50.png" />
+    <None Include="Resources\icons8-stock-50.png" />
+    <None Include="Resources\icons8-stock-64.png" />
+    <None Include="Resources\icons8-ledger-50.png" />
+    <None Include="Resources\icons8-edit-50.png" />
+    <None Include="Resources\icons8-settings-50.png" />
+    <None Include="Resources\icons8-print-50.png" />
+    <None Include="Resources\icons8-magnetic-card-50.png" />
+    <None Include="Resources\icons8-report-50.png" />
+    <None Include="Resources\icons8-add-item-48.png" />
+    <None Include="Resources\icons8-purchase-50 %282%29.png" />
+    <None Include="Resources\icons8-purchase-50 %281%29.png" />
+    <None Include="Resources\icons8-purchase-50.png" />
+    <None Include="Resources\icons8-skip-50.png" />
+    <None Include="Resources\icons8-download-64.png" />
+    <None Include="Resources\icons8-update-64.png" />
+    <None Include="Resources\icons8-database-restore-50.png" />
+    <None Include="Resources\icons8-database-administrator-50.png" />
+    <None Include="Resources\icons8-document-in-folder-50.png" />
+    <None Include="Resources\icons8-database-50.png" />
+    <None Include="Resources\icons8-reset-password-66.png" />
+    <None Include="Resources\icons8-data-protection-50.png" />
+    <None Include="Resources\icons8-backup-50.png" />
+    <None Include="Resources\icons8-log-in-50.png" />
+    <None Include="Resources\icons8-log-out-50.png" />
+    <None Include="Resources\icons8-hamburger-50.png" />
+    <None Include="Resources\pngwing.com.png" />
+    <None Include="Resources\interface_15478914.png" />
+    <None Include="Resources\logout.png" />
+    <None Include="Resources\interface.png" />
+    <None Include="Resources\BG5.jpg" />
+    <None Include="Resources\BG4.jpg" />
+    <None Include="Resources\BG3.jpg" />
+    <None Include="Resources\cloud-computing_174326.png" />
+    <None Include="Resources\printer_9654640.png" />
+    <None Include="Resources\BG2.jpg" />
+    <None Include="Resources\BG1.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

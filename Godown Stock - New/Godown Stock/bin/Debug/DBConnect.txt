@@ -1,0 +1,8 @@
+SQLServerType=True
+SQLServer=TASTR3LAP096\SQL2016
+SQLDBName=Stock
+LogoPanel=True
+BackupPath=D:\Kavin Files\Database
+SQLUsername=sa
+SQLPassword=kavin@1072
+CurrentVersion=2.8
