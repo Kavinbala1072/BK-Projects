@@ -1,0 +1,11 @@
+
+
+Select Bill_No,Printing_date,Ledger_Table.Partyname,PrintingMethod_table.Name as PrintingMethod,
+PrintingMachine_table.Name as PrintingMachine,PrintingType_table.Name as PrintingType,NoteType_table.Name As NoteType,
+Printing_Colour,paper_brand,Paper_Size_GSM,Quantity,paper_weight,Printing_Details,WorkingStatus From Printing_table
+left join PrintingMethod_table on Printing_table.PrintMethod_Id = PrintingMethod_table.ID
+left join Ledger_Table on Printing_table.ledger_id = Ledger_Table.ID
+left join PrintingMachine_table on Printing_table.PrintingMachine_Id = PrintingMachine_table.ID
+left join PrintingType_table on Printing_table.PrintingType_Id = PrintingType_table.ID
+left join NoteType_table on Printing_table.NoteType_Id = NoteType_table.ID
+
