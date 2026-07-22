@@ -14,6 +14,22 @@ namespace BKBilling.Components
         public event EventHandler OnRebind;
         public event EventHandler<GridRowActionEventArgs> RowAction;
 
+        // ---------- SESSION-BACKED STATE (survives F5 refresh) ----------
+        // Each grid instance uses its own key so multiple grids on one page don't collide.
+        private string SK(string suffix) => "SG_" + this.UniqueID + "_" + suffix;
+
+        private T SessGet<T>(string suffix, T fallback)
+        {
+            var v = Session?[SK(suffix)];
+            return v is T t ? t : fallback;
+        }
+        private void SessSet(string suffix, object value)
+        {
+            if (Session == null) return;
+            if (value == null) Session.Remove(SK(suffix));
+            else Session[SK(suffix)] = value;
+        }
+
         // Cache the last-bound DataTable so Export uses filtered+sorted data
         private DataTable LastBound
         {
@@ -28,10 +44,22 @@ namespace BKBilling.Components
             set => ViewState["_Cols"] = value;
         }
 
+        // Column filters — mirrored to Session for refresh survival
         private Dictionary<string, FilterCriteria> ColFilters
         {
-            get => (Dictionary<string, FilterCriteria>)ViewState["_Filt"] ?? new Dictionary<string, FilterCriteria>();
-            set => ViewState["_Filt"] = value;
+            get
+            {
+                var vs = (Dictionary<string, FilterCriteria>)ViewState["_Filt"];
+                if (vs != null) return vs;
+                var sess = SessGet<Dictionary<string, FilterCriteria>>("Filt", null);
+                if (sess != null) { ViewState["_Filt"] = sess; return sess; }
+                return new Dictionary<string, FilterCriteria>();
+            }
+            set
+            {
+                ViewState["_Filt"] = value;
+                SessSet("Filt", value);
+            }
         }
 
         private List<GridActionDef> ActionConfigs
@@ -40,15 +68,45 @@ namespace BKBilling.Components
             set => ViewState["_Acts"] = value;
         }
 
-        private string SortExp { get => (string)ViewState["_Sort"] ?? ""; set => ViewState["_Sort"] = value; }
-        private string SortDir { get => (string)ViewState["_Dir"] ?? "ASC"; set => ViewState["_Dir"] = value; }
+        private string SortExp
+        {
+            get => (string)ViewState["_Sort"] ?? SessGet<string>("Sort", "");
+            set { ViewState["_Sort"] = value; SessSet("Sort", value); }
+        }
+        private string SortDir
+        {
+            get => (string)ViewState["_Dir"] ?? SessGet<string>("Dir", "ASC");
+            set { ViewState["_Dir"] = value; SessSet("Dir", value); }
+        }
         public string KeyField { get => (string)ViewState["_Key"] ?? "Id"; set => ViewState["_Key"] = value; }
 
-        // FIX #2: DateColumn must survive postback
         public string DateColumn
         {
             get => (string)ViewState["_DateCol"];
             set => ViewState["_DateCol"] = value;
+        }
+
+        // ---------- LIFECYCLE ----------
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // First load of a fresh page (F5 or navigation): rehydrate visible inputs from Session
+            if (!Page.IsPostBack)
+            {
+                txtSearch.Text = SessGet<string>("Search", "");
+                txtFrom.Text = SessGet<string>("From", "");
+                txtTo.Text = SessGet<string>("To", "");
+                var size = SessGet<string>("Size", "25");
+                var item = ddlSize.Items.FindByValue(size);
+                if (item != null) ddlSize.SelectedValue = size;
+            }
+            else
+            {
+                // Postback: user may have typed something new -> persist current input values
+                SessSet("Search", txtSearch.Text);
+                SessSet("From", txtFrom.Text);
+                SessSet("To", txtTo.Text);
+                SessSet("Size", ddlSize.SelectedValue);
+            }
         }
 
         public void Configure(List<GridColumnDef> columns, List<GridActionDef> actions = null, string keyField = "Id")
@@ -57,6 +115,18 @@ namespace BKBilling.Components
             this.ActionConfigs = actions ?? new List<GridActionDef>();
             this.KeyField = keyField;
             BuildColumns(this.ActionConfigs);
+        }
+
+        /// <summary>Clear all persisted state for THIS grid (search, dates, filters, sort, size).</summary>
+        public void ResetState()
+        {
+            foreach (var k in new[] { "Filt", "Sort", "Dir", "Search", "From", "To", "Size" })
+                Session?.Remove(SK(k));
+            ViewState.Remove("_Filt");
+            ViewState.Remove("_Sort");
+            ViewState.Remove("_Dir");
+            txtSearch.Text = ""; txtFrom.Text = ""; txtTo.Text = "";
+            ddlSize.SelectedValue = "25";
         }
 
         private void BuildColumns(List<GridActionDef> actions)
@@ -89,6 +159,9 @@ namespace BKBilling.Components
 
         public void BindData(DataTable dt)
         {
+            // Fix: always ensure paging is on for normal binds (Export toggles it off)
+            gvInternal.AllowPaging = true;
+
             DataTable filtered = ApplyFiltering(dt);
             litTotal.Text = (dt?.Rows.Count ?? 0).ToString();
             litVisible.Text = filtered.Rows.Count.ToString();
@@ -100,7 +173,7 @@ namespace BKBilling.Components
                 filtered = dv.ToTable();
             }
 
-            LastBound = filtered; // for export
+            LastBound = filtered;
             gvInternal.DataSource = filtered;
             int size; if (!int.TryParse(ddlSize.SelectedValue, out size)) size = 25;
             gvInternal.PageSize = size;
@@ -149,7 +222,7 @@ namespace BKBilling.Components
             var f = ColFilters;
             if (string.IsNullOrEmpty(val)) f.Remove(field);
             else f[field] = new FilterCriteria { Operator = op, Value = val };
-            ColFilters = f;
+            ColFilters = f;  // setter also writes to Session
             OnRebind?.Invoke(this, EventArgs.Empty);
         }
 
@@ -163,7 +236,14 @@ namespace BKBilling.Components
             }
         }
 
-        protected void Refresh_Click(object sender, EventArgs e) => OnRebind?.Invoke(this, e);
+        protected void Refresh_Click(object sender, EventArgs e)
+        {
+            SessSet("Search", txtSearch.Text);
+            SessSet("From", txtFrom.Text);
+            SessSet("To", txtTo.Text);
+            SessSet("Size", ddlSize.SelectedValue);
+            OnRebind?.Invoke(this, e);
+        }
         protected void Prev_Click(object sender, EventArgs e) { if (gvInternal.PageIndex > 0) gvInternal.PageIndex--; OnRebind?.Invoke(this, e); }
         protected void Next_Click(object sender, EventArgs e) { gvInternal.PageIndex++; OnRebind?.Invoke(this, e); }
 
@@ -180,7 +260,7 @@ namespace BKBilling.Components
             RowAction?.Invoke(this, new GridRowActionEventArgs { ActionKey = e.CommandName, RowKey = e.CommandArgument.ToString() });
         }
 
-        // FIX #3: safe Excel export – uses filtered+sorted LastBound, no paging, no thread-abort.
+        // Safe Excel export – uses filtered+sorted LastBound, no thread-abort, no design breakage.
         protected void Export_Click(object sender, EventArgs e)
         {
             DataTable src = LastBound;
@@ -228,8 +308,6 @@ namespace BKBilling.Components
             resp.Flush();
             HttpContext.Current.ApplicationInstance.CompleteRequest();
         }
-
-
         private class ProHeaderTemplate : ITemplate
         {
             GridColumnDef _c; StandardGrid _p;
@@ -253,7 +331,6 @@ namespace BKBilling.Components
                 menu.Controls.Add(filt);
                 f.Controls.Add(menu);
 
-                // FIX #1: was literal "p_{_c.FieldKey}" – now interpolated
                 var pop = new Panel { ID = $"p_{_c.FieldKey}", CssClass = "pro-filter-pop" };
                 pop.Attributes.Add("onclick", "stopPopClose(event)");
                 pop.Controls.Add(new LiteralControl($"<span class='filter-pop-label'>Is '{_c.HeaderText}':</span>"));
