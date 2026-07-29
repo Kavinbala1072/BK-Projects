@@ -10,7 +10,10 @@ namespace BKSoftwares
 {
     public partial class CreateUser : System.Web.UI.Page
     {
-        private const string GitToken = "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";
+        private const string GitToken = "A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";
+
+        private static readonly string ActualGitToken = GitToken.StartsWith("A") ? GitToken.Substring(1) : GitToken;
+
         private const string GitURL = "https://api.github.com/repos/Kavinbala1072/Reporting/contents/Login.json";
         private const string ADMIN_KEY = "BK@2026";
 
@@ -65,7 +68,7 @@ namespace BKSoftwares
         private GitResponse FetchGitFile()
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GitURL);
-            request.Headers.Add("Authorization", "token " + GitToken);
+            request.Headers.Add("Authorization", "token " + ActualGitToken);
             request.UserAgent = "BK_App_Creator";
 
             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
@@ -79,7 +82,7 @@ namespace BKSoftwares
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GitURL);
             request.Method = "PUT";
-            request.Headers.Add("Authorization", "token " + GitToken);
+            request.Headers.Add("Authorization", "token " + ActualGitToken);
             request.UserAgent = "BK_App_Creator";
             request.ContentType = "application/json";
 

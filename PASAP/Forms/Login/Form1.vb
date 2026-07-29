@@ -16,6 +16,7 @@ Public Class Form1
     Public Server As Boolean = False
     Public Version As String = 0.3
     Public compName As String = "Unknown Company"
+    Public LastLogin = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")
     Public amcExpiryDate As String = "Trial/None"
     Public CompanyNo As String = "BK0002"
     Public secretPassword As String = "BK@123"
@@ -159,7 +160,6 @@ Public Class Form1
         Dim enteredPassword As String = GetPassword().Trim()
         Dim hashedPassword As String = HashPassword(enteredPassword)
 
-
         If Not Tools.IsVersionValid(Version) Then
             MessageBox.Show($"Database version mismatch. Expected: {Version}. Please contact admin.", "Version Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -230,7 +230,7 @@ Public Class Form1
                                 Application.DoEvents()
 
                                 'Tools.UpdateCloudLog(Server, "Attma", compName)
-                                Tools.UpdateCloudLog(Server, CompanyNo, "Attma", compName, amcExpiryDate, Version, secretPassword)
+                                Tools.UpdateCloudLog(Server, CompanyNo, "Attma", compName, LastLogin, amcExpiryDate, Version, secretPassword)
                             Catch ex As Exception
                                 Debug.WriteLine("Cloud Sync Failed: " & ex.Message)
                             End Try

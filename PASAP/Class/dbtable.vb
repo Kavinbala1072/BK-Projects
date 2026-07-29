@@ -66,7 +66,7 @@ Public Class dbtable
                 SqlCommand.ExecuteNonQuery()
 
                 ' Insert default row if table is empty
-                SqlCommand.CommandText = "UPDATE Company_Table SET Comp_No = 'BK0002' WHERE Comp_No = 'KR1';
+                SqlCommand.CommandText = "UPDATE Company_Table SET Comp_No = 'BK0002' WHERE Comp_No = 'BK0002';
                                             IF NOT EXISTS (SELECT 1 FROM Company_Table)
                                             BEGIN
                                                 INSERT INTO Company_Table (Comp_No, Comp_Name, Comp_Address1, Comp_Address2, Comp_Address3, Mobile) 

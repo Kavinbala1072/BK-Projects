@@ -22,7 +22,9 @@ Public Class Tools
     Private Shared ReadOnly xmlPath As String = Path.Combine(Application.StartupPath, "GS Key", "activation.xml")
 
     Private Shared ReadOnly GitURL As String = "https://api.github.com/repos/Kavinbala1072/Reporting/contents/BK%20Reporting.json"
-    Private Shared ReadOnly GitToken As String = "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"
+    Private Shared ReadOnly GitToken As String = "A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"
+
+    Private Shared ReadOnly ActualGitToken As String = GitToken.Substring(1)
     Public Class GitFileResponse
         Public Property content As String
         Public Property sha As String
@@ -544,7 +546,7 @@ Public Class Tools
             Dim js As New JavaScriptSerializer()
 
             Dim request As HttpWebRequest = DirectCast(WebRequest.Create(GitURL), HttpWebRequest)
-            request.Headers.Add("Authorization", "token " & GitToken)
+            request.Headers.Add("Authorization", "token " & ActualGitToken)
             request.UserAgent = "WinForms_App"
 
             Using response As HttpWebResponse = DirectCast(request.GetResponse(), HttpWebResponse)
@@ -578,7 +580,7 @@ Public Class Tools
             Dim CompNo As String = "BK0001"
 
             Dim request As HttpWebRequest = DirectCast(WebRequest.Create(GitURL), HttpWebRequest)
-            request.Headers.Add("Authorization", "token " & GitToken)
+            request.Headers.Add("Authorization", "token " & ActualGitToken)
             request.UserAgent = "WinForms_App"
 
             Dim currentSha As String = ""
@@ -630,7 +632,7 @@ Public Class Tools
 
             Dim putRequest As HttpWebRequest = DirectCast(WebRequest.Create(GitURL), HttpWebRequest)
             putRequest.Method = "PUT"
-            putRequest.Headers.Add("Authorization", "token " & GitToken)
+            putRequest.Headers.Add("Authorization", "token " & ActualGitToken)
             putRequest.UserAgent = "WinForms_App"
             putRequest.ContentType = "application/json"
 

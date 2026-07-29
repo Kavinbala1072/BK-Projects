@@ -8,16 +8,40 @@
 */
 CREATE PROCEDURE sp_GetLedgerList
     @Company_No BIGINT,
-    @SearchText NVARCHAR(100) = NULL
+    @SearchText NVARCHAR(100) = NULL,
+    @FromDate DATE = NULL,
+    @ToDate DATE = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT L.*, G.LedgerGroup_Name,
-    L.Created_Date AS CreatedDate 
+
+    SELECT
+        L.*,
+        G.LedgerGroup_Name,
+        L.Created_Date AS CreatedDate
     FROM Ledger_Table L
-    LEFT JOIN LedgerGroup_Table G ON L.LedgerGroup_no = G.LedgerGroup_Sno
-    WHERE L.Company_No = @Company_No
-      AND (@SearchText IS NULL OR L.ledger_name LIKE '%' + @SearchText + '%' OR L.ledger_code LIKE '%' + @SearchText + '%')
-    ORDER BY L.Ledger_Sno DESC;
+    LEFT JOIN LedgerGroup_Table G
+        ON L.LedgerGroup_no = G.LedgerGroup_Sno
+    WHERE
+        L.Company_No = @Company_No
+        AND
+        (
+            @SearchText IS NULL
+            OR @SearchText = ''
+            OR L.ledger_name LIKE '%' + @SearchText + '%'
+            OR L.ledger_code LIKE '%' + @SearchText + '%'
+            OR L.Ledger_Phone LIKE '%' + @SearchText + '%'
+        )
+        AND
+        (
+            @FromDate IS NULL
+            OR CAST(L.Created_Date AS DATE) >= @FromDate
+        )
+        AND
+        (
+            @ToDate IS NULL
+            OR CAST(L.Created_Date AS DATE) <= @ToDate
+        )
+    ORDER BY
+        L.ledger_code ASC;
 END
-GO

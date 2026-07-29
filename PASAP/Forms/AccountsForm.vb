@@ -50,18 +50,31 @@ Public Class AccountsForm
             Using conn As SqlConnection = Tools.GetConnection()
                 conn.Open()
 
-                Dim query As String = "SELECT " &
-                    "L.ID, " &
-                    "L.Partyname AS [AccountName], " &
-                    "L.Under AS [Group], " &
-                    "CAST(ISNULL(L.Opening, 0) AS DECIMAL(18,2)) AS [OpeningBalance], " &
-                    "ISNULL((SELECT SUM(Amount) FROM Voucher_Table WHERE Ledger_ID = L.ID AND V_Type = 'RECEIPT' AND Is_Cancelled = 0 AND V_Date <= @To), 0) AS [Inward], " &
-                    "ISNULL((SELECT SUM(Amount) FROM Voucher_Table WHERE Ledger_ID = L.ID AND V_Type = 'VOUCHER' AND Is_Cancelled = 0 AND V_Date <= @To), 0) AS [Outward] " &
-                    "FROM Ledger_Table L " &
-                    "WHERE L.Active = 0 AND (L.Under LIKE '%Cash%' OR L.Under LIKE '%Bank%')"
+                Dim query As String = "SELECT L.ID, L.Partyname AS [AccountName], L.Under AS [Group], CAST(ISNULL(L.Opening, 0) + 
+                ISNULL((SELECT SUM(CASE WHEN V_Type = 'RECEIPT' THEN Amount ELSE -Amount END)  FROM Voucher_Table " &
+                "            WHERE Ledger_ID = L.ID " &
+                "              AND Is_Cancelled = 0 " &
+                "              AND V_Date < @From), 0) " &
+                "AS DECIMAL(18,2)) AS [OpeningBalance], " &
+                "ISNULL((SELECT SUM(Amount) FROM Voucher_Table " &
+                "        WHERE Ledger_ID = L.ID " &
+                "          AND V_Type = 'RECEIPT' " &
+                "          AND Is_Cancelled = 0 " &
+                "          AND V_Date >= @From AND V_Date <= @To), 0) AS [Inward], " &
+                "ISNULL((SELECT SUM(Amount) FROM Voucher_Table " &
+                "        WHERE Ledger_ID = L.ID " &
+                "          AND V_Type = 'VOUCHER' " &
+                "          AND Is_Cancelled = 0 " &
+                "          AND V_Date >= @From AND V_Date <= @To), 0) AS [Outward] " &
+                "FROM Ledger_Table L " &
+                "WHERE L.Active = 0 AND (L.Under LIKE '%Cash%' OR L.Under LIKE '%Bank%')"
 
                 Dim cmd As New SqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@From", FromDate.Value.Date)
                 cmd.Parameters.AddWithValue("@To", ToDate.Value.Date)
+
+                'Dim cmd As New SqlCommand(query, conn)
+                'cmd.Parameters.AddWithValue("@To", ToDate.Value.Date)
 
                 Dim adapter As New SqlDataAdapter(cmd)
                 Dim dtSource As New DataTable()
@@ -199,10 +212,9 @@ Public Class AccountsForm
 
         ' Fonts
         Dim fInst As New Font("Arial", 14, FontStyle.Bold)
-        Dim fHeader As New Font("Arial", 10, FontStyle.Bold)
-        Dim fBody As New Font("Arial", 10, FontStyle.Regular)
-        Dim fSno As New Font("Arial", 10, FontStyle.Bold)
-        Dim fTotal As New Font("Arial", 12, FontStyle.Bold)
+        Dim fHeader As New Font("Arial", 9, FontStyle.Bold) ' Slightly smaller for more columns
+        Dim fBody As New Font("Arial", 9, FontStyle.Regular)
+        Dim fTotal As New Font("Arial", 11, FontStyle.Bold)
 
         Dim left As Integer = e.MarginBounds.Left
         Dim y As Integer = e.MarginBounds.Top
@@ -223,19 +235,19 @@ Public Class AccountsForm
         y += 30
         g.DrawString("CASH & BANK BALANCE SUMMARY", fHeader, Brushes.Black, centerX - (g.MeasureString("CASH & BANK BALANCE SUMMARY", fHeader).Width / 2), y)
         y += 20
-        g.DrawString("Date: " & DateTime.Now.ToString("dd-MM-yyyy"), fBody, Brushes.DimGray, centerX - (g.MeasureString("Date: " & DateTime.Now.ToString("dd-MM-yyyy"), fBody).Width / 2), y)
+        g.DrawString("Period: " & FromDate.Value.ToString("dd-MM-yyyy") & " to " & ToDate.Value.ToString("dd-MM-yyyy"), fBody, Brushes.DimGray, centerX - (g.MeasureString("Period: " & FromDate.Value.ToString("dd-MM-yyyy") & " to " & ToDate.Value.ToString("dd-MM-yyyy"), fBody).Width / 2), y)
         y += 40
 
-        ' 2. Table Headers (Grid Layout)
-        ' Total width around 740
-        Dim colW As Integer() = {60, 400, 280}
-        Dim colN As String() = {"S.No", "Account Name", "Current Balance"}
+        ' 2. Table Configuration (Widths must sum to ~740 for A4)
+        ' SNo(40), Name(180), Opening(130), Inward(130), Outward(130), Balance(130) = 740 Total
+        Dim colW As Integer() = {40, 180, 130, 130, 130, 130}
+        Dim colN As String() = {"S.No", "Account Name", "Opening", "Inward (+)", "Outward (-)", "Closing Bal"}
 
-        g.FillRectangle(Brushes.LightGray, left, y, colW.Sum, 30)
+        ' Draw Headers
+        g.FillRectangle(Brushes.LightGray, left, y, colW.Sum(), 30)
         Dim curX As Integer = left
         For i As Integer = 0 To colN.Length - 1
             g.DrawRectangle(Pens.Black, curX, y, colW(i), 30)
-            ' Center alignment for Sno and Balance headers
             Dim align = If(i = 1, StringAlignment.Near, StringAlignment.Center)
             Dim sf As New StringFormat() With {.Alignment = align, .LineAlignment = StringAlignment.Center}
             g.DrawString(colN(i), fHeader, Brushes.Black, New RectangleF(curX + 5, y, colW(i) - 10, 30), sf)
@@ -244,29 +256,43 @@ Public Class AccountsForm
         y += 30
 
         ' 3. Data Rows
-        Dim rowH As Integer = 40 ' Smaller height than member register since no photo
+        Dim rowH As Integer = 35
 
         While mRow < Guna2DataGridView1.Rows.Count
             Dim row As DataGridViewRow = Guna2DataGridView1.Rows(mRow)
             curX = left
 
-            ' Box 1: S.No
+            ' S.No
             g.DrawRectangle(Pens.Black, curX, y, colW(0), rowH)
-            g.DrawString((mRow + 1).ToString & ".", fBody, Brushes.Black, curX + 15, y + 10)
+            g.DrawString((mRow + 1).ToString, fBody, Brushes.Black, New RectangleF(curX, y, colW(0), rowH), New StringFormat() With {.Alignment = StringAlignment.Center, .LineAlignment = StringAlignment.Center})
             curX += colW(0)
 
-            ' Box 2: Account Name
+            ' Account Name
             g.DrawRectangle(Pens.Black, curX, y, colW(1), rowH)
-            g.DrawString(row.Cells("Account Name").Value.ToString(), fBody, Brushes.Black, curX + 10, y + 10)
+            g.DrawString(row.Cells("Account Name").Value.ToString(), fBody, Brushes.Black, New RectangleF(curX + 5, y, colW(1) - 10, rowH), New StringFormat() With {.LineAlignment = StringAlignment.Center})
             curX += colW(1)
 
-            ' Box 3: Current Balance
-            g.DrawRectangle(Pens.Black, curX, y, colW(2), rowH)
-            Dim balAmt As Decimal = CDec(row.Cells("Current Balance").Value)
-            Dim balStr As String = "Rs. " & balAmt.ToString("N2")
-            ' Right-aligned balance
+            ' Financial Columns (Opening, Inward, Outward, Balance)
             Dim sfRight As New StringFormat() With {.Alignment = StringAlignment.Far, .LineAlignment = StringAlignment.Center}
-            g.DrawString(balStr, fHeader, Brushes.DarkBlue, New RectangleF(curX, y, colW(2) - 10, rowH), sfRight)
+
+            ' Opening
+            g.DrawRectangle(Pens.Black, curX, y, colW(2), rowH)
+            g.DrawString(CDec(row.Cells("Opening").Value).ToString("N2"), fBody, Brushes.Black, New RectangleF(curX, y, colW(2) - 5, rowH), sfRight)
+            curX += colW(2)
+
+            ' Inward - Fixed name: "Inward (+)"
+            g.DrawRectangle(Pens.Black, curX, y, colW(3), rowH)
+            g.DrawString(CDec(row.Cells("Inward (+)").Value).ToString("N2"), fBody, Brushes.Green, New RectangleF(curX, y, colW(3) - 5, rowH), sfRight)
+            curX += colW(3)
+
+            ' Outward - Fixed name: "Outward (-)"
+            g.DrawRectangle(Pens.Black, curX, y, colW(4), rowH)
+            g.DrawString(CDec(row.Cells("Outward (-)").Value).ToString("N2"), fBody, Brushes.Red, New RectangleF(curX, y, colW(4) - 5, rowH), sfRight)
+            curX += colW(4)
+
+            ' Current Balance
+            g.DrawRectangle(Pens.Black, curX, y, colW(5), rowH)
+            g.DrawString(CDec(row.Cells("Current Balance").Value).ToString("N2"), fHeader, Brushes.DarkBlue, New RectangleF(curX, y, colW(5) - 5, rowH), sfRight)
 
             y += rowH
             mRow += 1
@@ -282,21 +308,127 @@ Public Class AccountsForm
 
         ' 4. Final Total Box
         curX = left
-        g.FillRectangle(Brushes.WhiteSmoke, curX, y, colW(0) + colW(1), rowH + 10)
-        g.DrawRectangle(Pens.Black, curX, y, colW(0) + colW(1), rowH + 10)
-        g.DrawString("TOTAL NET WORTH", fTotal, Brushes.Black, curX + 20, y + 12)
+        ' Sum of first 5 columns to span the label
+        Dim labelWidth As Integer = colW(0) + colW(1) + colW(2) + colW(3) + colW(4)
 
-        curX += colW(0) + colW(1)
-        g.DrawRectangle(Pens.Black, curX, y, colW(2), rowH + 10)
+        g.FillRectangle(Brushes.WhiteSmoke, curX, y, labelWidth, rowH + 10)
+        g.DrawRectangle(Pens.Black, curX, y, labelWidth, rowH + 10)
+        g.DrawString("TOTAL NET WORTH (CLOSING BALANCE)", fTotal, Brushes.Black, curX + 20, y + 12)
 
-        ' Assuming GrandTotalBalance is a variable in your class
-        Dim totalStr As String = "Rs. " & GrandTotalBalance.ToString("N2")
+        curX += labelWidth
+        g.DrawRectangle(Pens.Black, curX, y, colW(5), rowH + 10)
+
+        Dim totalStr As String = GrandTotalBalance.ToString("N2")
         Dim sfTotal As New StringFormat() With {.Alignment = StringAlignment.Far, .LineAlignment = StringAlignment.Center}
-        g.DrawString(totalStr, fTotal, Brushes.Blue, New RectangleF(curX, y, colW(2) - 10, rowH + 10), sfTotal)
+        g.DrawString(totalStr, fTotal, Brushes.Blue, New RectangleF(curX, y, colW(5) - 5, rowH + 10), sfTotal)
 
         ' Footer
         g.DrawString("Page " & PageNumber, fBody, Brushes.Black, e.MarginBounds.Right - 50, e.MarginBounds.Bottom + 10)
         e.HasMorePages = False
     End Sub
+    'Private Sub PrintDocument_PrintPage(sender As Object, e As PrintPageEventArgs)
+    '    Dim g As Graphics = e.Graphics
+
+    '    ' Fonts
+    '    Dim fInst As New Font("Arial", 14, FontStyle.Bold)
+    '    Dim fHeader As New Font("Arial", 10, FontStyle.Bold)
+    '    Dim fBody As New Font("Arial", 10, FontStyle.Regular)
+    '    Dim fSno As New Font("Arial", 10, FontStyle.Bold)
+    '    Dim fTotal As New Font("Arial", 12, FontStyle.Bold)
+
+    '    Dim left As Integer = e.MarginBounds.Left
+    '    Dim y As Integer = e.MarginBounds.Top
+    '    Dim centerX As Integer = e.PageBounds.Width / 2
+
+    '    ' 1. Institution Header
+    '    Dim compName As String = "ATTMA SEVA ARAKKATTALAI"
+    '    Try
+    '        Using conn As SqlConnection = Tools.GetConnection()
+    '            conn.Open()
+    '            Dim cmd = New SqlCommand("SELECT Comp_Name FROM Company_Table WHERE Comp_No='BK0002'", conn)
+    '            Dim res = cmd.ExecuteScalar()
+    '            If res IsNot Nothing Then compName = res.ToString().ToUpper()
+    '        End Using
+    '    Catch : End Try
+
+    '    g.DrawString(compName, fInst, Brushes.Black, centerX - (g.MeasureString(compName, fInst).Width / 2), y)
+    '    y += 30
+    '    g.DrawString("CASH & BANK BALANCE SUMMARY", fHeader, Brushes.Black, centerX - (g.MeasureString("CASH & BANK BALANCE SUMMARY", fHeader).Width / 2), y)
+    '    y += 20
+    '    g.DrawString("Date: " & DateTime.Now.ToString("dd-MM-yyyy"), fBody, Brushes.DimGray, centerX - (g.MeasureString("Date: " & DateTime.Now.ToString("dd-MM-yyyy"), fBody).Width / 2), y)
+    '    y += 40
+
+    '    ' 2. Table Headers (Grid Layout)
+    '    ' Total width around 740
+    '    Dim colW As Integer() = {60, 400, 280}
+    '    Dim colN As String() = {"S.No", "Account Name", "Current Balance"}
+
+    '    g.FillRectangle(Brushes.LightGray, left, y, colW.Sum, 30)
+    '    Dim curX As Integer = left
+    '    For i As Integer = 0 To colN.Length - 1
+    '        g.DrawRectangle(Pens.Black, curX, y, colW(i), 30)
+    '        ' Center alignment for Sno and Balance headers
+    '        Dim align = If(i = 1, StringAlignment.Near, StringAlignment.Center)
+    '        Dim sf As New StringFormat() With {.Alignment = align, .LineAlignment = StringAlignment.Center}
+    '        g.DrawString(colN(i), fHeader, Brushes.Black, New RectangleF(curX + 5, y, colW(i) - 10, 30), sf)
+    '        curX += colW(i)
+    '    Next
+    '    y += 30
+
+    '    ' 3. Data Rows
+    '    Dim rowH As Integer = 40 ' Smaller height than member register since no photo
+
+    '    While mRow < Guna2DataGridView1.Rows.Count
+    '        Dim row As DataGridViewRow = Guna2DataGridView1.Rows(mRow)
+    '        curX = left
+
+    '        ' Box 1: S.No
+    '        g.DrawRectangle(Pens.Black, curX, y, colW(0), rowH)
+    '        g.DrawString((mRow + 1).ToString & ".", fBody, Brushes.Black, curX + 15, y + 10)
+    '        curX += colW(0)
+
+    '        ' Box 2: Account Name
+    '        g.DrawRectangle(Pens.Black, curX, y, colW(1), rowH)
+    '        g.DrawString(row.Cells("Account Name").Value.ToString(), fBody, Brushes.Black, curX + 10, y + 10)
+    '        curX += colW(1)
+
+    '        ' Box 3: Current Balance
+    '        g.DrawRectangle(Pens.Black, curX, y, colW(2), rowH)
+    '        Dim balAmt As Decimal = CDec(row.Cells("Current Balance").Value)
+    '        Dim balStr As String = "Rs. " & balAmt.ToString("N2")
+    '        ' Right-aligned balance
+    '        Dim sfRight As New StringFormat() With {.Alignment = StringAlignment.Far, .LineAlignment = StringAlignment.Center}
+    '        g.DrawString(balStr, fHeader, Brushes.DarkBlue, New RectangleF(curX, y, colW(2) - 10, rowH), sfRight)
+
+    '        y += rowH
+    '        mRow += 1
+
+    '        ' Page Break Logic
+    '        If y > e.MarginBounds.Bottom - 100 Then
+    '            g.DrawString("Page " & PageNumber, fBody, Brushes.Black, e.MarginBounds.Right - 50, e.MarginBounds.Bottom + 10)
+    '            PageNumber += 1
+    '            e.HasMorePages = True
+    '            Return
+    '        End If
+    '    End While
+
+    '    ' 4. Final Total Box
+    '    curX = left
+    '    g.FillRectangle(Brushes.WhiteSmoke, curX, y, colW(0) + colW(1), rowH + 10)
+    '    g.DrawRectangle(Pens.Black, curX, y, colW(0) + colW(1), rowH + 10)
+    '    g.DrawString("TOTAL NET WORTH", fTotal, Brushes.Black, curX + 20, y + 12)
+
+    '    curX += colW(0) + colW(1)
+    '    g.DrawRectangle(Pens.Black, curX, y, colW(2), rowH + 10)
+
+    '    ' Assuming GrandTotalBalance is a variable in your class
+    '    Dim totalStr As String = "Rs. " & GrandTotalBalance.ToString("N2")
+    '    Dim sfTotal As New StringFormat() With {.Alignment = StringAlignment.Far, .LineAlignment = StringAlignment.Center}
+    '    g.DrawString(totalStr, fTotal, Brushes.Blue, New RectangleF(curX, y, colW(2) - 10, rowH + 10), sfTotal)
+
+    '    ' Footer
+    '    g.DrawString("Page " & PageNumber, fBody, Brushes.Black, e.MarginBounds.Right - 50, e.MarginBounds.Bottom + 10)
+    '    e.HasMorePages = False
+    'End Sub
 
 End Class

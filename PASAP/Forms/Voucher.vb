@@ -1,4 +1,6 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
+Imports System.Drawing.Imaging
 Imports System.Drawing.Printing
 
 Public Class Voucher
@@ -49,6 +51,7 @@ Public Class Voucher
             txtMemberName.Enabled = False
         End If
     End Sub
+
     Private Function GetUnMemberID() As Guid
         Dim tempID As Guid = Guid.Empty
         Try
@@ -64,6 +67,7 @@ Public Class Voucher
         End Try
         Return tempID
     End Function
+
     Private Sub SetupCombos()
         TypeCombo.Items.Clear()
         TypeCombo.Items.AddRange({"RECEIPT", "VOUCHER"})
@@ -211,20 +215,65 @@ Public Class Voucher
         End If
     End Sub
 
+    'Private Sub Guna2DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles Guna2DataGridView1.CellDoubleClick
+    '    If e.RowIndex >= 0 Then
+    '        Dim row As DataGridViewRow = Guna2DataGridView1.Rows(e.RowIndex)
+    '        SelectedVoucherID = DirectCast(row.Cells("ID").Value, Guid)
+    '        IsRecordCancelled = Convert.ToInt32(row.Cells("Is_Cancelled").Value)
+
+    '        dtpJoiningDate.Value = Convert.ToDateTime(row.Cells("V_Date").Value)
+    '        txtBillNo.Text = row.Cells("Bill_No").Value.ToString()
+    '        TypeCombo.Text = row.Cells("V_Type").Value.ToString()
+    '        txtMNo.Text = row.Cells("M_No").Value.ToString()
+    '        txtAmount.Text = row.Cells("Amount").Value.ToString()
+    '        PurposeCombo.Text = row.Cells("Purpose").Value.ToString()
+    '        PaymentCombo.Text = row.Cells("Payment_Method").Value.ToString()
+    '        txtRemarks.Text = row.Cells("Remarks").Value.ToString()
+
+    '        If IsRecordCancelled = 1 Then
+    '            btnSave.Enabled = False
+    '            btnSave.Text = "CANCELLED"
+    '            btnSave.FillColor = Color.Gray
+    '        Else
+    '            btnSave.Enabled = True
+    '            btnSave.Text = "UPDATE"
+    '            btnSave.FillColor = Color.Green
+    '            'btnCancel.Text = "Cancel Bill"
+    '        End If
+    '    End If
+    'End Sub
     Private Sub Guna2DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles Guna2DataGridView1.CellDoubleClick
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = Guna2DataGridView1.Rows(e.RowIndex)
+
             SelectedVoucherID = DirectCast(row.Cells("ID").Value, Guid)
             IsRecordCancelled = Convert.ToInt32(row.Cells("Is_Cancelled").Value)
 
             dtpJoiningDate.Value = Convert.ToDateTime(row.Cells("V_Date").Value)
             txtBillNo.Text = row.Cells("Bill_No").Value.ToString()
             TypeCombo.Text = row.Cells("V_Type").Value.ToString()
-            txtMNo.Text = row.Cells("M_No").Value.ToString()
+            TypeCombo.Enabled = False
+            Dim mNoStr As String = row.Cells("M_No").Value.ToString()
+
+            If mNoStr = "0" OrElse String.IsNullOrEmpty(mNoStr) Then
+                Guna2ToggleSwitch1.Checked = True
+                txtMNo.Text = "0"
+                txtMemberName.Text = row.Cells("Member_Name").Value.ToString()
+            Else
+                Guna2ToggleSwitch1.Checked = False
+                txtMNo.Text = mNoStr
+            End If
+
             txtAmount.Text = row.Cells("Amount").Value.ToString()
             PurposeCombo.Text = row.Cells("Purpose").Value.ToString()
             PaymentCombo.Text = row.Cells("Payment_Method").Value.ToString()
             txtRemarks.Text = row.Cells("Remarks").Value.ToString()
+
+            If Guna2DataGridView1.Columns.Contains("Ledger_ID") Then
+                If row.Cells("Ledger_ID").Value IsNot DBNull.Value Then
+                    AccountCombo.SelectedValue = row.Cells("Ledger_ID").Value
+                End If
+            End If
 
             If IsRecordCancelled = 1 Then
                 btnSave.Enabled = False
@@ -234,48 +283,11 @@ Public Class Voucher
                 btnSave.Enabled = True
                 btnSave.Text = "UPDATE"
                 btnSave.FillColor = Color.Green
-                'btnCancel.Text = "Cancel Bill"
             End If
         End If
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-
-        'Dim entryDate As DateTime = dtpJoiningDate.Value.Date
-        'If entryDate < FinStartDate OrElse entryDate > FinEndDate Then
-        '    MessageBox.Show($"Access Denied: The date must be within the financial period ({FinStartDate:dd-MM-yyyy} to {FinEndDate:dd-MM-yyyy})", "Date Restriction", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-        '    Return
-        'End If
-
-        'Dim finalMemberID As Guid = Guid.Empty
-        'Dim finalMemberName As String = txtMemberName.Text.Trim()
-
-        'If Guna2ToggleSwitch1.Checked Then
-        '    ' UNMEMBER MODE: Get the ID for M_No '0'
-        '    finalMemberID = GetUnMemberID()
-        '    If finalMemberID = Guid.Empty Then
-        '        MessageBox.Show("Error: UnMember record (M_No: 0) not found in Member_Table. Please create it first.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '        Return
-        '    End If
-        '    ' Validation: UnMember must have a name typed
-        '    If String.IsNullOrWhiteSpace(finalMemberName) Or finalMemberName = "NOT FOUND" Then
-        '        MessageBox.Show("Please enter the UnMember's name.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        '        Return
-        '    End If
-        'Else
-        '    ' MEMBER MODE: Use the ID found during M_No lookup
-        '    finalMemberID = LinkedMemberID
-        '    If finalMemberID = Guid.Empty Then
-        '        MessageBox.Show("Please enter a valid Member Number.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        '        Return
-        '    End If
-        'End If
-
-        'If String.IsNullOrWhiteSpace(txtBillNo.Text) Then
-        '    MessageBox.Show("Bill Number is required.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        '    Return
-        'End If
-
         If String.IsNullOrWhiteSpace(txtBillNo.Text) Then
             MessageBox.Show("Bill Number is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             txtBillNo.Focus()
@@ -432,28 +444,100 @@ Public Class Voucher
         End Try
     End Sub
 
+    Private Sub btnPDF_Click(sender As Object, e As EventArgs) Handles btnPDF.Click
+        If PrintVoucherID = Guid.Empty Then
+            MessageBox.Show("Select a member.")
+            Return
+        End If
+
+        Try
+            Dim folderPath As String = Path.Combine(Application.StartupPath, "Report")
+            If Not Directory.Exists(folderPath) Then
+                Directory.CreateDirectory(folderPath)
+            End If
+
+            Dim billNo As String = ""
+
+            Using conn As SqlConnection = Tools.GetConnection()
+                conn.Open()
+
+                Dim cmd As New SqlCommand("SELECT Bill_No FROM Voucher_Table WHERE ID=@ID", conn)
+                cmd.Parameters.AddWithValue("@ID", PrintVoucherID)
+
+                Dim obj = cmd.ExecuteScalar()
+
+                If obj IsNot Nothing Then
+                    billNo = obj.ToString().Replace("/", "-")
+                Else
+                    billNo = "Unknown"
+                End If
+            End Using
+
+            Dim fileName As String = $"Voucher_{billNo}.pdf"
+            Dim fullPath As String = Path.Combine(folderPath, fileName)
+
+            Dim pd As New PrintDocument
+            pd.PrintController = New StandardPrintController()
+
+            pd.DefaultPageSettings.PaperSize = New PaperSize("A4", 827, 1169)
+            pd.DefaultPageSettings.Margins = New Margins(40, 40, 40, 40)
+
+            pd.PrinterSettings.PrinterName = "Microsoft Print to PDF"
+            pd.PrinterSettings.PrintToFile = True
+            pd.PrinterSettings.PrintFileName = fullPath
+
+            AddHandler pd.PrintPage, AddressOf PrintDocument_PrintPage
+
+            pd.Print()
+            MessageBox.Show("Report saved successfully in 'Report' folder." & vbCrLf & "File: " & fileName, "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message, "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
     Private Sub PrintDocument_PrintPage(sender As Object, e As PrintPageEventArgs)
         Dim g As Graphics = e.Graphics
         g.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
+        g.TextRenderingHint = Drawing.Text.TextRenderingHint.ClearTypeGridFit
 
-        Dim fHeader As New Font("Segoe UI", 18, FontStyle.Bold)
-        Dim fTitle As New Font("Segoe UI", 12, FontStyle.Bold)
+        '========================
+        ' Fonts (Matching the UI)
+        '========================
+        Dim fCompany As New Font("Segoe UI", 20, FontStyle.Bold)
+        Dim fTitle As New Font("Segoe UI", 14, FontStyle.Bold)
         Dim fLabel As New Font("Segoe UI", 10, FontStyle.Bold)
         Dim fText As New Font("Segoe UI", 10, FontStyle.Regular)
+        Dim fSmall As New Font("Segoe UI", 8, FontStyle.Regular)
+        Dim fAmountLabel As New Font("Segoe UI", 11, FontStyle.Bold)
+        Dim fAmountValue As New Font("Segoe UI", 18, FontStyle.Bold)
 
-        Dim mainPen As New Pen(Color.Black, 1.5)
-        Dim lightPen As New Pen(Color.LightGray, 1)
-        Dim primaryBrush As Brush = Brushes.Black
-        Dim secondaryBrush As Brush = Brushes.DimGray
+        '========================
+        ' Pens & Brushes
+        '========================
+        Dim mainPen As New Pen(Color.Black, 1.0F)
+        Dim lightPen As New Pen(Color.Silver, 0.8F)
 
-        Dim vNo = "", vDate = "", vType = "", mName = "", mNo_ = ""
-        Dim vAmt As Decimal = 0, vPurp = "", vMeth = "", vRem = "", vStat = 0
+        Dim blueBrush As New SolidBrush(Color.FromArgb(32, 72, 160)) ' Professional Dark Blue
+        Dim lightBlueFill As New SolidBrush(Color.FromArgb(240, 248, 255)) ' Background for amount section
+        Dim blackBrush As Brush = Brushes.Black
+        Dim grayBrush As Brush = Brushes.DimGray
+
+        '========================
+        ' Variables & Data Loading
+        '========================
+        Dim vNo = "", vDate = "", vType = "", mName = "", mNo = ""
+        Dim vAmt As Decimal = 0
+        Dim vPurpose = "", vMethod = "", vRemarks = ""
+        Dim vStatus As Integer = 0
+        Dim cName = "", cAddress = "", cMobile = ""
 
         Try
             Using conn As SqlConnection = Tools.GetConnection()
                 conn.Open()
-                Dim sql = "SELECT V.*, M.Member_Name, M.M_No FROM Voucher_Table V LEFT JOIN Member_Table M ON V.Member_ID = M.ID WHERE V.ID = @ID"
-                Using cmd As New SqlCommand(sql, conn)
+                ' Load Voucher Data
+                Dim sqlV = "SELECT V.*, M.Member_Name, M.M_No FROM Voucher_Table V LEFT JOIN Member_Table M ON V.Member_ID=M.ID WHERE V.ID=@ID"
+                Using cmd = New SqlCommand(sqlV, conn)
                     cmd.Parameters.AddWithValue("@ID", PrintVoucherID)
                     Using rdr = cmd.ExecuteReader()
                         If rdr.Read() Then
@@ -461,100 +545,185 @@ Public Class Voucher
                             vDate = Convert.ToDateTime(rdr("V_Date")).ToString("dd-MMM-yyyy")
                             vType = rdr("V_Type").ToString()
                             mName = rdr("Member_Name").ToString().ToUpper()
-                            mNo_ = rdr("M_No").ToString()
+                            mNo = rdr("M_No").ToString()
                             vAmt = Convert.ToDecimal(rdr("Amount"))
-                            vPurp = rdr("Purpose").ToString()
-                            vMeth = rdr("Payment_Method").ToString()
-                            vRem = rdr("Remarks").ToString()
-                            vStat = Convert.ToInt32(rdr("Is_Cancelled"))
+                            vPurpose = rdr("Purpose").ToString()
+                            vMethod = rdr("Payment_Method").ToString()
+                            vRemarks = rdr("Remarks").ToString()
+                            vStatus = If(IsDBNull(rdr("Is_Cancelled")), 0, rdr("Is_Cancelled"))
+                        End If
+                    End Using
+                End Using
+
+                ' Load Company Data
+                Dim sqlC = "SELECT Comp_Name, Comp_Address1, Comp_Address2, Mobile FROM Company_Table WHERE Comp_No='BK0002'"
+                Using cmdC = New SqlCommand(sqlC, conn)
+                    Using rdr = cmdC.ExecuteReader()
+                        If rdr.Read() Then
+                            cName = rdr("Comp_Name").ToString().ToUpper()
+                            cAddress = rdr("Comp_Address1").ToString()
+                            If rdr("Comp_Address2").ToString <> "" Then cAddress &= ", " & rdr("Comp_Address2").ToString()
+                            cMobile = rdr("Mobile").ToString()
                         End If
                     End Using
                 End Using
             End Using
         Catch ex As Exception
+            MessageBox.Show("Error loading data: " & ex.Message)
         End Try
 
-        Dim cName = "COMPANY NAME", cAddr = "", cMob = ""
+        '========================
+        ' Layout Positioning
+        '========================
+        Dim leftMargin As Integer = 50
+        Dim topMargin As Integer = 40
+        Dim pageWidth As Integer = 720
+        Dim centerX As Integer = leftMargin + (pageWidth / 2)
 
-        Try
-            Using conn As SqlConnection = Tools.GetConnection()
-                conn.Open()
-                Dim cmd = New SqlCommand("SELECT Comp_Name, Comp_Address1, Mobile FROM Company_Table WHERE Comp_No='BK0002'", conn)
-                Using rdr = cmd.ExecuteReader()
-                    If rdr.Read() Then
-                        cName = rdr("Comp_Name").ToString().ToUpper()
-                        cAddr = rdr("Comp_Address1").ToString()
-                        cMob = rdr("Mobile").ToString()
-                    End If
-                End Using
-            End Using
-        Catch ex As Exception
-        End Try
+        ' Main Outer Border
+        g.DrawRectangle(mainPen, leftMargin, topMargin, pageWidth, 740)
 
-        Dim margin As Integer = 30
-        Dim width As Integer = 740
+        ' 1. Company Name
+        Dim szCompany = g.MeasureString(cName, fCompany)
+        g.DrawString(cName, fCompany, blackBrush, centerX - (szCompany.Width / 2), topMargin + 30)
 
-        g.DrawRectangle(mainPen, margin, margin, width, 520)
+        ' Horizontal Line under Header
+        g.DrawLine(lightPen, leftMargin + 20, topMargin + 115, leftMargin + pageWidth - 20, topMargin + 115)
 
-        Dim centerX = 400
-        g.DrawString(cName, fHeader, primaryBrush, centerX - g.MeasureString(cName, fHeader).Width / 2, 45)
-        g.DrawString(cAddr & " | Mob: " & cMob, fText, secondaryBrush,
-                 centerX - g.MeasureString(cAddr & " | Mob: " & cMob, fText).Width / 2, 80)
+        ' 2. Receipt Voucher Title
+        Dim title As String = If(vType.ToUpper() = "RECEIPT", "RECEIPT VOUCHER", "PAYMENT VOUCHER")
+        If vStatus = 1 Then title &= " (CANCELLED)"
+        Dim szTitle = g.MeasureString(title, fTitle)
+        g.DrawString(title, fTitle, blueBrush, centerX - (szTitle.Width / 2), topMargin + 140)
 
-        g.DrawLine(lightPen, 50, 120, 750, 120)
+        ' 3. Details Box
+        Dim boxTop As Integer = topMargin + 185
+        g.DrawRectangle(lightPen, leftMargin + 20, boxTop, pageWidth - 40, 315)
 
-        Dim titleText = If(vType = "RECEIPT", "RECEIPT VOUCHER", "PAYMENT VOUCHER")
-        If vStat = 1 Then titleText &= " (CANCELLED)"
+        ' Detail Grid Settings
+        Dim col1 As Integer = leftMargin + 45
+        Dim col2 As Integer = leftMargin + 380
+        Dim rowY As Integer = boxTop + 30
+        Dim rowStep As Integer = 45
+        Dim colonOffset As Integer = 100
+        Dim valueOffset As Integer = 120
 
-        g.DrawString(titleText, fTitle, primaryBrush,
-                 centerX - g.MeasureString(titleText, fTitle).Width / 2, 135)
+        ' Draw Fields Helper
+        Dim DrawField = Sub(lbl As String, val As String, xPos As Integer, yPos As Integer)
+                            g.DrawString(lbl, fLabel, blackBrush, xPos, yPos)
+                            g.DrawString(":", fLabel, blackBrush, xPos + colonOffset, yPos)
+                            g.DrawString(val, fText, blackBrush, xPos + valueOffset, yPos)
+                        End Sub
 
-        g.DrawRectangle(lightPen, 50, 170, 700, 220)
+        ' Row 1: Bill No & Date
+        DrawField("Bill No", vNo, col1, rowY)
+        DrawField("Date", vDate, col2, rowY)
 
-        Dim xL = 70
-        Dim xR = 420
-        Dim y = 190
-        Dim gap = 35
+        ' Row 2: Member No & Voucher Type
+        rowY += rowStep
+        DrawField("Member No", mNo, col1, rowY)
+        DrawField("Voucher", vType, col2, rowY)
 
-        Dim drawRow = Sub(lbl As String, val As String, x As Integer, yy As Integer)
-                          g.DrawString(lbl, fLabel, primaryBrush, x, yy)
-                          g.DrawString(val, fText, primaryBrush, x + 110, yy)
-                      End Sub
+        ' Row 3: Member Name
+        rowY += rowStep
+        DrawField("Member", mName, col1, rowY)
 
-        drawRow("Bill No", vNo, xL, y)
-        drawRow("Date", vDate, xR, y)
+        ' Row 4: Purpose & Method
+        rowY += rowStep
+        DrawField("Purpose", vPurpose, col1, rowY)
+        DrawField("Method", vMethod, col2, rowY)
 
-        y += gap
-        drawRow("Member", mName & " (" & mNo_ & ")", xL, y)
+        ' Row 5: Remarks (Multi-line)
+        rowY += rowStep
+        g.DrawString("Remarks", fLabel, blackBrush, col1, rowY)
+        g.DrawString(":", fLabel, blackBrush, col1 + colonOffset, rowY)
+        g.DrawString(vRemarks, fText, blackBrush, New RectangleF(col1 + valueOffset, rowY, 480, 80))
 
-        y += gap
-        drawRow("Purpose", vPurp, xL, y)
-        drawRow("Method", vMeth, xR, y)
+        ' 4. Amount Section
+        Dim amtBoxY As Integer = boxTop + 340
+        Dim amtBoxH As Integer = 120
+        g.FillRectangle(lightBlueFill, leftMargin + 20, amtBoxY, pageWidth - 40, amtBoxH)
+        g.DrawRectangle(mainPen, leftMargin + 20, amtBoxY, pageWidth - 40, amtBoxH)
 
-        y += gap
-        g.DrawString("Remarks", fLabel, primaryBrush, xL, y)
-        g.DrawString(vRem, fText, primaryBrush,
-                 New RectangleF(xL + 110, y, 520, 60))
+        ' Total Amount Label & Value
+        g.DrawString("TOTAL AMOUNT", fAmountLabel, blueBrush, col1, amtBoxY + 15)
+        g.DrawString("Rs. " & vAmt.ToString("N2"), fAmountValue, blueBrush, col1, amtBoxY + 45)
 
-        Dim amtY = 410
-        g.FillRectangle(New SolidBrush(Color.FromArgb(230, 240, 255)), 50, amtY, 300, 50)
-        g.DrawRectangle(mainPen, 50, amtY, 300, 50)
+        ' Amount in Words
+        Dim wordsLabelX As Integer = col1 + 250
+        g.DrawString("Amount in Words :", fLabel, blackBrush, wordsLabelX, amtBoxY + 15)
 
-        g.DrawString("TOTAL AMOUNT", fLabel, Brushes.DarkBlue, 65, amtY + 5)
-        g.DrawString("Rs. " & vAmt.ToString("N2"),
-                 New Font("Segoe UI", 14, FontStyle.Bold),
-                 Brushes.DarkBlue, 65, amtY + 22)
+        Dim amtInWords As String = NumberToWords(CLng(vAmt)) & " Rupees Only" ' Ensure this function exists
+        g.DrawString(amtInWords, fText, blackBrush, New RectangleF(wordsLabelX + 135, amtBoxY + 15, 270, 90))
 
-        g.DrawLine(lightPen, 50, 480, 750, 480)
+        '' 5. Footer (Printed On)
+        'Dim printedStr As String = "Printed On : " & DateTime.Now.ToString("dd-MMM-yyyy hh:mm tt")
+        'g.DrawString(printedStr, fSmall, grayBrush, leftMargin + 25, amtBoxY + amtBoxH + 20)
 
-        g.DrawLine(mainPen, 80, 520, 220, 520)
-        g.DrawString("Receiver Signature", fText, secondaryBrush, 85, 530)
+        ' 6. Signatures
+        Dim signY As Integer = topMargin + 680
+        Dim lineLen As Integer = 160
 
-        g.DrawLine(mainPen, 550, 520, 690, 520)
-        g.DrawString("Authorized Signatory", fText, secondaryBrush, 540, 530)
+        ' Receiver Line
+        g.DrawLine(mainPen, col1 + 30, signY, col1 + 30 + lineLen, signY)
+        g.DrawString("Receiver Signature", fSmall, blackBrush, col1 + 50, signY + 5)
+
+        ' Authorized Line
+        Dim authX As Integer = (leftMargin + pageWidth) - lineLen - 50
+        g.DrawLine(mainPen, authX, signY, authX + lineLen, signY)
+        g.DrawString("Authorized Signatory", fSmall, blackBrush, authX + 10, signY + 5)
+
+        ' 7. Watermark for Cancelled status
+        If vStatus = 1 Then
+            Dim cancelFont As New Font("Arial", 60, FontStyle.Bold)
+            Dim cancelBrush As New SolidBrush(Color.FromArgb(50, Color.Red))
+            Dim sf As New StringFormat() With {.Alignment = StringAlignment.Center, .LineAlignment = StringAlignment.Center}
+
+            g.TranslateTransform(centerX, boxTop + 150)
+            g.RotateTransform(-30)
+            g.DrawString("CANCELLED", cancelFont, cancelBrush, 0, 0, sf)
+            g.ResetTransform()
+        End If
 
     End Sub
+    Private Function NumberToWords(ByVal number As Long) As String
 
+        Dim units() As String =
+    {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+     "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen",
+     "Seventeen", "Eighteen", "Nineteen"}
+
+        Dim tens() As String =
+    {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"}
+
+        If number = 0 Then Return "Zero"
+
+        If number < 20 Then
+            Return units(number)
+        ElseIf number < 100 Then
+            Return tens(number \ 10) &
+            If(number Mod 10 > 0,
+               " " & units(number Mod 10),
+               "")
+        ElseIf number < 1000 Then
+            Return units(number \ 100) &
+            " Hundred " &
+            NumberToWords(number Mod 100)
+        ElseIf number < 100000 Then
+            Return NumberToWords(number \ 1000) &
+            " Thousand " &
+            NumberToWords(number Mod 1000)
+        ElseIf number < 10000000 Then
+            Return NumberToWords(number \ 100000) &
+            " Lakh " &
+            NumberToWords(number Mod 100000)
+        Else
+            Return NumberToWords(number \ 10000000) &
+            " Crore " &
+            NumberToWords(number Mod 10000000)
+        End If
+
+    End Function
     Private Sub LoadFinancialPeriod()
         Try
             Using conn As SqlConnection = Tools.GetConnection()
@@ -579,24 +748,32 @@ Public Class Voucher
         Try
             Using conn As SqlConnection = Tools.GetConnection()
                 Dim query As String = "SELECT V.ID, V.V_Date, V.Bill_No, V.V_Type, M.M_No, " &
-             "ISNULL(V.Member_Name, M.Member_Name) as Member_Name, " & ' Use Voucher table name first
-             "V.Amount, V.Is_Cancelled, V.Remarks, V.Purpose, V.Payment_Method " &
-             "FROM Voucher_Table V " &
-             "LEFT JOIN Member_Table M ON V.Member_ID = M.ID " &
-             "WHERE V.V_Date BETWEEN @From AND @To ORDER BY V.Created_Date DESC"
+                 "ISNULL(V.Member_Name, M.Member_Name) as Member_Name, " &
+                 "V.Amount, V.Is_Cancelled, V.Remarks, V.Purpose, V.Payment_Method, V.Ledger_ID " &
+                 "FROM Voucher_Table V " &
+                 "LEFT JOIN Member_Table M ON V.Member_ID = M.ID " &
+                 "WHERE V.V_Date BETWEEN @From AND @To "
+
+                If DTypeCombo.Text <> "ALL" AndAlso Not String.IsNullOrEmpty(DTypeCombo.Text) Then
+                    query &= " AND V.V_Type = @DType "
+                End If
+
+                query &= " ORDER BY V.Created_Date DESC"
 
                 Dim cmd As New SqlCommand(query, conn)
                 cmd.Parameters.AddWithValue("@From", FromDate.Value.Date)
                 cmd.Parameters.AddWithValue("@To", ToDate.Value.Date)
+
+                If DTypeCombo.Text <> "ALL" AndAlso Not String.IsNullOrEmpty(DTypeCombo.Text) Then
+                    cmd.Parameters.AddWithValue("@DType", DTypeCombo.Text)
+                End If
 
                 Dim adapter As New SqlDataAdapter(cmd)
                 Dim dt As New DataTable()
                 adapter.Fill(dt)
 
                 dt.Columns.Add("SNo", GetType(Integer))
-
                 dt.Columns("SNo").SetOrdinal(0)
-
                 For i As Integer = 0 To dt.Rows.Count - 1
                     dt.Rows(i)("SNo") = i + 1
                 Next
@@ -604,36 +781,83 @@ Public Class Voucher
                 Guna2DataGridView1.DataSource = dt
 
                 If Guna2DataGridView1.Columns.Count > 0 Then
-                    Guna2DataGridView1.Columns("ID").Visible = False
-                    Guna2DataGridView1.Columns("Is_Cancelled").Visible = False
-                    Guna2DataGridView1.Columns("Remarks").Visible = False
+                    If Guna2DataGridView1.Columns.Contains("ID") Then Guna2DataGridView1.Columns("ID").Visible = False
+                    If Guna2DataGridView1.Columns.Contains("Ledger_ID") Then Guna2DataGridView1.Columns("Ledger_ID").Visible = False
+                    If Guna2DataGridView1.Columns.Contains("Is_Cancelled") Then Guna2DataGridView1.Columns("Is_Cancelled").Visible = False
 
                     Guna2DataGridView1.Columns("SNo").HeaderText = "S.No"
-                    Guna2DataGridView1.Columns("V_Date").HeaderText = "Date"
-                    Guna2DataGridView1.Columns("Bill_No").HeaderText = "Bill No"
-                    Guna2DataGridView1.Columns("V_Type").HeaderText = "Type"
-                    Guna2DataGridView1.Columns("M_No").HeaderText = "Member No"
-                    Guna2DataGridView1.Columns("Member_Name").HeaderText = "Member Name"
-                    Guna2DataGridView1.Columns("Amount").HeaderText = "Amount"
-                    Guna2DataGridView1.Columns("Purpose").HeaderText = "Purpose"
-                    Guna2DataGridView1.Columns("Payment_Method").HeaderText = "Method"
-
                     Guna2DataGridView1.Columns("SNo").Width = 50
-                    Guna2DataGridView1.Columns("SNo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-
-                    Guna2DataGridView1.Columns("V_Date").DefaultCellStyle.Format = "dd-MM-yyyy"
-
                     Guna2DataGridView1.Columns("Amount").DefaultCellStyle.Format = "N2"
-                    Guna2DataGridView1.Columns("Amount").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                    Guna2DataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-                    Guna2DataGridView1.Columns("V_Type").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-                    Guna2DataGridView1.Columns("Bill_No").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                    Guna2DataGridView1.Columns("V_Date").DefaultCellStyle.Format = "dd-MM-yyyy"
                 End If
             End Using
         Catch ex As Exception
-            ' Optional: MessageBox.Show("Error: " & ex.Message)
+            MessageBox.Show("Error loading data: " & ex.Message)
         End Try
     End Sub
+    Private Sub DTypeCombo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DTypeCombo.SelectedIndexChanged
+        LoadVoucherData()
+    End Sub
+
+    'Private Sub LoadVoucherData()
+    '    Try
+    '        Using conn As SqlConnection = Tools.GetConnection()
+    '            Dim query As String = "SELECT V.ID, V.V_Date, V.Bill_No, V.V_Type, M.M_No, " &
+    '         "ISNULL(V.Member_Name, M.Member_Name) as Member_Name, " & ' Use Voucher table name first
+    '         "V.Amount, V.Is_Cancelled, V.Remarks, V.Purpose, V.Payment_Method " &
+    '         "FROM Voucher_Table V " &
+    '         "LEFT JOIN Member_Table M ON V.Member_ID = M.ID " &
+    '         "WHERE V.V_Date BETWEEN @From AND @To ORDER BY V.Created_Date DESC"
+
+    '            Dim cmd As New SqlCommand(query, conn)
+    '            cmd.Parameters.AddWithValue("@From", FromDate.Value.Date)
+    '            cmd.Parameters.AddWithValue("@To", ToDate.Value.Date)
+
+    '            Dim adapter As New SqlDataAdapter(cmd)
+    '            Dim dt As New DataTable()
+    '            adapter.Fill(dt)
+
+    '            dt.Columns.Add("SNo", GetType(Integer))
+
+    '            dt.Columns("SNo").SetOrdinal(0)
+
+    '            For i As Integer = 0 To dt.Rows.Count - 1
+    '                dt.Rows(i)("SNo") = i + 1
+    '            Next
+
+    '            Guna2DataGridView1.DataSource = dt
+
+    '            If Guna2DataGridView1.Columns.Count > 0 Then
+    '                Guna2DataGridView1.Columns("ID").Visible = False
+    '                Guna2DataGridView1.Columns("Is_Cancelled").Visible = False
+    '                Guna2DataGridView1.Columns("Remarks").Visible = False
+
+    '                Guna2DataGridView1.Columns("SNo").HeaderText = "S.No"
+    '                Guna2DataGridView1.Columns("V_Date").HeaderText = "Date"
+    '                Guna2DataGridView1.Columns("Bill_No").HeaderText = "Bill No"
+    '                Guna2DataGridView1.Columns("V_Type").HeaderText = "Type"
+    '                Guna2DataGridView1.Columns("M_No").HeaderText = "Member No"
+    '                Guna2DataGridView1.Columns("Member_Name").HeaderText = "Member Name"
+    '                Guna2DataGridView1.Columns("Amount").HeaderText = "Amount"
+    '                Guna2DataGridView1.Columns("Purpose").HeaderText = "Purpose"
+    '                Guna2DataGridView1.Columns("Payment_Method").HeaderText = "Method"
+
+    '                Guna2DataGridView1.Columns("SNo").Width = 50
+    '                Guna2DataGridView1.Columns("SNo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+    '                Guna2DataGridView1.Columns("V_Date").DefaultCellStyle.Format = "dd-MM-yyyy"
+
+    '                Guna2DataGridView1.Columns("Amount").DefaultCellStyle.Format = "N2"
+    '                Guna2DataGridView1.Columns("Amount").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+    '                Guna2DataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+    '                Guna2DataGridView1.Columns("V_Type").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+    '                Guna2DataGridView1.Columns("Bill_No").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+    '            End If
+    '        End Using
+    '    Catch ex As Exception
+    '        ' Optional: MessageBox.Show("Error: " & ex.Message)
+    '    End Try
+    'End Sub
 
     'Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
     '    If SelectedVoucherID = Guid.Empty Then
@@ -700,4 +924,5 @@ Public Class Voucher
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
         ClearFields()
     End Sub
+
 End Class

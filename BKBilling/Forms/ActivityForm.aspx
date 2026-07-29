@@ -1,1236 +1,309 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" 
-    CodeBehind="ActivityForm.aspx.cs" 
-    Inherits="BKBilling.Forms.ActivityForm" %>
-
-<%@ Register Src="~/Components/StandardGrid.ascx" 
-    TagName="StandardGrid" 
-    TagPrefix="uc1" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ActivityForm.aspx.cs" Inherits="BKBilling.Forms.ActivityForm" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head runat="server">
-
-<title>Ledger Master | BK Softwares</title>
-
-
-<!-- Bootstrap -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
-rel="stylesheet" />
-
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-rel="stylesheet" />
-
-
-<style>
-
-
-body
-{
-    background:#f8fafc;
-
-    background-image:
-    radial-gradient(#cbd5e1 0.7px, transparent 0.7px);
-
-    background-size:24px 24px;
-
-    min-height:100vh;
-
-    padding:20px 10px;
-
-    font-family:'Inter',sans-serif;
-}
-
-
-
-.container-fluid
-{
-    padding-left:0px;
-    padding-right:0px;
-}
-
-
-
-.card-custom
-{
-    background:white;
-
-    border-radius:16px;
-
-    border:1px solid #e2e8f0;
-
-    box-shadow:
-    0 10px 15px -3px rgba(0,0,0,.1);
-
-    margin:auto;
-}
-
-
-
-.section-title
-{
-    font-size:.75rem;
-
-    font-weight:800;
-
-    color:#6366f1;
-
-    text-transform:uppercase;
-
-    letter-spacing:1px;
-
-    border-bottom:1px solid #f1f5f9;
-
-    padding-bottom:8px;
-
-    margin-bottom:15px;
-
-    display:flex;
-
-    align-items:center;
-}
-
-
-
-.section-title i
-{
-    margin-right:8px;
-}
-
-
-
-.form-label
-{
-    font-weight:600;
-
-    font-size:.78rem;
-
-    color:#475569;
-
-    margin-bottom:3px;
-}
-
-
-
-.form-control-sm,
-.form-select-sm
-{
-    border-radius:8px;
-
-    border:1px solid #cbd5e1;
-
-    padding:8px 12px;
-}
-
-
-
-.modern-switch
-{
-    display:flex;
-
-    align-items:center;
-
-    background:#f8fafc;
-
-    padding:10px 15px 10px 45px;
-
-    border-radius:12px;
-
-    border:1px solid #e2e8f0;
-
-    position:relative;
-
-    min-height:45px;
-}
-
-
-
-.modern-switch .form-check-input
-{
-    width:2.5em!important;
-
-    height:1.25em!important;
-
-    cursor:pointer;
-
-}
-
-
-
-.modern-switch .form-check-input:checked
-{
-    background-color:#10b981!important;
-}
-
-
-
-.modern-switch label
-{
-    font-weight:600;
-
-    color:#334155;
-
-    font-size:.85rem;
-}
-
-
-
-/* Standard Grid Wrapper */
-
-.erp-grid-main
-{
-    height:480px;
-
-    border:1px solid #d1dbe5;
-
-    border-radius:8px;
-
-    background:white;
-
-    overflow:hidden;
-}
-
-
-
-</style>
-
-
-
-<script>
-
-
-    function showNotification(message, type) {
-
-        setTimeout(function () {
-
-
-            var toastEl = document.getElementById("msgToast");
-
-            var msgText = document.getElementById("msgText");
-
-            var msgIcon = document.getElementById("msgIcon");
-
-
-            if (!toastEl)
-                return;
-
-
-
-            msgText.innerHTML = message;
-
-
-
-            toastEl.classList.remove(
-                "bg-danger",
-                "bg-success",
-                "bg-primary"
-            );
-
-
-
-            if (type == "error") {
-
-                toastEl.classList.add("bg-danger");
-
-                msgIcon.className =
-                    "fas fa-exclamation-triangle me-2";
-
-            }
-
-            else if (type == "success") {
-
-                toastEl.classList.add("bg-success");
-
-                msgIcon.className =
-                    "fas fa-check-circle me-2";
-
-            }
-
-            else {
-
-                toastEl.classList.add("bg-primary");
-
-                msgIcon.className =
-                    "fas fa-info-circle me-2";
-
-            }
-
-
-
-            var toast =
-                new bootstrap.Toast(
-                    toastEl,
-                    {
-                        delay: 4000
-                    }
-                );
-
-
-            toast.show();
-
-
-
-        }, 100);
-
-
-    }
-
-
-
-</script>
-
-
+    <meta charset="utf-8" />
+    <title>Ledger Master | Pro ERP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+    <style>
+        :root { --erp-blue: #2563eb; --erp-bg: #f8fafc; --erp-border: #e2e8f0; --erp-text: #1e293b; --erp-text-light: #64748b; }
+        html, body { height: 100%; margin: 0; padding: 0; background-color: #fff; font-family: 'Inter', sans-serif; color: var(--erp-text); overflow: hidden; }
+        form { height: 100%; }
+        .erp-wrapper { display: flex; flex-direction: column; height: 100vh; }
+        .erp-header { padding: 15px 30px; border-bottom: 1px solid var(--erp-border); background: #fff; flex-shrink: 0; }
+        .erp-body { flex-grow: 1; overflow-y: auto; background: #fff; position: relative; padding:5px;}
+        .erp-footer { padding: 10px 30px; border-top: 1px solid var(--erp-border); background: #fff; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+
+        /* Toolbars */
+        .page-title { font-size: 18px; font-weight: 800; margin: 0; }
+        .search-pill { position: relative; width: 230px; }
+        .search-pill i { position: absolute; left: 12px; top: 11px; color: var(--erp-text-light); font-size: 13px; }
+        .search-pill .form-control { padding-left: 35px; border-radius: 8px; border: 1px solid var(--erp-border); height: 38px; background: #f1f5f9; font-size: 13px; }
+        .date-box { display: flex; align-items: center; background: #f1f5f9; border: 1px solid var(--erp-border); padding: 0 12px; border-radius: 8px; height: 38px; }
+        .date-box label { font-size: 10px; font-weight: 800; color: var(--erp-text-light); text-transform: uppercase; margin-right: 8px; }
+        .date-box input { border: none; background: transparent; font-size: 12px; outline: none; width: 105px; }
+
+        /* Grid Scroll & Flyout Filters */
+        .gv-container { width: 100%; overflow: auto; height: 100%; }
+        .gv-pro { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 1500px; }
+        .gv-pro th { 
+            background: #f8fafc !important; color: var(--erp-text-light); font-size: 11px; font-weight: 700;
+            padding: 12px 15px; border-bottom: 2px solid var(--erp-border); border-right: 1px solid #f1f5f9;
+            text-transform: uppercase; position: sticky; top: 0; z-index: 10;
+        }
+        .gv-pro td { padding: 10px 15px; border-bottom: 1px solid #f1f5f9; font-size: 13px; vertical-align: middle; white-space: nowrap; }
+        .hdr-wrap { display: flex; align-items: center; justify-content: space-between; position: relative; }
+        .filt-icon { cursor: pointer; color: #cbd5e1; font-size: 12px; padding: 2px; }
+        .flyout-panel {
+            display: none; position: absolute; top: 35px; left: 0; width: 220px;
+            background: #fff; border: 1px solid var(--erp-border); border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); padding: 12px; z-index: 500; text-transform: none; font-weight: normal;
+        }
+
+        /* Form Design */
+        .section-title { font-size: 11px; font-weight: 800; color: var(--erp-blue); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .form-label { font-weight: 600; font-size: 12px; color: var(--erp-text-light); margin-bottom: 3px; }
+        .modern-switch { display: flex; align-items: center; background: #f8fafc; padding: 10px 15px; border-radius: 8px; border: 1px solid var(--erp-border); margin-bottom: 10px; cursor: pointer; }
+        .modern-switch .form-check-input { width: 32px; height: 16px; margin-right: 10px; cursor: pointer; }
+
+        /* Action Buttons */
+        .btn-primary-erp { background: var(--erp-blue); color: #fff !important; font-weight: 600; border-radius: 8px; padding: 8px 20px; font-size: 14px; border: none; text-decoration: none; }
+        .btn-tool { width: 34px; height: 34px; border-radius: 6px; border: 1px solid var(--erp-border); background: #fff; display: inline-flex; align-items: center; justify-content: center; color: var(--erp-text-light); text-decoration: none; }
+    </style>
 </head>
-
-
-
 <body>
-
-
-<form id="form1" runat="server">
-
-
-<asp:ScriptManager 
-ID="sm1" 
-runat="server" />
-
-
-<asp:HiddenField 
-ID="hfLedgerID" 
-runat="server" />
-
-
-
-<div class="container-fluid">
-
-
-
-<!-- ================= LIST VIEW ================= -->
-
-
-<asp:Panel ID="pnlList" runat="server">
-    <div class="card-custom p-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="fw-bold text-dark m-0">
-                <i class="fas fa-address-book text-primary me-2"></i>Account Directory
-            </h4>
-            <asp:LinkButton ID="btnOpenCreate" runat="server" CssClass="btn btn-primary px-4 fw-bold shadow-sm" OnClick="btnOpenCreate_Click">
-                <i class="fas fa-plus me-1"></i>New Ledger
-            </asp:LinkButton>
-        </div>
-        <uc1:StandardGrid ID="gridLedgers" runat="server" />
-    </div>
-</asp:Panel>
-
-<!-- ================= LEDGER FORM VIEW ================= -->
-
-
-<asp:Panel 
-ID="pnlForm" 
-runat="server" 
-Visible="false">
-
-
-
-<div class="card-custom p-4">
-
-
-
-<div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
-
-
-
-<div>
-
-<asp:LinkButton
-
-ID="btnBack"
-
-runat="server"
-
-CssClass="text-decoration-none small text-muted fw-bold"
-
-OnClick="btnBack_Click">
-
-
-<i class="fas fa-arrow-left me-1"></i>
-
-BACK TO LIST
-
-
-</asp:LinkButton>
-
-
-
-<h4 class="fw-bold m-0 mt-2">
-
-Ledger Setup
-
-</h4>
-
-
-</div>
-
-
-
-
-<asp:LinkButton
-
-ID="btnSave"
-
-runat="server"
-
-CssClass="btn btn-success px-5 fw-bold shadow-sm"
-
-OnClick="btnSave_Click">
-
-
-<i class="fas fa-save me-2"></i>
-
-SAVE LEDGER
-
-
-</asp:LinkButton>
-
-
-
-</div>
-
-
-
-
-
-<div class="row g-4">
-
-
-
-<!-- ================= COLUMN 1 ================= -->
-
-
-<div class="col-md-4 border-end">
-
-
-<p class="section-title">
-
-<i class="fas fa-id-card"></i>
-
-1. Identity & Limits
-
-</p>
-
-
-
-<label class="form-label">
-Ledger Name *
-</label>
-
-
-<asp:TextBox
-
-ID="txtLedgerName"
-
-runat="server"
-
-CssClass="form-control form-control-sm mb-3">
-
-</asp:TextBox>
-
-
-
-
-
-<div class="row g-2 mb-3">
-
-
-<div class="col-6">
-
-
-<label class="form-label">
-Ledger Code
-</label>
-
-
-<asp:TextBox
-
-ID="txtLedgerCode"
-
-runat="server"
-
-CssClass="form-control form-control-sm">
-
-</asp:TextBox>
-
-
-</div>
-
-
-
-
-<div class="col-6">
-
-
-<label class="form-label">
-Status
-</label>
-
-
-<asp:DropDownList
-
-ID="ddlActive"
-
-runat="server"
-
-CssClass="form-select form-select-sm">
-
-
-<asp:ListItem Value="1">
-Active
-</asp:ListItem>
-
-
-<asp:ListItem Value="0">
-Inactive
-</asp:ListItem>
-
-
-</asp:DropDownList>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-<div class="row g-2 mb-3">
-
-
-<div class="col-6">
-
-
-<label class="form-label">
-Account Group
-</label>
-
-
-<asp:DropDownList
-
-ID="ddlGroup"
-
-runat="server"
-
-CssClass="form-select form-select-sm">
-
-</asp:DropDownList>
-
-
-</div>
-
-
-
-
-<div class="col-6">
-
-
-<label class="form-label">
-Area / Route
-</label>
-
-
-<asp:DropDownList
-
-ID="ddlArea"
-
-runat="server"
-
-CssClass="form-select form-select-sm">
-
-</asp:DropDownList>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-<div class="row g-2 mb-3">
-
-
-<div class="col-6">
-
-
-<label class="form-label">
-Credit Limit Amount
-</label>
-
-
-<asp:TextBox
-
-ID="txtCreditLimit"
-
-runat="server"
-
-Text="0"
-
-CssClass="form-control form-control-sm">
-
-</asp:TextBox>
-
-
-</div>
-
-
-
-
-<div class="col-6">
-
-
-<label class="form-label">
-Credit Days
-</label>
-
-
-<asp:TextBox
-
-ID="txtCreditDays"
-
-runat="server"
-
-Text="0"
-
-CssClass="form-control form-control-sm">
-
-</asp:TextBox>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-<div class="modern-switch form-check form-switch mb-3">
-
-
-<asp:CheckBox
-
-ID="chkTDS"
-
-runat="server"
-
-CssClass="form-check-input" />
-
-
-<label>
-
-TDS/TCS Applicable?
-
-</label>
-
-
-</div>
-
-
-
-
-
-<label class="form-label">
-PAN No
-</label>
-
-
-<asp:TextBox
-
-ID="txtPAN"
-
-runat="server"
-
-MaxLength="10"
-
-CssClass="form-control form-control-sm"
-
-placeholder="ABCDE1234F">
-
-</asp:TextBox>
-
-
-
-</div>
-
-
-
-
-
-
-<!-- ================= COLUMN 2 ================= -->
-
-
-<div class="col-md-4 border-end">
-
-
-
-<p class="section-title">
-
-<i class="fas fa-file-invoice-dollar"></i>
-
-2. GST Compliance
-
-</p>
-
-
-
-
-<div class="modern-switch form-check form-switch mb-3">
-
-
-<asp:CheckBox
-
-ID="chkUseGST"
-
-runat="server"
-
-Checked="true"
-
-CssClass="form-check-input" />
-
-
-
-<label>
-
-Enable GST
-
-</label>
-
-
-</div>
-
-
-
-
-
-<label class="form-label">
-GSTIN
-</label>
-
-
-<asp:TextBox
-
-ID="txtGSTIN"
-
-runat="server"
-
-MaxLength="15"
-
-CssClass="form-control form-control-sm mb-3">
-
-</asp:TextBox>
-
-
-
-
-
-<div class="row g-2 mb-3">
-
-
-<div class="col-6">
-
-
-<label class="form-label">
-Dealer Type
-</label>
-
-
-<asp:DropDownList
-
-ID="ddlDealerType"
-
-runat="server"
-
-CssClass="form-select form-select-sm">
-
-
-<asp:ListItem>
-Regular
-</asp:ListItem>
-
-
-<asp:ListItem>
-Composition
-</asp:ListItem>
-
-
-<asp:ListItem>
-Unregistered
-</asp:ListItem>
-
-
-<asp:ListItem>
-Consumer
-</asp:ListItem>
-
-
-</asp:DropDownList>
-
-
-
-</div>
-
-
-
-
-
-<div class="col-6">
-
-
-<label class="form-label">
-GST State
-</label>
-
-
-<asp:DropDownList
-
-ID="ddlGSTState"
-
-runat="server"
-
-CssClass="form-select form-select-sm">
-
-</asp:DropDownList>
-
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-<p class="section-title mt-4">
-
-<i class="fas fa-university"></i>
-
-3. Banking
-
-</p>
-
-
-
-
-<asp:TextBox
-
-ID="txtBank"
-
-runat="server"
-
-CssClass="form-control form-control-sm mb-2"
-
-placeholder="Bank Name">
-
-</asp:TextBox>
-
-
-
-
-
-<asp:TextBox
-
-ID="txtBranch"
-
-runat="server"
-
-CssClass="form-control form-control-sm mb-2"
-
-placeholder="Branch">
-
-</asp:TextBox>
-
-
-
-
-
-<asp:TextBox
-
-ID="txtAcNo"
-
-runat="server"
-
-CssClass="form-control form-control-sm mb-2"
-
-placeholder="Account No">
-
-</asp:TextBox>
-
-
-
-
-
-<asp:TextBox
-
-ID="txtIfsc"
-
-runat="server"
-
-CssClass="form-control form-control-sm"
-
-placeholder="IFSC Code">
-
-</asp:TextBox>
-
-
-
-</div>
-
-
-
-
-
-
-
-<!-- ================= COLUMN 3 ================= -->
-
-
-
-<div class="col-md-4">
-
-
-<p class="section-title">
-
-<i class="fas fa-map-marker-alt"></i>
-
-4. Address & Contact
-
-</p>
-
-
-
-
-<asp:TextBox
-
-ID="txtAdd1"
-
-runat="server"
-
-CssClass="form-control form-control-sm mb-2"
-
-placeholder="Address Line 1">
-
-</asp:TextBox>
-
-
-
-
-<asp:TextBox
-
-ID="txtAdd2"
-
-runat="server"
-
-CssClass="form-control form-control-sm mb-2"
-
-placeholder="Address Line 2">
-
-</asp:TextBox>
-
-
-
-
-
-<asp:TextBox
-
-ID="txtAdd3"
-
-runat="server"
-
-CssClass="form-control form-control-sm mb-3"
-
-placeholder="City / Pincode">
-
-</asp:TextBox>
-
-
-
-
-
-
-<label class="form-label">
-Contact Person
-</label>
-
-
-<asp:TextBox
-
-ID="txtContactPerson"
-
-runat="server"
-
-CssClass="form-control form-control-sm mb-2">
-
-</asp:TextBox>
-
-
-
-
-
-<div class="row g-2">
-
-
-<div class="col-6">
-
-
-<asp:TextBox
-
-ID="txtEmail"
-
-runat="server"
-
-CssClass="form-control form-control-sm"
-
-placeholder="Email">
-
-</asp:TextBox>
-
-
-</div>
-
-
-
-<div class="col-6">
-
-
-<asp:TextBox
-
-ID="txtPhone"
-
-runat="server"
-
-CssClass="form-control form-control-sm"
-
-placeholder="Phone">
-
-</asp:TextBox>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-<p class="section-title mt-4">
-
-<i class="fas fa-coins"></i>
-
-5. Financials
-
-</p>
-
-
-
-
-<div class="row g-2">
-
-
-<div class="col-7">
-
-
-<label class="form-label">
-Opening Balance
-</label>
-
-
-<asp:TextBox
-
-ID="txtOpening"
-
-runat="server"
-
-Text="0.00"
-
-CssClass="form-control form-control-sm">
-
-</asp:TextBox>
-
-
-</div>
-
-
-
-
-<div class="col-5">
-
-
-<label class="form-label">
-Type
-</label>
-
-
-<asp:DropDownList
-
-ID="ddlBalType"
-
-runat="server"
-
-CssClass="form-select form-select-sm">
-
-
-<asp:ListItem>
-Debit
-</asp:ListItem>
-
-
-<asp:ListItem>
-Credit
-</asp:ListItem>
-
-
-</asp:DropDownList>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<label class="form-label mt-3">
-Remarks
-</label>
-
-
-<asp:TextBox
-
-ID="txtRemarks"
-
-runat="server"
-
-TextMode="MultiLine"
-
-Rows="3"
-
-CssClass="form-control form-control-sm">
-
-</asp:TextBox>
-
-
-
-</div>
-
-
-
-
-</div>
-
-</div>
-
-
-</asp:Panel>
-
-
-
-
-
-
-
-<!-- ================= TOAST ================= -->
-
-
-<div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
-
-
-<div
-
-id="msgToast"
-
-class="toast align-items-center text-white border-0 shadow"
-
-role="alert">
-
-
-
-<div class="d-flex">
-
-
-<div class="toast-body">
-
-
-<i id="msgIcon"></i>
-
-
-<span id="msgText"></span>
-
-
-</div>
-
-
-
-
-<button
-
-type="button"
-
-class="btn-close btn-close-white me-2 m-auto"
-
-data-bs-dismiss="toast">
-
-</button>
-
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-</div>
-
-
-</form>
-
-
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="sm1" runat="server" />
+        <asp:UpdatePanel ID="upMain" runat="server">
+            <ContentTemplate>
+                <div class="erp-wrapper">
+                    
+                    <!-- HEADER SECTION -->
+                    <div class="erp-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center gap-3">
+                                <h4 class="page-title"><i class="fas fa-university text-primary me-2"></i><asp:Literal ID="litTitle" runat="server" /></h4>
+                                
+                                <asp:PlaceHolder ID="phSearchControls" runat="server">
+                                    <div class="search-pill">
+                                        <i class="fas fa-search"></i>
+                                        <asp:TextBox ID="txtSearchAll" runat="server" CssClass="form-control" placeholder="Global Search..." AutoPostBack="true" OnTextChanged="GridFilter_Changed"></asp:TextBox>
+                                    </div>
+                                    <div class="date-box">
+                                        <label>From</label>
+                                        <asp:TextBox ID="txtDateFrom" runat="server" TextMode="Date" AutoPostBack="true" OnTextChanged="GridFilter_Changed"></asp:TextBox>
+                                        <div style="width:1px; height:15px; background:#cbd5e1; margin:0 10px;"></div>
+                                        <label>To</label>
+                                        <asp:TextBox ID="txtDateTo" runat="server" TextMode="Date" AutoPostBack="true" OnTextChanged="GridFilter_Changed"></asp:TextBox>
+                                    </div>
+                                </asp:PlaceHolder>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <asp:PlaceHolder ID="phSearchButtons" runat="server">
+                                    <asp:LinkButton ID="btnSync" runat="server" CssClass="btn-tool" OnClick="GridFilter_Changed"><i class="fas fa-sync-alt"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="btnOpenCreate" runat="server" CssClass="btn-primary-erp" OnClick="btnOpenCreate_Click"><i class="fas fa-plus me-2"></i>New Ledger</asp:LinkButton>
+                                </asp:PlaceHolder>
+                                <asp:PlaceHolder ID="phAddButtons" runat="server" Visible="false">
+                                    <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-outline-secondary btn-sm px-3 fw-bold me-2" OnClick="btnBack_Click"><i class="fas fa-arrow-left me-1"></i> BACK TO LIST</asp:LinkButton>
+                                    <asp:LinkButton ID="btnSave" runat="server" CssClass="btn-primary-erp bg-success" OnClick="btnSave_Click"><i class="fas fa-save me-2"></i>SAVE LEDGER</asp:LinkButton>
+                                </asp:PlaceHolder>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BODY SECTION -->
+                    <div class="erp-body">
+                        
+                        <!-- VIEW 1: SEARCH SCREEN -->
+                        <asp:Panel ID="pnlList" runat="server">
+                            <div class="gv-container">
+                                <asp:GridView ID="gvLedgers" runat="server" AutoGenerateColumns="false" CssClass="gv-pro"
+                                    GridLines="None" ShowHeaderWhenEmpty="true" AllowSorting="true" OnSorting="gvLedgers_Sorting" OnRowCommand="gvLedgers_RowCommand"
+                                    AllowPaging="true" PagerSettings-Visible="false">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="SNO" HeaderStyle-Width="60px">
+                                            <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField SortExpression="ledger_code">
+                                            <HeaderTemplate>
+                                                <div class="hdr-wrap">
+                                                    <span>CODE</span>
+                                                    <i class="fas fa-filter filt-icon" onclick="toggleFlyout(event, 'f_code')"></i>
+                                                    <div id="f_code" class="flyout-panel" onclick="event.stopPropagation()">
+                                                        <label class="form-label">Filter Code</label>
+                                                        <asp:TextBox ID="flt_code" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                                        <asp:Button runat="server" Text="Apply" CssClass="btn btn-primary btn-sm w-100" OnClick="GridFilter_Changed" />
+                                                    </div>
+                                                </div>
+                                            </HeaderTemplate>
+                                            <ItemTemplate><%# Eval("ledger_code") %></ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField SortExpression="ledger_name">
+                                            <HeaderTemplate>
+                                                <div class="hdr-wrap">
+                                                    <span>LEDGER NAME</span>
+                                                    <i class="fas fa-filter filt-icon" onclick="toggleFlyout(event, 'f_name')"></i>
+                                                    <div id="f_name" class="flyout-panel" onclick="event.stopPropagation()">
+                                                        <label class="form-label">Search Name</label>
+                                                        <asp:TextBox ID="flt_name" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                                        <asp:Button runat="server" Text="Apply" CssClass="btn btn-primary btn-sm w-100" OnClick="GridFilter_Changed" />
+                                                    </div>
+                                                </div>
+                                            </HeaderTemplate>
+                                            <ItemTemplate><b><%# Eval("ledger_name") %></b></ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:BoundField DataField="LedgerGroup_Name" HeaderText="Under" SortExpression="LedgerGroup_Name" />
+                                        <asp:BoundField DataField="Ledger_Phone" HeaderText="Mobile" />
+                                        
+                                        <asp:TemplateField HeaderText="Use GST">
+                                            <ItemTemplate><%# Convert.ToBoolean(Eval("Use_GST")) ? "YES" : "NO" %></ItemTemplate>
+                                        </asp:TemplateField>
+                                        
+                                        <asp:BoundField DataField="Ledger_GST" HeaderText="Ledger GST" />
+
+                                        <asp:TemplateField HeaderText="Action" ItemStyle-CssClass="text-center" HeaderStyle-Width="80px">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="btnEdit" runat="server" CommandName="EditLedger" CommandArgument='<%# Eval("Ledger_Sno") %>' CssClass="btn-tool border-0 text-primary">
+                                                    <i class="far fa-edit"></i>
+                                                </asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </asp:Panel>
+
+                        <!-- VIEW 2: ADD/EDIT SCREEN (26 FIELDS) -->
+                        <asp:Panel ID="pnlForm" runat="server" Visible="false">
+                            <div class="container-fluid p-4">
+                                <div class="row g-4">
+                                    
+                                    <!-- COL 1: IDENTITY & LIMITS (9 Fields) -->
+                                    <div class="col-md-4 border-end">
+                                        <p class="section-title"><i class="fas fa-id-card"></i> 1. Identity & Limits</p>
+                                        <div class="mb-3"><label class="form-label">Ledger Name *</label><asp:TextBox ID="txtLedgerName" runat="server" CssClass="form-control"></asp:TextBox></div>
+                                        <div class="row g-2 mb-3">
+                                            <div class="col-6"><label class="form-label">Code</label><asp:TextBox ID="txtLedgerCode" runat="server" CssClass="form-control"></asp:TextBox></div>
+                                            <div class="col-6"><label class="form-label">Status</label><asp:DropDownList ID="ddlActive" runat="server" CssClass="form-select"><asp:ListItem Value="1">Active</asp:ListItem><asp:ListItem Value="0">Inactive</asp:ListItem></asp:DropDownList></div>
+                                        </div>
+                                        <div class="row g-2 mb-3">
+                                            <div class="col-6"><label class="form-label">Group</label><asp:DropDownList ID="ddlGroup" runat="server" CssClass="form-select"></asp:DropDownList></div>
+                                            <div class="col-6"><label class="form-label">Area</label><asp:DropDownList ID="ddlArea" runat="server" CssClass="form-select"></asp:DropDownList></div>
+                                        </div>
+                                        <div class="row g-2 mb-3">
+                                            <div class="col-6"><label class="form-label">Credit Limit (Amt)</label><asp:TextBox ID="txtCreditLimit" runat="server" CssClass="form-control" Text="0.00"></asp:TextBox></div>
+                                            <div class="col-6"><label class="form-label">Credit Limit (Days)</label><asp:TextBox ID="txtCreditDays" runat="server" CssClass="form-control" Text="0"></asp:TextBox></div>
+                                        </div>
+                                        <div class="modern-switch form-check form-switch mb-3">
+                                            <asp:CheckBox ID="chkTDS" runat="server" CssClass="form-check-input" />
+                                            <label class="form-label mb-0" for="<%= chkTDS.ClientID %>">TDS/TCS Applicable?</label>
+                                        </div>
+                                        <div><label class="form-label">PAN Number</label><asp:TextBox ID="txtPAN" runat="server" CssClass="form-control" MaxLength="10" placeholder="ABCDE1234F"></asp:TextBox></div>
+                                    </div>
+
+                                    <!-- COL 2: GST & BANKING (8 Fields) -->
+                                    <div class="col-md-4 border-end">
+                                        <p class="section-title"><i class="fas fa-file-invoice-dollar"></i> 2. GST & Banking</p>
+                                        <div class="modern-switch form-check form-switch mb-3">
+                                            <asp:CheckBox ID="chkUseGST" runat="server" CssClass="form-check-input" Checked="true" />
+                                            <label class="form-label mb-0" for="<%= chkUseGST.ClientID %>">Enable GST for this Ledger</label>
+                                        </div>
+                                        <div class="mb-3"><label class="form-label">GSTIN / Tax No</label><asp:TextBox ID="txtGSTIN" runat="server" CssClass="form-control" MaxLength="15"></asp:TextBox></div>
+                                        <div class="row g-2 mb-3">
+                                            <div class="col-6"><label class="form-label">Dealer Type</label><asp:DropDownList ID="ddlDealerType" runat="server" CssClass="form-select"><asp:ListItem>Regular</asp:ListItem><asp:ListItem>Composition</asp:ListItem><asp:ListItem>Unregistered</asp:ListItem></asp:DropDownList></div>
+                                            <div class="col-6"><label class="form-label">GST State</label><asp:DropDownList ID="ddlGSTState" runat="server" CssClass="form-select"></asp:DropDownList></div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Banking</label>
+                                            <asp:TextBox ID="txtBank" runat="server" CssClass="form-control mb-1" placeholder="Bank Name"></asp:TextBox>
+                                            <asp:TextBox ID="txtBranch" runat="server" CssClass="form-control" placeholder="Branch Name"></asp:TextBox>
+                                        </div>
+                                        <div class="row g-2">
+                                            <div class="col-7"><label class="form-label">A/c No</label><asp:TextBox ID="txtAcNo" runat="server" CssClass="form-control"></asp:TextBox></div>
+                                            <div class="col-5"><label class="form-label">IFSC</label><asp:TextBox ID="txtIfsc" runat="server" CssClass="form-control"></asp:TextBox></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- COL 3: ADDRESS & FINANCIALS (9 Fields) -->
+                                    <div class="col-md-4">
+                                        <p class="section-title"><i class="fas fa-map-marked-alt"></i> 3. Address & Financials</p>
+                                        <div class="mb-3">
+                                            <asp:TextBox ID="txtAdd1" runat="server" CssClass="form-control mb-1" placeholder="Building/Plot"></asp:TextBox>
+                                            <asp:TextBox ID="txtAdd2" runat="server" CssClass="form-control mb-1" placeholder="Locality/Street"></asp:TextBox>
+                                            <asp:TextBox ID="txtAdd3" runat="server" CssClass="form-control" placeholder="City / Pincode"></asp:TextBox>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Contact Person</label>
+                                            <asp:TextBox ID="txtContactPerson" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                            <div class="row g-2">
+                                                <div class="col-6"><asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Email"></asp:TextBox></div>
+                                                <div class="col-6"><asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" placeholder="Mobile"></asp:TextBox></div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-2 mb-3">
+                                            <div class="col-7"><label class="form-label">Opening Bal</label><asp:TextBox ID="txtOpening" runat="server" CssClass="form-control" Text="0.00"></asp:TextBox></div>
+                                            <div class="col-5"><label class="form-label">Type</label><asp:DropDownList ID="ddlBalType" runat="server" CssClass="form-select"><asp:ListItem>Debit</asp:ListItem><asp:ListItem>Credit</asp:ListItem></asp:DropDownList></div>
+                                        </div>
+                                        <div><label class="form-label">Remarks</label><asp:TextBox ID="txtRemarks" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="2"></asp:TextBox></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </asp:Panel>
+                    </div>
+
+                    <!-- FOOTER SECTION -->
+                    <asp:Panel ID="pnlFooter" runat="server" CssClass="erp-footer">
+                        <div class="small text-muted">Showing <b><asp:Literal ID="litVisibleCount" runat="server" Text="0" /></b> of <b><asp:Literal ID="litTotalCount" runat="server" Text="0" /></b> records</div>
+                        <div class="d-flex align-items-center gap-2">
+                            <asp:LinkButton ID="btnPrev" runat="server" CssClass="btn-tool" OnClick="Pager_Click" CommandArgument="Prev"><i class="fas fa-chevron-left"></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnNext" runat="server" CssClass="btn-tool" OnClick="Pager_Click" CommandArgument="Next"><i class="fas fa-chevron-right"></i></asp:LinkButton>
+                            <asp:DropDownList ID="ddlPageSize" runat="server" CssClass="form-select form-select-sm ms-2" Width="100px" AutoPostBack="true" OnSelectedIndexChanged="GridFilter_Changed">
+                                <asp:ListItem Text="50 Rows" Value="50" />
+                                <asp:ListItem Text="100 Rows" Value="100" />
+                            </asp:DropDownList>
+                        </div>
+                    </asp:Panel>
+
+                    <asp:HiddenField ID="hfLedgerID" runat="server" />
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+        <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+                <div id="msgToast" class="toast align-items-center text-white border-0 shadow-lg" role="alert">
+                    <div class="d-flex">
+                        <div class="toast-body"><i id="msgIcon"></i> <span id="msgText"></span></div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                </div>
+            </div>
+    </form>
+    <script>
+        // Filter Flyout Toggle
+        function toggleFlyout(e, id) {
+            e.stopPropagation();
+            const panel = document.getElementById(id);
+            const isVisible = panel.style.display === 'block';
+            document.querySelectorAll('.flyout-panel').forEach(p => p.style.display = 'none');
+            if (!isVisible) panel.style.display = 'block';
+        }
+        document.addEventListener('click', () => document.querySelectorAll('.flyout-panel').forEach(p => p.style.display = 'none'));
+
+        function showToast(m, t) { alert(m); } // Basic alert, can be replaced with Toastify
+
+        function showNotification(message, type) {
+            setTimeout(function () {
+                var toastEl = document.getElementById('msgToast');
+                var msgText = document.getElementById('msgText');
+                var msgIcon = document.getElementById('msgIcon');
+                if (!toastEl) return;
+
+                msgText.innerText = message;
+                toastEl.classList.remove('bg-danger', 'bg-success', 'bg-primary');
+
+                if (type === 'error') {
+                    toastEl.classList.add('bg-danger');
+                    msgIcon.className = "fas fa-exclamation-triangle me-2";
+                } else if (type === 'success') {
+                    toastEl.classList.add('bg-success');
+                    msgIcon.className = "fas fa-check-circle me-2";
+                } else {
+                    toastEl.classList.add('bg-primary');
+                    msgIcon.className = "fas fa-info-circle me-2";
+                }
+                var toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+                toast.show();
+            }, 100);
+        }
+    </script>
 </body>
-
-
 </html>

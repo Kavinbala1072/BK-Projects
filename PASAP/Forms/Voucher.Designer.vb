@@ -61,6 +61,7 @@ Partial Class Voucher
         Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2DataGridView1 = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.Guna2HtmlLabel8 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.btnPDF = New Guna.UI2.WinForms.Guna2Button()
         Me.HeaderPanel.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
         CType(Me.Guna2DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,6 +95,7 @@ Partial Class Voucher
         'Guna2Panel1
         '
         Me.Guna2Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.Guna2Panel1.Controls.Add(Me.btnPDF)
         Me.Guna2Panel1.Controls.Add(Me.ClearButton)
         Me.Guna2Panel1.Controls.Add(Me.Guna2ToggleSwitch1)
         Me.Guna2Panel1.Controls.Add(Me.AccountCombo)
@@ -710,6 +712,24 @@ Partial Class Voucher
         Me.Guna2HtmlLabel8.TabIndex = 18
         Me.Guna2HtmlLabel8.Text = "  "
         '
+        'btnPDF
+        '
+        Me.btnPDF.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnPDF.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnPDF.CheckedState.Parent = Me.btnPDF
+        Me.btnPDF.CustomImages.Parent = Me.btnPDF
+        Me.btnPDF.FillColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnPDF.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnPDF.ForeColor = System.Drawing.Color.White
+        Me.btnPDF.HoverState.Parent = Me.btnPDF
+        Me.btnPDF.Location = New System.Drawing.Point(1114, 16)
+        Me.btnPDF.Name = "btnPDF"
+        Me.btnPDF.ShadowDecoration.Parent = Me.btnPDF
+        Me.btnPDF.Size = New System.Drawing.Size(72, 36)
+        Me.btnPDF.TabIndex = 211
+        Me.btnPDF.TabStop = False
+        Me.btnPDF.Text = "PDF"
+        '
         'Voucher
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -765,4 +785,5 @@ Partial Class Voucher
     Friend WithEvents Guna2HtmlLabel11 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2ToggleSwitch1 As Guna.UI2.WinForms.Guna2ToggleSwitch
     Friend WithEvents ClearButton As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btnPDF As Guna.UI2.WinForms.Guna2Button
 End Class

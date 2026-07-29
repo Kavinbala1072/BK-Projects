@@ -61,7 +61,8 @@ Public Class MSReport
                     ProgressBar.Maximum = 100
                 End If
 
-                Dim query As String = "SELECT M_No, Member_Name, Mobile_No, Address_Text, Aadhar_No, Member_Photo, Joining_Date FROM Member_Table where M_No != '0' ORDER BY M_No ASC"
+                Dim query As String = "SELECT M_No, Member_Name, Mobile_No, Address_Text, Aadhar_No, Member_Photo, Joining_Date 
+                                       FROM Member_Table where M_No != '0' ORDER BY CAST(M_No AS INT) ASC, Created_Date ASC;"
                 Using cmd As New SqlCommand(query, conn)
                     Using reader As SqlDataReader = cmd.ExecuteReader()
                         Dim count As Integer = 0
@@ -175,7 +176,7 @@ Public Class MSReport
         Try
             Using conn As SqlConnection = Tools.GetConnection()
                 conn.Open()
-                Dim cmd = New SqlCommand("SELECT Comp_Name FROM Company_Table WHERE Comp_No='KR1'", conn)
+                Dim cmd = New SqlCommand("SELECT Comp_Name FROM Company_Table WHERE Comp_No='BK0002'", conn)
                 Dim res = cmd.ExecuteScalar()
                 If res IsNot Nothing Then compName = res.ToString().ToUpper()
             End Using
@@ -203,56 +204,155 @@ Public Class MSReport
         Dim rowH As Integer = 130
 
         While mRow < Guna2DataGridView1.Rows.Count
+
             Dim row As DataGridViewRow = Guna2DataGridView1.Rows(mRow)
             curX = left
 
-            ' Box 1: S.No
+            '-----------------------------
+            ' Calculate Dynamic Row Height
+            '-----------------------------
+            Dim detWidth As Integer = 350
+
+            Dim addr As String = "Address : " & If(row.Cells("Address_Text").Value, "").ToString()
+            Dim aadhar As String = "Aadhar No : " & If(row.Cells("Aadhar_No").Value, "").ToString()
+            Dim mobile As String = "Mobile : " & If(row.Cells("Mobile_No").Value, "").ToString()
+            Dim jDate As String = "Join Date : " &
+        Convert.ToDateTime(row.Cells("Joining_Date").Value).ToString("dd-MM-yyyy")
+
+            Dim addrHeight As Integer =
+        CInt(g.MeasureString(addr, fBody, detWidth).Height)
+
+            rowH = Math.Max(130, addrHeight + 80)
+
+            '=========================
+            ' S.No Column
+            '=========================
             g.DrawRectangle(Pens.Black, curX, y, colW(0), rowH)
-            g.DrawString((mRow + 1).ToString & ".", fSno, Brushes.Black, curX + 10, y + 15)
+
+            g.DrawString((mRow + 1).ToString() & ".",
+                 fSno,
+                 Brushes.Black,
+                 curX + 12,
+                 y + 15)
+
             curX += colW(0)
 
-            ' Box 2: Member Name
+            '=========================
+            ' Member Name Column
+            '=========================
             g.DrawRectangle(Pens.Black, curX, y, colW(1), rowH)
-            Dim nameStr As String = row.Cells("Member_Name").Value.ToString().ToUpper()
-            g.DrawString(nameStr, fHeader, Brushes.Black, New RectangleF(curX + 5, y + 15, colW(1) - 10, rowH - 20))
+
+            Dim nameStr As String =
+        If(row.Cells("Member_Name").Value, "").ToString().ToUpper()
+
+            Dim noStr As String =
+        "Member No : " & If(row.Cells("M_No").Value, "").ToString()
+
+            g.DrawString(nameStr,
+                 fHeader,
+                 Brushes.Black,
+                 curX + 5,
+                 y + 15)
+
+            g.DrawString(noStr,
+                 fBody,
+                 Brushes.Black,
+                 curX + 5,
+                 y + 40)
+
             curX += colW(1)
 
-            ' Box 3: Photo and Multi-line Details
+            '=========================
+            ' Details Column
+            '=========================
             g.DrawRectangle(Pens.Black, curX, y, colW(2), rowH)
 
-            ' Photo
-            If Not IsDBNull(row.Cells("Member_Photo").Value) Then
-                Dim img As Image = GetImageFromBytes(DirectCast(row.Cells("Member_Photo").Value, Byte()))
-                If img IsNot Nothing Then
-                    g.DrawRectangle(Pens.Gray, curX + 390, y + 10, 110, 110)
-                    g.DrawImage(img, curX + 395, y + 15, 100, 100)
-                End If
-            End If
-
-            ' Details
             Dim detX As Integer = curX + 10
             Dim detY As Integer = y + 10
-            Dim addr As String = "Address: " & row.Cells("Address_Text").Value.ToString()
-            Dim aadhar As String = "Aadhar No: " & row.Cells("Aadhar_No").Value.ToString()
-            Dim mobile As String = "Mobile: " & row.Cells("Mobile_No").Value.ToString()
-            Dim jDate As String = "Join Date: " & Convert.ToDateTime(row.Cells("Joining_Date").Value).ToString("dd-MM-yyyy")
 
-            Dim addrRect As New RectangleF(detX, detY, 370, 65)
-            g.DrawString(addr, fBody, Brushes.Black, addrRect)
-            g.DrawString(aadhar, fBody, Brushes.Black, detX, detY + 65)
-            g.DrawString(mobile, fBody, Brushes.Black, detX, detY + 82)
-            g.DrawString(jDate, fBody, Brushes.Black, detX, detY + 99)
+            Dim addrRect As New RectangleF(detX,
+                                   detY,
+                                   detWidth,
+                                   rowH - 20)
+
+            g.DrawString(addr,
+                 fBody,
+                 Brushes.Black,
+                 addrRect)
+
+            Dim nextY As Integer =
+        detY + addrHeight + 5
+
+            g.DrawString(aadhar,
+                 fBody,
+                 Brushes.Black,
+                 detX,
+                 nextY)
+
+            nextY += 18
+
+            g.DrawString(mobile,
+                 fBody,
+                 Brushes.Black,
+                 detX,
+                 nextY)
+
+            nextY += 18
+
+            g.DrawString(jDate,
+                 fBody,
+                 Brushes.Black,
+                 detX,
+                 nextY)
+
+            '=========================
+            ' Member Photo
+            '=========================
+            If Not IsDBNull(row.Cells("Member_Photo").Value) Then
+
+                Dim img As Image =
+            GetImageFromBytes(
+                DirectCast(row.Cells("Member_Photo").Value, Byte())
+            )
+
+                If img IsNot Nothing Then
+
+                    Dim imgX As Integer = curX + colW(2) - 115
+                    Dim imgY As Integer = y + 10
+
+                    g.DrawRectangle(Pens.Gray,
+                            imgX,
+                            imgY,
+                            100,
+                            100)
+
+                    g.DrawImage(img,
+                        imgX + 2,
+                        imgY + 2,
+                        96,
+                        96)
+
+                End If
+
+            End If
 
             y += rowH
             mRow += 1
 
-            ' Page Break
-            If y > e.MarginBounds.Bottom - rowH Then
-                g.DrawString("Page " & PageNumber, fBody, Brushes.Black, e.MarginBounds.Right - 50, e.MarginBounds.Bottom + 10)
+            If y + rowH > e.MarginBounds.Bottom Then
+
+                g.DrawString("Page : " & PageNumber,
+                     fBody,
+                     Brushes.Black,
+                     e.MarginBounds.Right - 60,
+                     e.MarginBounds.Bottom + 15)
+
                 PageNumber += 1
                 e.HasMorePages = True
                 Return
+
             End If
+
         End While
 
         g.DrawString("Page " & PageNumber, fBody, Brushes.Black, e.MarginBounds.Right - 50, e.MarginBounds.Bottom + 10)

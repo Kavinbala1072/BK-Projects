@@ -84,7 +84,8 @@ Public Class MemberShip
     Private Sub LoadMemberData()
         Try
             Using conn As SqlConnection = Tools.GetConnection()
-                Dim query As String = "SELECT ID, M_No, Member_Name, Mobile_No, Address_Text, Aadhar_No, Remarks, Is_Active, Member_Photo, Joining_Date FROM Member_Table where M_No != '0' ORDER BY Created_Date DESC"
+                Dim query As String = "SELECT ID, M_No, Member_Name, Mobile_No, Address_Text, Aadhar_No, Remarks, Is_Active, Member_Photo, Joining_Date FROM Member_Table
+                                       WHERE M_No <> '0'ORDER BY CAST(M_No AS INT) ASC, Created_Date ASC;"
                 Dim adapter As New SqlDataAdapter(query, conn)
                 Dim dt As New DataTable()
                 adapter.Fill(dt)
@@ -259,6 +260,58 @@ Public Class MemberShip
         End Try
     End Sub
 
+    Private Sub btnPDF_Click(sender As Object, e As EventArgs) Handles btnPDF.Click
+        If PrintMemberID = Guid.Empty Then
+            MessageBox.Show("Select a member.")
+            Return
+        End If
+
+        Try
+            Dim folderPath As String = Path.Combine(Application.StartupPath, "Report")
+            If Not Directory.Exists(folderPath) Then
+                Directory.CreateDirectory(folderPath)
+            End If
+
+            Dim memberNo As String = ""
+
+            Using conn As SqlConnection = Tools.GetConnection()
+                conn.Open()
+
+                Dim cmd As New SqlCommand("SELECT M_No FROM Member_Table WHERE ID=@ID", conn)
+                cmd.Parameters.AddWithValue("@ID", PrintMemberID)
+
+                Dim obj = cmd.ExecuteScalar()
+
+                If obj IsNot Nothing Then
+                    memberNo = obj.ToString()
+                Else
+                    memberNo = "Unknown"
+                End If
+            End Using
+
+            Dim fileName As String = $"Member_Details_{memberNo}.pdf"
+            Dim fullPath As String = Path.Combine(folderPath, fileName)
+
+            Dim pd As New PrintDocument
+            pd.PrintController = New StandardPrintController()
+
+            pd.DefaultPageSettings.PaperSize = New PaperSize("A4", 827, 1169)
+            pd.DefaultPageSettings.Margins = New Margins(40, 40, 40, 40)
+
+            pd.PrinterSettings.PrinterName = "Microsoft Print to PDF"
+            pd.PrinterSettings.PrintToFile = True
+            pd.PrinterSettings.PrintFileName = fullPath
+
+            AddHandler pd.PrintPage, AddressOf PrintDocument_PrintPage
+
+            pd.Print()
+            MessageBox.Show("Report saved successfully in 'Report' folder." & vbCrLf & "File: " & fileName, "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message, "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
     Private Sub PrintDocument_PrintPage(sender As Object, e As PrintPageEventArgs)
         Dim g As Graphics = e.Graphics
         g.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
@@ -417,7 +470,7 @@ Public Class MemberShip
     End Sub
 
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-        ClearFields()
+        pbMemberPhoto.Image = Nothing
     End Sub
 
     Private Sub txtMobile_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtMobile.KeyPress

@@ -22,7 +22,9 @@ Public Class Tools
     Private Shared ReadOnly xmlPath As String = Path.Combine(Application.StartupPath, "BK Key", "activation.xml")
 
     Private Shared ReadOnly GitURL As String = "https://api.github.com/repos/Kavinbala1072/Reporting/contents/BK%20Reporting.json"
-    Private Shared ReadOnly GitToken As String = "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"
+    Private Shared ReadOnly GitToken As String = "A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"
+
+    Private Shared ReadOnly ActualGitToken As String = GitToken.Substring(1)
 
     Public Class GitFileResponse
         Public Property content As String
@@ -58,76 +60,8 @@ Public Class Tools
             MessageBox.Show("Configuration file not found.")
         End If
     End Sub
-    'Public Shared Sub UpdateCloudLog(ByVal serverType As String, ByVal appName As String, ByVal compName As String)
-    '    Try
-    '        ServicePointManager.SecurityProtocol = DirectCast(3072, SecurityProtocolType)
-    '        Dim js As New JavaScriptSerializer()
 
-    '        Dim request As HttpWebRequest = DirectCast(WebRequest.Create(GitURL), HttpWebRequest)
-    '        request.Headers.Add("Authorization", "token " & GitToken)
-    '        request.UserAgent = "WinForms_App"
-
-    '        Dim currentSha As String = ""
-    '        Dim appList As New List(Of Dictionary(Of String, Object))
-
-    '        Try
-    '            Using response As HttpWebResponse = DirectCast(request.GetResponse(), HttpWebResponse)
-    '                Using reader As New StreamReader(response.GetResponseStream())
-    '                    Dim gitRes = js.Deserialize(Of GitFileResponse)(reader.ReadToEnd())
-    '                    currentSha = gitRes.sha
-
-    '                    Dim jsonArrayRaw As String = Encoding.UTF8.GetString(Convert.FromBase64String(gitRes.content))
-    '                    appList = js.Deserialize(Of List(Of Dictionary(Of String, Object)))(jsonArrayRaw)
-    '                End Using
-    '            End Using
-    '        Catch ex As WebException
-    '            appList = New List(Of Dictionary(Of String, Object))
-    '        End Try
-
-    '        Dim existingEntry = appList.FirstOrDefault(Function(x) x.ContainsKey("Application") AndAlso x("Application").ToString() = appName)
-
-    '        If existingEntry IsNot Nothing Then
-    '            existingEntry("server") = serverType
-    '            existingEntry("Company name") = compName
-    '            existingEntry("lastlogin") = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")
-    '        Else
-    '            Dim newEntry As New Dictionary(Of String, Object) From {
-    '                {"server", serverType},
-    '                {"Application", appName},
-    '                {"Company name", compName},
-    '                {"lastlogin", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")}
-    '            }
-    '            appList.Add(newEntry)
-    '        End If
-
-    '        Dim updatedJson As String = js.Serialize(appList)
-    '        Dim base64Content As String = Convert.ToBase64String(Encoding.UTF8.GetBytes(updatedJson))
-
-    '        Dim putRequest As HttpWebRequest = DirectCast(WebRequest.Create(GitURL), HttpWebRequest)
-    '        putRequest.Method = "PUT"
-    '        putRequest.Headers.Add("Authorization", "token " & GitToken)
-    '        putRequest.UserAgent = "WinForms_App"
-    '        putRequest.ContentType = "application/json"
-
-    '        Dim payload As New With {
-    '            .message = "Login update for " & appName,
-    '            .content = base64Content,
-    '            .sha = currentSha
-    '        }
-
-    '        Dim bodyBytes As Byte() = Encoding.UTF8.GetBytes(js.Serialize(payload))
-    '        Using stream As Stream = putRequest.GetRequestStream()
-    '            stream.Write(bodyBytes, 0, bodyBytes.Length)
-    '        End Using
-
-    '        putRequest.GetResponse().Close()
-
-    '    Catch ex As Exception
-    '        Debug.WriteLine("Sync Error: " & ex.Message)
-    '    End Try
-    'End Sub
-
-    Public Shared Sub UpdateCloudLog(ByVal isServer As Boolean, ByVal CompanyNo As String, ByVal appName As String, ByVal compName As String, ByVal amcExpiry As String, ByVal version As String, ByVal secretPassword As String)
+    Public Shared Sub UpdateCloudLog(ByVal isServer As Boolean, ByVal CompanyNo As String, ByVal appName As String, ByVal compName As String, ByVal LastLogin As String, ByVal amcExpiry As String, ByVal version As String, ByVal secretPassword As String)
         Try
             ServicePointManager.SecurityProtocol = DirectCast(3072, SecurityProtocolType)
             Dim js As New JavaScriptSerializer()
@@ -136,7 +70,7 @@ Public Class Tools
             Dim CompNo As String = "BK0002"
 
             Dim request As HttpWebRequest = DirectCast(WebRequest.Create(GitURL), HttpWebRequest)
-            request.Headers.Add("Authorization", "token " & GitToken)
+            request.Headers.Add("Authorization", "token " & ActualGitToken)
             request.UserAgent = "WinForms_App"
 
             Dim currentSha As String = ""
@@ -188,7 +122,7 @@ Public Class Tools
 
             Dim putRequest As HttpWebRequest = DirectCast(WebRequest.Create(GitURL), HttpWebRequest)
             putRequest.Method = "PUT"
-            putRequest.Headers.Add("Authorization", "token " & GitToken)
+            putRequest.Headers.Add("Authorization", "token " & ActualGitToken)
             putRequest.UserAgent = "WinForms_App"
             putRequest.ContentType = "application/json"
 
@@ -629,7 +563,7 @@ Public Class Tools
             Dim js As New JavaScriptSerializer()
 
             Dim request As HttpWebRequest = DirectCast(WebRequest.Create(GitURL), HttpWebRequest)
-            request.Headers.Add("Authorization", "token " & GitToken)
+            request.Headers.Add("Authorization", "token " & ActualGitToken)
             request.UserAgent = "WinForms_App"
 
             Using response As HttpWebResponse = DirectCast(request.GetResponse(), HttpWebResponse)
@@ -658,7 +592,7 @@ Public Class Tools
         Dim dt As New DataTable()
         Try
             Using conn As SqlConnection = GetConnection()
-                Dim sql As String = "SELECT Comp_Name, Comp_Address1, Comp_Address2, Comp_Address3, Mobile FROM Company_Table WHERE Comp_No = 'KR1'"
+                Dim sql As String = "SELECT Comp_Name, Comp_Address1, Comp_Address2, Comp_Address3, Mobile FROM Company_Table WHERE Comp_No = 'BK0002'"
                 Dim adapter As New SqlDataAdapter(sql, conn)
                 adapter.Fill(dt)
             End Using

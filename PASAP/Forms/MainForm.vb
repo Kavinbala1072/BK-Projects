@@ -279,7 +279,7 @@ Public Class MainForm
                 iscollapsed5 = False
                 VoucherButton.Text = "Voucher"
                 MemberShipButton.Text = "Member Ship"
-                CSRButton.Text = "Cash Receipt \ Voucher"
+                CSRButton.Text = "Transaction Report"
                 MSRButtom.Text = "Member Ship"
                 Guna2Button2.Text = "Settings"
                 DropButton1.Text = "Report"
@@ -346,7 +346,8 @@ Public Class MainForm
                                      My.Forms.Form1.CompanyNo,
                                      "Attma",
                                      My.Forms.Form1.compName,
-                                     My.Forms.Form1.amcExpiryDate,
+                                     My.Forms.Form1.LastLogin,
+                                    My.Forms.Form1.amcExpiryDate,
                                      My.Forms.Form1.Version,
                                      My.Forms.Form1.secretPassword)
                 Catch ex As Exception

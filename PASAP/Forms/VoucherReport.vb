@@ -68,6 +68,7 @@ Public Class VoucherReport
         dt.Columns.Add("Amount", GetType(Decimal))
         dt.Columns.Add("Purpose", GetType(String))
         dt.Columns.Add("Payment_Method", GetType(String))
+        dt.Columns.Add("Remarks", GetType(String))
         dt.Columns.Add("Is_Cancelled", GetType(Integer))
 
         Dim dFrom, dTo As DateTime
@@ -123,7 +124,7 @@ Public Class VoucherReport
 
                 Dim query As String = "SELECT V.Bill_No, V.V_Date, V.V_Type, " &
                                  "ISNULL(V.Member_Name, M.Member_Name) AS Member_Name, " &
-                                 "V.Amount, V.Purpose, V.Payment_Method, V.Is_Cancelled " &
+                                 "V.Amount, V.Purpose, V.Payment_Method, V.Remarks, V.Is_Cancelled " &
                                  "FROM Voucher_Table V " &
                                  "LEFT JOIN Member_Table M ON V.Member_ID = M.ID " &
                                  filterSql & " ORDER BY V.V_Type DESC, V.V_Date ASC"
@@ -150,6 +151,7 @@ Public Class VoucherReport
                             row("Amount") = amt
                             row("Purpose") = reader("Purpose").ToString()
                             row("Payment_Method") = reader("Payment_Method").ToString()
+                            row("Remarks") = reader("Remarks").ToString()
                             row("Is_Cancelled") = reader("Is_Cancelled")
 
                             dt.Rows.Add(row)
@@ -248,7 +250,7 @@ Public Class VoucherReport
             pd.PrintController = New StandardPrintController()
 
             pd.DefaultPageSettings.PaperSize = New PaperSize("A4", 827, 1169)
-            pd.DefaultPageSettings.Margins = New Margins(40, 40, 40, 40)
+            pd.DefaultPageSettings.Margins = New Margins(20, 20, 20, 20)
 
             pd.PrinterSettings.PrinterName = "Microsoft Print to PDF"
             pd.PrinterSettings.PrintToFile = True
@@ -271,6 +273,7 @@ Public Class VoucherReport
             MessageBox.Show("Error: " & ex.Message, "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
     Private Sub PrintDocument_PrintPage(sender As Object, e As PrintPageEventArgs)
         Dim g As Graphics = e.Graphics
         Dim fTitle As New Font("Arial", 14, FontStyle.Bold)
@@ -280,6 +283,8 @@ Public Class VoucherReport
         Dim left As Integer = e.MarginBounds.Left
         Dim y As Integer = e.MarginBounds.Top
         Dim center As Integer = e.PageBounds.Width / 2
+
+        Dim pageLimit As Integer = e.MarginBounds.Bottom - 60
 
         Dim compName As String = "ATTMA SEVA ARAKKATTALAI"
         Try
@@ -295,22 +300,20 @@ Public Class VoucherReport
             y += 25
             g.DrawString("PERUNDURAI", fHeader, Brushes.Black, center - (g.MeasureString("PERUNDURAI", fHeader).Width / 2), y)
             y += 40
-            Dim filterInfo As String = $"FROM: {FromDateTextBox.Text} TO: {ToDateTextBox.Text} | Payment: {PaymentCombo.Text}"
+            Dim filterInfo As String = $"FROM: {FromDateTextBox.Text} TO: {ToDateTextBox.Text} | Transaction Type: {PaymentCombo.Text}"
             g.DrawString(filterInfo, fBody, Brushes.Black, center - (g.MeasureString(filterInfo, fBody).Width / 2), y)
             y += 30
         End If
 
+        Dim colW As Integer() = {40, 80, 75, 165, 175, 140, 112}
+
         If (TypeCombo.Text = "ALL" Or TypeCombo.Text = "RECEIPT") AndAlso mRowVoucher = 0 Then
             g.DrawString("AMOUNT RECEIVABLE REPORT", fHeader, Brushes.Black, left, y)
-            'y += 20
-            'g.DrawString($"DATE FROM: {FromDateTextBox.Text}   TO: {ToDateTextBox.Text}", fBody, Brushes.Black, left, y)
             y += 30
 
-            Dim colW As Integer() = {40, 90, 80, 200, 200, 100}
-            Dim colN As String() = {"S.No", "Date", "R.No", "Name", "Purpose", "Amount"}
+            Dim colN As String() = {"S.No", "Date", "R.No", "Name", "Purpose", "Remarks", "Amount"}
 
-            DrawRow(g, left, y, colW, colN, fBody, True)
-            y += 25
+            y += DrawRow(g, left, y, colW, colN, fBody, True)
 
             Dim dt As DataTable = DirectCast(Guna2DataGridView1.DataSource, DataTable)
 
@@ -319,43 +322,46 @@ Public Class VoucherReport
                 If row("V_Type").ToString() = "RECEIPT" Then
                     sNoReceipt += 1
 
-                    Dim data As String() = {sNoReceipt.ToString(), ' Use the counter here
-                              Convert.ToDateTime(row("V_Date")).ToString("dd-MM-yyyy"),
-                              row("Bill_No").ToString(),
-                              row("Member_Name").ToString(),
-                              row("Purpose").ToString(),
-                              Convert.ToDecimal(row("Amount")).ToString("N2")}
+                    Dim data As String() = {
+                        sNoReceipt.ToString(),
+                        Convert.ToDateTime(row("V_Date")).ToString("dd-MM-yyyy"),
+                        row("Bill_No").ToString(),
+                        row("Member_Name").ToString(),
+                        row("Purpose").ToString(),
+                        row("Remarks").ToString(),
+                        Convert.ToDecimal(row("Amount")).ToString("N2")
+                    }
 
-                    DrawRow(g, left, y, colW, data, fBody, False)
+                    ' Check BEFORE drawing so a row is never split across pages
+                    Dim rh As Integer = GetRowHeight(g, data, colW, fBody)
+                    If y + rh > pageLimit Then
+                        e.HasMorePages = True
+                        PageNumber += 1
+                        Return
+                    End If
+
+                    y += DrawRow(g, left, y, colW, data, fBody, False)
                     TotalReceivable += Convert.ToDecimal(row("Amount"))
-                    y += 25
                 End If
                 mRowReceipt += 1
-
-                If y > 1000 Then
-                    e.HasMorePages = True
-                    PageNumber += 1
-                    Return
-                End If
             End While
 
-            y += 10
-            g.DrawString("Sub Total Receivable: Rs. " & TotalReceivable.ToString("N2"), fHeader, Brushes.Blue, left + 410, y)
-            y += 50
+            y += 15
+            g.DrawString("Sub Total Receivable: Rs. " & TotalReceivable.ToString("N2"), fHeader, Brushes.Blue, left + colW.Sum() - 260, y)
+            y += 45
         End If
 
         If TypeCombo.Text = "ALL" Or TypeCombo.Text = "VOUCHER" Then
-            If y < 1000 And mRowVoucher = 0 Then
-                g.DrawLine(Pens.Black, left, y - 20, left + 710, y - 20)
-            End If
+            'If mRowVoucher = 0 Then
+            '    g.DrawLine(Pens.Black, left, y - 20, left + colW.Sum(), y - 20)
+            'End If
 
             g.DrawString("AMOUNT PAYABLE REPORT", fHeader, Brushes.Black, left, y)
             y += 30
 
-            Dim colW2 As Integer() = {40, 90, 80, 200, 200, 100}
-            Dim colN2 As String() = {"S.No", "Date", "V.No", "Name", "Expense Purpose", "Amount"}
-            DrawRow(g, left, y, colW2, colN2, fBody, True)
-            y += 25
+            Dim colN2 As String() = {"S.No", "Date", "V.No", "Name", "Expense Purpose", "Remarks", "Amount"}
+
+            y += DrawRow(g, left, y, colW, colN2, fBody, True)
 
             Dim dt As DataTable = DirectCast(Guna2DataGridView1.DataSource, DataTable)
 
@@ -364,28 +370,32 @@ Public Class VoucherReport
                 If row("V_Type").ToString() = "VOUCHER" Then
                     sNoVoucher += 1
 
-                    Dim data As String() = {sNoVoucher.ToString(),
-                              Convert.ToDateTime(row("V_Date")).ToString("dd-MM-yyyy"),
-                              row("Bill_No").ToString(),
-                              row("Member_Name").ToString(),
-                              row("Purpose").ToString(),
-                              Convert.ToDecimal(row("Amount")).ToString("N2")}
+                    Dim data As String() = {
+                        sNoVoucher.ToString(),
+                        Convert.ToDateTime(row("V_Date")).ToString("dd-MM-yyyy"),
+                        row("Bill_No").ToString(),
+                        row("Member_Name").ToString(),
+                        row("Purpose").ToString(),
+                        row("Remarks").ToString(),
+                        Convert.ToDecimal(row("Amount")).ToString("N2")
+                    }
 
-                    DrawRow(g, left, y, colW2, data, fBody, False)
+                    Dim rh As Integer = GetRowHeight(g, data, colW, fBody)
+                    If y + rh > pageLimit Then
+                        e.HasMorePages = True
+                        PageNumber += 1
+                        Return
+                    End If
+
+                    ' FIX: use the ACTUAL returned row height instead of a hardcoded 25
+                    y += DrawRow(g, left, y, colW, data, fBody, False)
                     TotalPayable += Convert.ToDecimal(row("Amount"))
-                    y += 25
                 End If
                 mRowVoucher += 1
-
-                If y > 1050 Then
-                    e.HasMorePages = True
-                    PageNumber += 1
-                    Return
-                End If
             End While
 
-            y += 10
-            g.DrawString("Sub Total Payable: Rs. " & TotalPayable.ToString("N2"), fHeader, Brushes.Red, left + 410, y)
+            y += 15
+            g.DrawString("Sub Total Payable: Rs. " & TotalPayable.ToString("N2"), fHeader, Brushes.Red, left + colW.Sum() - 260, y)
         End If
 
         g.DrawString("Printed by BK Software Solutions", fBody, Brushes.Gray, left, e.MarginBounds.Bottom + 20)
@@ -394,14 +404,69 @@ Public Class VoucherReport
         e.HasMorePages = False
     End Sub
 
-    Private Sub DrawRow(g As Graphics, x As Integer, y As Integer, widths As Integer(), values As String(), font As Font, isHeader As Boolean)
+    Private Function GetRowHeight(g As Graphics,
+                              values As String(),
+                              widths As Integer(),
+                              font As Font) As Integer
+
+        Dim h As Integer = 25
+        Dim cnt As Integer = Math.Min(values.Length, widths.Length)
+
+        For i As Integer = 0 To cnt - 1
+            Dim s As SizeF = g.MeasureString(
+                If(values(i), ""),
+                font,
+                widths(i) - 6)
+
+            h = Math.Max(h, CInt(Math.Ceiling(s.Height)) + 8)
+        Next
+
+        Return h
+    End Function
+
+    Private Function DrawRow(g As Graphics,
+                         x As Integer,
+                         y As Integer,
+                         widths As Integer(),
+                         values As String(),
+                         font As Font,
+                         isHeader As Boolean) As Integer
+
+        Dim rowHeight As Integer = GetRowHeight(g, values, widths, font)
         Dim currentX As Integer = x
-        For i As Integer = 0 To values.Length - 1
-            g.DrawRectangle(Pens.Black, currentX, y, widths(i), 25)
-            g.DrawString(values(i), font, Brushes.Black, currentX + 3, y + 5)
+
+        For i As Integer = 0 To Math.Min(values.Length, widths.Length) - 1
+
+            Dim r As New Rectangle(currentX, y, widths(i), rowHeight)
+
+            If isHeader Then
+                g.FillRectangle(Brushes.Gainsboro, r)
+            End If
+
+            g.DrawRectangle(Pens.Black, r)
+
+            Dim sf As New StringFormat()
+            sf.Alignment = If(i = values.Length - 1, StringAlignment.Far, StringAlignment.Near)
+            sf.LineAlignment = StringAlignment.Center
+            sf.Trimming = StringTrimming.Word
+            sf.FormatFlags = 0
+
+            g.DrawString(
+                If(values(i), ""),
+                font,
+                Brushes.Black,
+                New RectangleF(r.X + 3,
+                               r.Y + 2,
+                               r.Width - 6,
+                               r.Height - 4),
+                sf)
+
             currentX += widths(i)
         Next
-    End Sub
+
+        Return rowHeight
+    End Function
+
 
     Private Sub RefreshButton_Click(sender As Object, e As EventArgs) Handles RefreshButton.Click
         LoadReportData()
