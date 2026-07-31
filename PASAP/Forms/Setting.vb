@@ -7,7 +7,7 @@ Imports System.Text
 
 Public Class Setting
 
-    Private Const COMP_ID As String = "KR1"
+    Private Const COMP_ID As String = "BK0002"
 
     Private Sub Setting_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CompanyLoad()
@@ -16,8 +16,7 @@ Public Class Setting
         'UserRight()
         'LoadUsernames()
         SetupUserTree()
-        LoadUsernames()
-        ushowshower()
+        InitializeUserSecurity()
         CBUserright.ForeColor = Color.Black
         CBEBackup.ForeColor = Color.Black
         settingload()
@@ -322,7 +321,8 @@ Public Class Setting
             End Try
         End Using
 
-        LoadUsernames()
+        InitializeUserSecurity()
+
     End Sub
     'Public Shared Function GetStoredUsername() As String
     '    Dim ctlDesc As String = "UserName"
@@ -342,6 +342,7 @@ Public Class Setting
 
     '    Return storedUsername
     'End Function
+
     'Private Sub ushowshower()
     '    Using sqlconnect As SqlConnection = Tools.GetConnection()
     '        Try
@@ -386,56 +387,69 @@ Public Class Setting
     '        End Try
     '    End Using
     'End Sub
-    Private Sub ushowshower()
-        Dim currentUser As String = GetStoredUsername()
-        If currentUser.Equals("Admin", StringComparison.OrdinalIgnoreCase) Then Return
 
-        Using conn As SqlConnection = Tools.GetConnection()
-            Try
-                conn.Open()
-                Dim cmd As New SqlCommand("SELECT Ctl_Value FROM Control_Table WHERE Ctl_Desc = 'UserRight'", conn)
-                Dim val = cmd.ExecuteScalar()?.ToString()
-
-                If val = "1" Then
-                    Dim controlsToHide As Control() = {Label49, Label52, Label53, Label54, Usertxt, Psdtxt, Userbtn,
-                                                     Label55, Label56, UserText, Usertree, SRSavebtn}
-                    For Each ctrl In controlsToHide
-                        ctrl.Visible = False
-                    Next
-                End If
-            Catch ex As Exception
-                Debug.WriteLine(ex.Message)
-            End Try
-        End Using
-    End Sub
-    Private Sub LoadUsernames()
+    Private Sub InitializeUserSecurity()
         Try
-            Using sqlconnect As SqlConnection = Tools.GetConnection()
-                sqlconnect.Open()
+            Using conn As SqlConnection = Tools.GetConnection()
+                conn.Open()
 
-                Dim query As String = "SELECT User_name FROM user_table where ID != 1"
-                Using cmd As New SqlCommand(query, sqlconnect)
-                    Using reader As SqlDataReader = cmd.ExecuteReader()
-                        UserText.Items.Clear()
+                Dim currentUser As String = ""
+                Dim userRightValue As String = ""
+
+                Using cmdControl = New SqlCommand("SELECT Ctl_Desc, Ctl_Value FROM Control_Table WHERE Ctl_Desc IN ('UserName', 'UserRight')", conn)
+                    Using reader = cmdControl.ExecuteReader()
                         While reader.Read()
-                            If Not reader.IsDBNull(0) Then
-                                UserText.Items.Add(reader.GetString(0))
-                            End If
+                            If reader("Ctl_Desc").ToString() = "UserName" Then currentUser = reader("Ctl_Value").ToString()
+                            If reader("Ctl_Desc").ToString() = "UserRight" Then userRightValue = reader("Ctl_Value").ToString()
                         End While
                     End Using
                 End Using
+
+                Dim isAdmin As Boolean = currentUser.Equals("Admin", StringComparison.OrdinalIgnoreCase)
+
+                Dim shouldHide As Boolean = (userRightValue = "0") Or (Not isAdmin)
+
+                Dim adminControls As Control() = {Label49, Label52, Label53, Label54, Usertxt, Psdtxt, Userbtn,
+                                             Label55, Label56, UserText, Usertree, SRSavebtn}
+
+                For Each ctrl In adminControls
+                    If ctrl IsNot Nothing Then
+                        ctrl.Visible = Not shouldHide
+                    End If
+                Next
+
+                If Not shouldHide Then
+                    UserText.Items.Clear()
+                    Using cmdUsers = New SqlCommand("SELECT User_name FROM user_table WHERE ID != 1", conn)
+                        Using rdrUsers = cmdUsers.ExecuteReader()
+                            While rdrUsers.Read()
+                                If Not rdrUsers.IsDBNull(0) Then
+                                    UserText.Items.Add(rdrUsers.GetString(0))
+                                End If
+                            End While
+                        End Using
+                    End Using
+
+                    If UserText.Items.Count > 0 Then
+                        UserText.SelectedIndex = 0
+                    End If
+                End If
+
             End Using
-
-            If UserText.Items.Count > 0 Then
-                UserText.SelectedIndex = 0
-            End If
-
         Catch ex As SqlException
-            MsgBox("SQL Error: " & ex.Message)
+            MsgBox("Database Error: " & ex.Message, MsgBoxStyle.Critical)
         Catch ex As Exception
-            MsgBox("General Error: " & ex.Message)
+            MsgBox("General Error: " & ex.Message, MsgBoxStyle.Exclamation)
         End Try
     End Sub
+
+    Public Shared Function GetStoredUsername() As String
+        Using conn As SqlConnection = Tools.GetConnection()
+            conn.Open()
+            Dim cmd As New SqlCommand("SELECT Ctl_Value FROM Control_Table WHERE Ctl_Desc = 'UserName'", conn)
+            Return cmd.ExecuteScalar()?.ToString()
+        End Using
+    End Function
 
     Private Sub SetupUserTree()
         Usertree.CheckBoxes = True
@@ -507,13 +521,6 @@ Public Class Setting
             If found IsNot Nothing Then Return found
         Next
         Return Nothing
-    End Function
-    Public Shared Function GetStoredUsername() As String
-        Using conn As SqlConnection = Tools.GetConnection()
-            conn.Open()
-            Dim cmd As New SqlCommand("SELECT Ctl_Value FROM Control_Table WHERE Ctl_Desc = 'UserName'", conn)
-            Return cmd.ExecuteScalar()?.ToString()
-        End Using
     End Function
     Private Sub SaveAllNodes(nodes As TreeNodeCollection, uid As Integer, conn As SqlConnection)
         For Each node As TreeNode In nodes
@@ -613,6 +620,10 @@ Public Class Setting
         Next
         Return Nothing
     End Function
+
+    Private Sub Guna2Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Guna2Panel1.Paint
+
+    End Sub
     'Private Sub userrights()
     '    Try
     '        Dim username As String = GetStoredUsername()

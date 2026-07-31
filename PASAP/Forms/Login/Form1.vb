@@ -14,7 +14,7 @@ Public Class Form1
     Private user As String = ""
     Private password As String = ""
     Public Server As Boolean = False
-    Public Version As String = 0.3
+    Public Version As String = 0.4
     Public compName As String = "Unknown Company"
     Public LastLogin = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")
     Public amcExpiryDate As String = "Trial/None"

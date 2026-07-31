@@ -215,7 +215,7 @@ Public Class DBConnect
 						End Using
 
 						Try
-							Dim keyFolderPath As String = Path.Combine(Application.StartupPath, "BK Key")
+							Dim keyFolderPath As String = Path.Combine(Application.StartupPath, "GS Key")
 							Dim keyFilePath As String = Path.Combine(keyFolderPath, "activation.xml")
 
 							If File.Exists(keyFilePath) Then

@@ -22,9 +22,9 @@ Partial Class VoucherReport
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.HeaderPanel = New Guna.UI2.WinForms.Guna2ShadowPanel()
         Me.Label = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2DataGridView1 = New Guna.UI2.WinForms.Guna2DataGridView()
@@ -33,9 +33,9 @@ Partial Class VoucherReport
         Me.PrintButton = New Guna.UI2.WinForms.Guna2Button()
         Me.FromDateTextBox = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.PaymentCombo = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.TypeCombo = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.ProgressBar = New Guna.UI2.WinForms.Guna2ProgressBar()
-        Me.PaymentCombo = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.HeaderPanel.SuspendLayout()
         CType(Me.Guna2DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Guna2Panel1.SuspendLayout()
@@ -68,30 +68,30 @@ Partial Class VoucherReport
         '
         'Guna2DataGridView1
         '
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
-        Me.Guna2DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        Me.Guna2DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.Guna2DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.Guna2DataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.Guna2DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Guna2DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.Guna2DataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI", 10.5!)
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Guna2DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 10.5!)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Guna2DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.Guna2DataGridView1.ColumnHeadersHeight = 4
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI", 10.5!)
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Guna2DataGridView1.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 10.5!)
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Guna2DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
         Me.Guna2DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2DataGridView1.EnableHeadersVisualStyles = False
         Me.Guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
@@ -220,6 +220,25 @@ Partial Class VoucherReport
         Me.Guna2Panel1.Size = New System.Drawing.Size(1096, 43)
         Me.Guna2Panel1.TabIndex = 101
         '
+        'PaymentCombo
+        '
+        Me.PaymentCombo.BackColor = System.Drawing.Color.Transparent
+        Me.PaymentCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.PaymentCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.PaymentCombo.FocusedColor = System.Drawing.Color.Empty
+        Me.PaymentCombo.FocusedState.Parent = Me.PaymentCombo
+        Me.PaymentCombo.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.PaymentCombo.ForeColor = System.Drawing.Color.Black
+        Me.PaymentCombo.FormattingEnabled = True
+        Me.PaymentCombo.HoverState.Parent = Me.PaymentCombo
+        Me.PaymentCombo.ItemHeight = 30
+        Me.PaymentCombo.ItemsAppearance.Parent = Me.PaymentCombo
+        Me.PaymentCombo.Location = New System.Drawing.Point(208, 4)
+        Me.PaymentCombo.Name = "PaymentCombo"
+        Me.PaymentCombo.ShadowDecoration.Parent = Me.PaymentCombo
+        Me.PaymentCombo.Size = New System.Drawing.Size(198, 36)
+        Me.PaymentCombo.TabIndex = 193
+        '
         'TypeCombo
         '
         Me.TypeCombo.BackColor = System.Drawing.Color.Transparent
@@ -250,25 +269,6 @@ Partial Class VoucherReport
         Me.ProgressBar.TabIndex = 103
         Me.ProgressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault
         Me.ProgressBar.Visible = False
-        '
-        'PaymentCombo
-        '
-        Me.PaymentCombo.BackColor = System.Drawing.Color.Transparent
-        Me.PaymentCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.PaymentCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.PaymentCombo.FocusedColor = System.Drawing.Color.Empty
-        Me.PaymentCombo.FocusedState.Parent = Me.PaymentCombo
-        Me.PaymentCombo.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.PaymentCombo.ForeColor = System.Drawing.Color.Black
-        Me.PaymentCombo.FormattingEnabled = True
-        Me.PaymentCombo.HoverState.Parent = Me.PaymentCombo
-        Me.PaymentCombo.ItemHeight = 30
-        Me.PaymentCombo.ItemsAppearance.Parent = Me.PaymentCombo
-        Me.PaymentCombo.Location = New System.Drawing.Point(208, 4)
-        Me.PaymentCombo.Name = "PaymentCombo"
-        Me.PaymentCombo.ShadowDecoration.Parent = Me.PaymentCombo
-        Me.PaymentCombo.Size = New System.Drawing.Size(198, 36)
-        Me.PaymentCombo.TabIndex = 193
         '
         'VoucherReport
         '

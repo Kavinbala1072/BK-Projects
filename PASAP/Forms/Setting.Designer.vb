@@ -25,6 +25,10 @@ Partial Class Setting
         Me.HeaderPanel = New Guna.UI2.WinForms.Guna2ShadowPanel()
         Me.Label = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.CBEBackup = New Guna.UI2.WinForms.Guna2CheckBox()
+        Me.Label63 = New System.Windows.Forms.Label()
+        Me.CBUserright = New Guna.UI2.WinForms.Guna2CheckBox()
+        Me.Label62 = New System.Windows.Forms.Label()
         Me.SRSavebtn = New Guna.UI2.WinForms.Guna2Button()
         Me.Usertree = New ComponentFactory.Krypton.Toolkit.KryptonTreeView()
         Me.UserText = New Guna.UI2.WinForms.Guna2ComboBox()
@@ -69,10 +73,6 @@ Partial Class Setting
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.CBEBackup = New Guna.UI2.WinForms.Guna2CheckBox()
-        Me.Label63 = New System.Windows.Forms.Label()
-        Me.CBUserright = New Guna.UI2.WinForms.Guna2CheckBox()
-        Me.Label62 = New System.Windows.Forms.Label()
         Me.HeaderPanel.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -159,6 +159,67 @@ Partial Class Setting
         Me.Guna2Panel1.ShadowDecoration.Parent = Me.Guna2Panel1
         Me.Guna2Panel1.Size = New System.Drawing.Size(1280, 678)
         Me.Guna2Panel1.TabIndex = 98
+        '
+        'CBEBackup
+        '
+        Me.CBEBackup.AutoSize = True
+        Me.CBEBackup.BackColor = System.Drawing.Color.Transparent
+        Me.CBEBackup.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.CBEBackup.CheckedState.BorderRadius = 2
+        Me.CBEBackup.CheckedState.BorderThickness = 0
+        Me.CBEBackup.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.CBEBackup.Location = New System.Drawing.Point(116, 559)
+        Me.CBEBackup.Name = "CBEBackup"
+        Me.CBEBackup.Size = New System.Drawing.Size(102, 17)
+        Me.CBEBackup.TabIndex = 375
+        Me.CBEBackup.Text = "Enable Backup "
+        Me.CBEBackup.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        Me.CBEBackup.UncheckedState.BorderRadius = 2
+        Me.CBEBackup.UncheckedState.BorderThickness = 0
+        Me.CBEBackup.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        Me.CBEBackup.UseVisualStyleBackColor = False
+        '
+        'Label63
+        '
+        Me.Label63.AutoSize = True
+        Me.Label63.BackColor = System.Drawing.Color.Transparent
+        Me.Label63.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.Label63.ForeColor = System.Drawing.Color.Black
+        Me.Label63.Location = New System.Drawing.Point(22, 539)
+        Me.Label63.Name = "Label63"
+        Me.Label63.Size = New System.Drawing.Size(114, 13)
+        Me.Label63.TabIndex = 374
+        Me.Label63.Text = "Additional Settings"
+        '
+        'CBUserright
+        '
+        Me.CBUserright.AutoSize = True
+        Me.CBUserright.BackColor = System.Drawing.Color.Transparent
+        Me.CBUserright.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.CBUserright.CheckedState.BorderRadius = 2
+        Me.CBUserright.CheckedState.BorderThickness = 0
+        Me.CBUserright.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.CBUserright.Location = New System.Drawing.Point(25, 559)
+        Me.CBUserright.Name = "CBUserright"
+        Me.CBUserright.Size = New System.Drawing.Size(76, 17)
+        Me.CBUserright.TabIndex = 373
+        Me.CBUserright.Text = "User Right"
+        Me.CBUserright.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        Me.CBUserright.UncheckedState.BorderRadius = 2
+        Me.CBUserright.UncheckedState.BorderThickness = 0
+        Me.CBUserright.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        Me.CBUserright.UseVisualStyleBackColor = False
+        '
+        'Label62
+        '
+        Me.Label62.BackColor = System.Drawing.Color.Transparent
+        Me.Label62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label62.Location = New System.Drawing.Point(12, 532)
+        Me.Label62.MinimumSize = New System.Drawing.Size(230, 50)
+        Me.Label62.Name = "Label62"
+        Me.Label62.Size = New System.Drawing.Size(400, 50)
+        Me.Label62.TabIndex = 372
+        Me.Label62.Text = " "
         '
         'SRSavebtn
         '
@@ -900,67 +961,6 @@ Partial Class Setting
         Me.Label6.Size = New System.Drawing.Size(400, 130)
         Me.Label6.TabIndex = 359
         Me.Label6.Text = " "
-        '
-        'CBEBackup
-        '
-        Me.CBEBackup.AutoSize = True
-        Me.CBEBackup.BackColor = System.Drawing.Color.Transparent
-        Me.CBEBackup.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.CBEBackup.CheckedState.BorderRadius = 2
-        Me.CBEBackup.CheckedState.BorderThickness = 0
-        Me.CBEBackup.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.CBEBackup.Location = New System.Drawing.Point(116, 559)
-        Me.CBEBackup.Name = "CBEBackup"
-        Me.CBEBackup.Size = New System.Drawing.Size(102, 17)
-        Me.CBEBackup.TabIndex = 375
-        Me.CBEBackup.Text = "Enable Backup "
-        Me.CBEBackup.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
-        Me.CBEBackup.UncheckedState.BorderRadius = 2
-        Me.CBEBackup.UncheckedState.BorderThickness = 0
-        Me.CBEBackup.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
-        Me.CBEBackup.UseVisualStyleBackColor = False
-        '
-        'Label63
-        '
-        Me.Label63.AutoSize = True
-        Me.Label63.BackColor = System.Drawing.Color.Transparent
-        Me.Label63.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label63.ForeColor = System.Drawing.Color.Black
-        Me.Label63.Location = New System.Drawing.Point(22, 539)
-        Me.Label63.Name = "Label63"
-        Me.Label63.Size = New System.Drawing.Size(114, 13)
-        Me.Label63.TabIndex = 374
-        Me.Label63.Text = "Additional Settings"
-        '
-        'CBUserright
-        '
-        Me.CBUserright.AutoSize = True
-        Me.CBUserright.BackColor = System.Drawing.Color.Transparent
-        Me.CBUserright.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.CBUserright.CheckedState.BorderRadius = 2
-        Me.CBUserright.CheckedState.BorderThickness = 0
-        Me.CBUserright.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.CBUserright.Location = New System.Drawing.Point(25, 559)
-        Me.CBUserright.Name = "CBUserright"
-        Me.CBUserright.Size = New System.Drawing.Size(76, 17)
-        Me.CBUserright.TabIndex = 373
-        Me.CBUserright.Text = "User Right"
-        Me.CBUserright.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
-        Me.CBUserright.UncheckedState.BorderRadius = 2
-        Me.CBUserright.UncheckedState.BorderThickness = 0
-        Me.CBUserright.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
-        Me.CBUserright.UseVisualStyleBackColor = False
-        '
-        'Label62
-        '
-        Me.Label62.BackColor = System.Drawing.Color.Transparent
-        Me.Label62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label62.Location = New System.Drawing.Point(12, 532)
-        Me.Label62.MinimumSize = New System.Drawing.Size(230, 50)
-        Me.Label62.Name = "Label62"
-        Me.Label62.Size = New System.Drawing.Size(400, 50)
-        Me.Label62.TabIndex = 372
-        Me.Label62.Text = " "
         '
         'Setting
         '

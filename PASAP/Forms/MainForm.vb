@@ -489,4 +489,8 @@ Public Class MainForm
     Private Sub AccountButton_Click(sender As Object, e As EventArgs) Handles AccountButton.Click
         LoadFormToKryptonNavigator(Of AccountsForm)("Accounts Book")
     End Sub
+
+    Private Sub DayBookBtn_Click(sender As Object, e As EventArgs) Handles DayBookBtn.Click
+        LoadFormToKryptonNavigator(Of DayBook)("Day Book")
+    End Sub
 End Class

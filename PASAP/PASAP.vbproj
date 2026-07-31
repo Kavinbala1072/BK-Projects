@@ -51,15 +51,17 @@
     <ApplicationIcon>community.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ComponentFactory.Krypton.Docking">
-      <HintPath>..\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\latest GS\ComponentFactory.Krypton.Docking.dll</HintPath>
+    <Reference Include="ComponentFactory.Krypton.Docking, Version=4.3.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Godown Stock - New\Godown Stock\bin\Debug\ComponentFactory.Krypton.Docking.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.3.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Godown Stock - New\Godown Stock\bin\Debug\latest GS\ComponentFactory.Krypton.Navigator.dll</HintPath>
+      <HintPath>..\Godown Stock - New\Godown Stock\bin\Debug\ComponentFactory.Krypton.Navigator.dll</HintPath>
     </Reference>
-    <Reference Include="ComponentFactory.Krypton.Toolkit">
-      <HintPath>..\Godown Stock - New\Godown Stock\Godown Stock\bin\Debug\latest GS\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Godown Stock - New\Godown Stock\bin\Debug\ComponentFactory.Krypton.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.3.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -112,6 +114,12 @@
       <DependentUpon>AccountsForm.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\AccountsForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DayBook.Designer.vb">
+      <DependentUpon>DayBook.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DayBook.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\LedgerForm.Designer.vb">
@@ -214,6 +222,9 @@
     <EmbeddedResource Include="Forms\AccountsForm.resx">
       <DependentUpon>AccountsForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DayBook.resx">
+      <DependentUpon>DayBook.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LedgerForm.resx">
       <DependentUpon>LedgerForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -238,6 +249,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login\PSDForm.resx">
       <DependentUpon>PSDForm.vb</DependentUpon>

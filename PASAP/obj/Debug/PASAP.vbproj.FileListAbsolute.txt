@@ -70,10 +70,10 @@ D:\BK Application\BK-Projects\PASAP\bin\Debug\PASAP.exe.config
 D:\BK Application\BK-Projects\PASAP\bin\Debug\PASAP.exe
 D:\BK Application\BK-Projects\PASAP\bin\Debug\PASAP.pdb
 D:\BK Application\BK-Projects\PASAP\bin\Debug\PASAP.xml
+D:\BK Application\BK-Projects\PASAP\bin\Debug\ComponentFactory.Krypton.Docking.dll
 D:\BK Application\BK-Projects\PASAP\bin\Debug\ComponentFactory.Krypton.Navigator.dll
+D:\BK Application\BK-Projects\PASAP\bin\Debug\ComponentFactory.Krypton.Toolkit.dll
 D:\BK Application\BK-Projects\PASAP\bin\Debug\Newtonsoft.Json.dll
-D:\BK Application\BK-Projects\PASAP\obj\Debug\PASAP.vbproj.AssemblyReference.cache
-D:\BK Application\BK-Projects\PASAP\obj\Debug\PASAP.exe.config
 D:\BK Application\BK-Projects\PASAP\obj\Debug\PASAP.AccountsForm.resources
 D:\BK Application\BK-Projects\PASAP\obj\Debug\PASAP.LedgerForm.resources
 D:\BK Application\BK-Projects\PASAP\obj\Debug\PASAP.DBCheck.resources
@@ -95,3 +95,4 @@ D:\BK Application\BK-Projects\PASAP\obj\Debug\PASAP.vbproj.CopyComplete
 D:\BK Application\BK-Projects\PASAP\obj\Debug\PASAP.exe
 D:\BK Application\BK-Projects\PASAP\obj\Debug\PASAP.xml
 D:\BK Application\BK-Projects\PASAP\obj\Debug\PASAP.pdb
+D:\BK Application\BK-Projects\PASAP\obj\Debug\PASAP.DayBook.resources

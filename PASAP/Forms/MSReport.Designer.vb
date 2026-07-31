@@ -32,6 +32,7 @@ Partial Class MSReport
         Me.PrintButton = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
         Me.ProgressBar = New Guna.UI2.WinForms.Guna2ProgressBar()
+        Me.btnBack = New Guna.UI2.WinForms.Guna2Button()
         CType(Me.Guna2DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.HeaderPanel.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
@@ -156,6 +157,7 @@ Partial Class MSReport
         '
         'Guna2Panel1
         '
+        Me.Guna2Panel1.Controls.Add(Me.btnBack)
         Me.Guna2Panel1.Controls.Add(Me.RefreshButton)
         Me.Guna2Panel1.Controls.Add(Me.PrintButton)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top
@@ -176,6 +178,21 @@ Partial Class MSReport
         Me.ProgressBar.TabIndex = 99
         Me.ProgressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault
         Me.ProgressBar.Visible = False
+        '
+        'btnBack
+        '
+        Me.btnBack.CheckedState.Parent = Me.btnBack
+        Me.btnBack.CustomImages.Parent = Me.btnBack
+        Me.btnBack.FillColor = System.Drawing.Color.RoyalBlue
+        Me.btnBack.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnBack.ForeColor = System.Drawing.Color.White
+        Me.btnBack.HoverState.Parent = Me.btnBack
+        Me.btnBack.Location = New System.Drawing.Point(10, 6)
+        Me.btnBack.Name = "btnBack"
+        Me.btnBack.ShadowDecoration.Parent = Me.btnBack
+        Me.btnBack.Size = New System.Drawing.Size(72, 32)
+        Me.btnBack.TabIndex = 4
+        Me.btnBack.Text = "Back"
         '
         'MSReport
         '
@@ -204,4 +221,5 @@ Partial Class MSReport
     Friend WithEvents PrintButton As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents ProgressBar As Guna.UI2.WinForms.Guna2ProgressBar
+    Friend WithEvents btnBack As Guna.UI2.WinForms.Guna2Button
 End Class

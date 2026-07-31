@@ -32,6 +32,7 @@ Partial Class AccountsForm
         Me.PrintButton = New Guna.UI2.WinForms.Guna2Button()
         Me.ProgressBar = New Guna.UI2.WinForms.Guna2ProgressBar()
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.btnBack = New Guna.UI2.WinForms.Guna2Button()
         Me.ToDate = New Guna.UI2.WinForms.Guna2DateTimePicker()
         Me.FromDate = New Guna.UI2.WinForms.Guna2DateTimePicker()
         CType(Me.Guna2DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,6 +171,7 @@ Partial Class AccountsForm
         '
         'Guna2Panel1
         '
+        Me.Guna2Panel1.Controls.Add(Me.btnBack)
         Me.Guna2Panel1.Controls.Add(Me.ToDate)
         Me.Guna2Panel1.Controls.Add(Me.FromDate)
         Me.Guna2Panel1.Controls.Add(Me.RefreshButton)
@@ -180,6 +182,21 @@ Partial Class AccountsForm
         Me.Guna2Panel1.ShadowDecoration.Parent = Me.Guna2Panel1
         Me.Guna2Panel1.Size = New System.Drawing.Size(1280, 43)
         Me.Guna2Panel1.TabIndex = 101
+        '
+        'btnBack
+        '
+        Me.btnBack.CheckedState.Parent = Me.btnBack
+        Me.btnBack.CustomImages.Parent = Me.btnBack
+        Me.btnBack.FillColor = System.Drawing.Color.RoyalBlue
+        Me.btnBack.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnBack.ForeColor = System.Drawing.Color.White
+        Me.btnBack.HoverState.Parent = Me.btnBack
+        Me.btnBack.Location = New System.Drawing.Point(281, 6)
+        Me.btnBack.Name = "btnBack"
+        Me.btnBack.ShadowDecoration.Parent = Me.btnBack
+        Me.btnBack.Size = New System.Drawing.Size(72, 32)
+        Me.btnBack.TabIndex = 207
+        Me.btnBack.Text = "Back"
         '
         'ToDate
         '
@@ -244,4 +261,5 @@ Partial Class AccountsForm
     Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents ToDate As Guna.UI2.WinForms.Guna2DateTimePicker
     Friend WithEvents FromDate As Guna.UI2.WinForms.Guna2DateTimePicker
+    Friend WithEvents btnBack As Guna.UI2.WinForms.Guna2Button
 End Class

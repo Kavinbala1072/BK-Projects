@@ -27,6 +27,7 @@ Partial Class MainForm
         Me.Optionpanel = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2Button2 = New Guna.UI2.WinForms.Guna2Button()
         Me.DropPanel = New Guna.UI2.WinForms.Guna2Panel()
+        Me.DayBookBtn = New Guna.UI2.WinForms.Guna2Button()
         Me.AccountButton = New Guna.UI2.WinForms.Guna2Button()
         Me.CSRButton = New Guna.UI2.WinForms.Guna2Button()
         Me.MSRButtom = New Guna.UI2.WinForms.Guna2Button()
@@ -90,7 +91,7 @@ Partial Class MainForm
         Me.Guna2Button2.HoverState.Parent = Me.Guna2Button2
         Me.Guna2Button2.Image = Global.PASAP.My.Resources.Resources.icons8_settings_501
         Me.Guna2Button2.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.Guna2Button2.Location = New System.Drawing.Point(0, 262)
+        Me.Guna2Button2.Location = New System.Drawing.Point(0, 307)
         Me.Guna2Button2.Margin = New System.Windows.Forms.Padding(0)
         Me.Guna2Button2.Name = "Guna2Button2"
         Me.Guna2Button2.Padding = New System.Windows.Forms.Padding(15)
@@ -103,18 +104,39 @@ Partial Class MainForm
         '
         'DropPanel
         '
+        Me.DropPanel.Controls.Add(Me.DayBookBtn)
         Me.DropPanel.Controls.Add(Me.AccountButton)
         Me.DropPanel.Controls.Add(Me.CSRButton)
         Me.DropPanel.Controls.Add(Me.MSRButtom)
         Me.DropPanel.Controls.Add(Me.DropButton1)
         Me.DropPanel.Dock = System.Windows.Forms.DockStyle.Top
         Me.DropPanel.Location = New System.Drawing.Point(0, 82)
-        Me.DropPanel.MaximumSize = New System.Drawing.Size(170, 180)
+        Me.DropPanel.MaximumSize = New System.Drawing.Size(170, 225)
         Me.DropPanel.MinimumSize = New System.Drawing.Size(170, 45)
         Me.DropPanel.Name = "DropPanel"
         Me.DropPanel.ShadowDecoration.Parent = Me.DropPanel
-        Me.DropPanel.Size = New System.Drawing.Size(170, 180)
+        Me.DropPanel.Size = New System.Drawing.Size(170, 225)
         Me.DropPanel.TabIndex = 0
+        '
+        'DayBookBtn
+        '
+        Me.DayBookBtn.BackColor = System.Drawing.Color.Gray
+        Me.DayBookBtn.CheckedState.Parent = Me.DayBookBtn
+        Me.DayBookBtn.CustomImages.Parent = Me.DayBookBtn
+        Me.DayBookBtn.Dock = System.Windows.Forms.DockStyle.Top
+        Me.DayBookBtn.FillColor = System.Drawing.Color.Empty
+        Me.DayBookBtn.Font = New System.Drawing.Font("Segoe UI Emoji", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DayBookBtn.ForeColor = System.Drawing.Color.White
+        Me.DayBookBtn.HoverState.Parent = Me.DayBookBtn
+        Me.DayBookBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.DayBookBtn.Location = New System.Drawing.Point(0, 180)
+        Me.DayBookBtn.Name = "DayBookBtn"
+        Me.DayBookBtn.PressedColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(249, Byte), Integer))
+        Me.DayBookBtn.ShadowDecoration.Parent = Me.DayBookBtn
+        Me.DayBookBtn.Size = New System.Drawing.Size(170, 45)
+        Me.DayBookBtn.TabIndex = 4
+        Me.DayBookBtn.Text = "DayBook"
+        Me.DayBookBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         '
         'AccountButton
         '
@@ -531,4 +553,5 @@ Partial Class MainForm
     Friend WithEvents ViewPanel As Guna.UI2.WinForms.Guna2ShadowPanel
     Friend WithEvents Timer4 As Timer
     Friend WithEvents AccountButton As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents DayBookBtn As Guna.UI2.WinForms.Guna2Button
 End Class
