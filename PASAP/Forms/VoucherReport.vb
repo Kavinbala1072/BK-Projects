@@ -15,8 +15,18 @@ Public Class VoucherReport
 
     Private Sub VoucherReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        FromDateTextBox.Text = DateTime.Today.AddDays(-30).ToString("dd-MM-yyyy")
-        ToDateTextBox.Text = DateTime.Today.ToString("dd-MM-yyyy")
+        FromDate.Value = New DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)
+        ToDate.Value = DateTime.Today
+
+        Dim dtps As Guna.UI2.WinForms.Guna2DateTimePicker() = {FromDate, ToDate}
+        For Each dtp In dtps
+            dtp.Format = DateTimePickerFormat.Custom
+            dtp.CustomFormat = "dd-MM-yyyy"
+            dtp.FillColor = Color.White
+            dtp.ForeColor = Color.Black
+            dtp.CheckedState.FillColor = Color.FromArgb(255, 128, 64)
+            dtp.CheckedState.ForeColor = Color.White
+        Next
 
         InitializeGridDesign()
 
@@ -74,16 +84,16 @@ Public Class VoucherReport
         Dim dFrom, dTo As DateTime
         Dim dateFormat As String = "dd-MM-yyyy"
 
-        If Not DateTime.TryParseExact(FromDateTextBox.Text.Trim(), dateFormat, Nothing, Globalization.DateTimeStyles.None, dFrom) Then
-            If Not DateTime.TryParse(FromDateTextBox.Text, dFrom) Then
+        If Not DateTime.TryParseExact(FromDate.Text.Trim(), dateFormat, Nothing, Globalization.DateTimeStyles.None, dFrom) Then
+            If Not DateTime.TryParse(FromDate.Text, dFrom) Then
                 MessageBox.Show("Invalid Start Date! Please use format: dd-MM-yyyy", "Date Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 ProgressBar.Visible = False
                 Return
             End If
         End If
 
-        If Not DateTime.TryParseExact(ToDateTextBox.Text.Trim(), dateFormat, Nothing, Globalization.DateTimeStyles.None, dTo) Then
-            If Not DateTime.TryParse(ToDateTextBox.Text, dTo) Then
+        If Not DateTime.TryParseExact(ToDate.Text.Trim(), dateFormat, Nothing, Globalization.DateTimeStyles.None, dTo) Then
+            If Not DateTime.TryParse(ToDate.Text, dTo) Then
                 MessageBox.Show("Invalid End Date! Please use format: dd-MM-yyyy", "Date Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 ProgressBar.Visible = False
                 Return
@@ -227,7 +237,7 @@ Public Class VoucherReport
     Private Sub TypeCombo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TypeCombo.SelectedIndexChanged
         LoadReportData()
     End Sub
-    Private Sub FromDateTextBox_Leave(sender As Object, e As EventArgs) Handles FromDateTextBox.Leave, ToDateTextBox.Leave
+    Private Sub FromDateTextBox_Leave(sender As Object, e As EventArgs)
         LoadReportData()
     End Sub
 
@@ -300,7 +310,7 @@ Public Class VoucherReport
             y += 25
             g.DrawString("PERUNDURAI", fHeader, Brushes.Black, center - (g.MeasureString("PERUNDURAI", fHeader).Width / 2), y)
             y += 40
-            Dim filterInfo As String = $"FROM: {FromDateTextBox.Text} TO: {ToDateTextBox.Text} | Transaction Type: {PaymentCombo.Text}"
+            Dim filterInfo As String = $"FROM: {FromDate.Text} TO: {ToDate.Text} | Transaction Type: {PaymentCombo.Text}"
             g.DrawString(filterInfo, fBody, Brushes.Black, center - (g.MeasureString(filterInfo, fBody).Width / 2), y)
             y += 30
         End If

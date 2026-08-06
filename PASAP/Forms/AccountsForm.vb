@@ -41,6 +41,11 @@ Public Class AccountsForm
             .ColumnHeadersHeight = 40
             .RowTemplate.Height = 35
             .Padding = New Padding(0, 0, 0, 35) ' Space for footer bar
+            .CellBorderStyle = DataGridViewCellBorderStyle.Single
+            .GridColor = Color.FromArgb(231, 229, 255)
+            .ThemeStyle.GridColor = Color.FromArgb(231, 229, 255)
+            .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
+            .ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.Single
         End With
     End Sub
 

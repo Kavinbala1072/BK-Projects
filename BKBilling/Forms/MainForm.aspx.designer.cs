@@ -663,6 +663,42 @@ namespace BKBilling.Forms
         protected global::System.Web.UI.WebControls.LinkButton LinkActivity;
 
         /// <summary>
+        /// litUserInitials control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litUserInitials;
+
+        /// <summary>
+        /// phHeaderIcon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phHeaderIcon;
+
+        /// <summary>
+        /// litUserInitialsLg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litUserInitialsLg;
+
+        /// <summary>
+        /// phMenuIcon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phMenuIcon;
+
+        /// <summary>
         /// litUsername control.
         /// </summary>
         /// <remarks>
@@ -670,6 +706,24 @@ namespace BKBilling.Forms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litUsername;
+
+        /// <summary>
+        /// litUserEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litUserEmail;
+
+        /// <summary>
+        /// lnkMyProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkMyProfile;
 
         /// <summary>
         /// lnkLogout control.

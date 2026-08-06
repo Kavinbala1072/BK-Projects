@@ -15,6 +15,7 @@ namespace BKBilling.Forms.Settings
 
             if (!IsPostBack)
             {
+                litCid.Text = Session["CompanyID"].ToString();
                 LoadLedgers();
                 LoadAllSettings();
             }
@@ -61,7 +62,7 @@ namespace BKBilling.Forms.Settings
                         string key = dr["Ctl_MtDesc"].ToString();
                         string val = dr["Ctl_Value"].ToString();
 
-                        // TAB 1
+                        // TAB 1: General
                         if (key == "GEN_EMAIL") setEmail.Text = val;
                         if (key == "GEN_EMAIL_PASS") setEmailPass.Attributes["value"] = val;
                         if (key == "GEN_CURRENCY") setCurrencyFmt.Text = val;
@@ -71,7 +72,7 @@ namespace BKBilling.Forms.Settings
                         if (key == "BANK_IFSC") setBankIfsc.Text = val;
                         if (key == "BANK_BRANCH") setBankBranch.Text = val;
 
-                        // TAB 2
+                        // TAB 2: Statutory
                         if (key == "GST_TIN") gstTin.Text = val;
                         if (key == "GST_DEALER") gstDealerType.SelectedValue = val;
                         if (key == "GST_ONWARDS") gstOnwards.Text = val;
@@ -92,7 +93,7 @@ namespace BKBilling.Forms.Settings
                         if (key == "TDS_TAN") tdsTan.Text = val;
                         if (key == "TDS_LEDGER") ddlTDSLedger.SelectedValue = val;
 
-                        // TAB 3
+                        // TAB 3: Print
                         if (key == "PRINT_TERMS") setTerms.Text = val;
                         if (key == "PRINT_FOOTER") setFooter.Text = val;
                     }
@@ -166,8 +167,13 @@ namespace BKBilling.Forms.Settings
         protected void SwitchTab(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
-            tab1.CssClass = "nav-link"; tab2.CssClass = "nav-link"; tab3.CssClass = "nav-link";
-            btn.CssClass = "nav-link active";
+
+            tab1.CssClass = "erp-tab-link";
+            tab2.CssClass = "erp-tab-link";
+            tab3.CssClass = "erp-tab-link";
+
+            btn.CssClass = "erp-tab-link active";
+
             if (btn.ID == "tab1") mvSettings.ActiveViewIndex = 0;
             else if (btn.ID == "tab2") mvSettings.ActiveViewIndex = 1;
             else if (btn.ID == "tab3") mvSettings.ActiveViewIndex = 2;

@@ -20,8 +20,8 @@ Public Class DayBook
         For Each dtp In dtps
             dtp.Format = DateTimePickerFormat.Custom
             dtp.CustomFormat = "dd-MM-yyyy"
-            dtp.FillColor = Color.White        ' Background
-            dtp.ForeColor = Color.Black        ' Text Color
+            dtp.FillColor = Color.White
+            dtp.ForeColor = Color.Black
             dtp.BorderThickness = 1
             dtp.BorderColor = Color.LightGray
         Next
@@ -34,8 +34,6 @@ Public Class DayBook
         With Guna2DataGridView1
             .AllowUserToAddRows = False
             .ReadOnly = True
-
-            ' --- CRITICAL HEADER FIXES ---
             .ColumnHeadersVisible = True
             .ColumnHeadersHeight = 40
             .ThemeStyle.HeaderStyle.Height = 40
@@ -45,7 +43,7 @@ Public Class DayBook
 
             .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 245, 255)
             .RowTemplate.Height = 35
-            .Padding = New Padding(0, 0, 0, 40) ' Footer Space
+            .Padding = New Padding(0, 0, 0, 40)
         End With
     End Sub
 

@@ -190,8 +190,20 @@ namespace BKBilling.Forms.Master
             }
         }
 
-        protected void btnOpenCreate_Click(object sender, EventArgs e) { hfLedgerID.Value = ""; ClearInputs(); LoadDropdowns(); pnlList.Visible = false; pnlForm.Visible = true; }
-        protected void btnBack_Click(object sender, EventArgs e) { pnlList.Visible = true; pnlForm.Visible = false; LoadList(); }
+        protected void btnOpenCreate_Click(object sender, EventArgs e) 
+        { 
+            hfLedgerID.Value = ""; 
+            ClearInputs(); 
+            LoadDropdowns(); 
+            pnlList.Visible = false; 
+            pnlForm.Visible = true; 
+        }
+        protected void btnBack_Click(object sender, EventArgs e) 
+        { 
+            pnlList.Visible = true; 
+            pnlForm.Visible = false; 
+            LoadList(); 
+        }
         protected void txtSearch_TextChanged(object sender, EventArgs e) => LoadList();
 
         private void Alert(string msg, string type)

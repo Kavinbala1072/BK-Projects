@@ -29,13 +29,13 @@ Partial Class VoucherReport
         Me.Label = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2DataGridView1 = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.RefreshButton = New Guna.UI2.WinForms.Guna2Button()
-        Me.ToDateTextBox = New Guna.UI2.WinForms.Guna2TextBox()
         Me.PrintButton = New Guna.UI2.WinForms.Guna2Button()
-        Me.FromDateTextBox = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
         Me.PaymentCombo = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.TypeCombo = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.ProgressBar = New Guna.UI2.WinForms.Guna2ProgressBar()
+        Me.ToDate = New Guna.UI2.WinForms.Guna2DateTimePicker()
+        Me.FromDate = New Guna.UI2.WinForms.Guna2DateTimePicker()
         Me.HeaderPanel.SuspendLayout()
         CType(Me.Guna2DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Guna2Panel1.SuspendLayout()
@@ -132,36 +132,12 @@ Partial Class VoucherReport
         Me.RefreshButton.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.RefreshButton.ForeColor = System.Drawing.Color.White
         Me.RefreshButton.HoverState.Parent = Me.RefreshButton
-        Me.RefreshButton.Location = New System.Drawing.Point(638, 6)
+        Me.RefreshButton.Location = New System.Drawing.Point(687, 6)
         Me.RefreshButton.Name = "RefreshButton"
         Me.RefreshButton.ShadowDecoration.Parent = Me.RefreshButton
         Me.RefreshButton.Size = New System.Drawing.Size(72, 32)
         Me.RefreshButton.TabIndex = 2
         Me.RefreshButton.Text = "REFRESH"
-        '
-        'ToDateTextBox
-        '
-        Me.ToDateTextBox.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.ToDateTextBox.DefaultText = ""
-        Me.ToDateTextBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.ToDateTextBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.ToDateTextBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.ToDateTextBox.DisabledState.Parent = Me.ToDateTextBox
-        Me.ToDateTextBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.ToDateTextBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.ToDateTextBox.FocusedState.Parent = Me.ToDateTextBox
-        Me.ToDateTextBox.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.ToDateTextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.ToDateTextBox.HoverState.Parent = Me.ToDateTextBox
-        Me.ToDateTextBox.Location = New System.Drawing.Point(523, 4)
-        Me.ToDateTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.ToDateTextBox.Name = "ToDateTextBox"
-        Me.ToDateTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.ToDateTextBox.PlaceholderText = ""
-        Me.ToDateTextBox.SelectedText = ""
-        Me.ToDateTextBox.ShadowDecoration.Parent = Me.ToDateTextBox
-        Me.ToDateTextBox.Size = New System.Drawing.Size(110, 36)
-        Me.ToDateTextBox.TabIndex = 1
         '
         'PrintButton
         '
@@ -181,38 +157,14 @@ Partial Class VoucherReport
         Me.PrintButton.TabStop = False
         Me.PrintButton.Text = "PRINT"
         '
-        'FromDateTextBox
-        '
-        Me.FromDateTextBox.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.FromDateTextBox.DefaultText = ""
-        Me.FromDateTextBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.FromDateTextBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.FromDateTextBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.FromDateTextBox.DisabledState.Parent = Me.FromDateTextBox
-        Me.FromDateTextBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.FromDateTextBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.FromDateTextBox.FocusedState.Parent = Me.FromDateTextBox
-        Me.FromDateTextBox.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.FromDateTextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.FromDateTextBox.HoverState.Parent = Me.FromDateTextBox
-        Me.FromDateTextBox.Location = New System.Drawing.Point(409, 4)
-        Me.FromDateTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.FromDateTextBox.Name = "FromDateTextBox"
-        Me.FromDateTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.FromDateTextBox.PlaceholderText = ""
-        Me.FromDateTextBox.SelectedText = ""
-        Me.FromDateTextBox.ShadowDecoration.Parent = Me.FromDateTextBox
-        Me.FromDateTextBox.Size = New System.Drawing.Size(110, 36)
-        Me.FromDateTextBox.TabIndex = 0
-        '
         'Guna2Panel1
         '
+        Me.Guna2Panel1.Controls.Add(Me.ToDate)
+        Me.Guna2Panel1.Controls.Add(Me.FromDate)
         Me.Guna2Panel1.Controls.Add(Me.PaymentCombo)
         Me.Guna2Panel1.Controls.Add(Me.TypeCombo)
         Me.Guna2Panel1.Controls.Add(Me.RefreshButton)
-        Me.Guna2Panel1.Controls.Add(Me.ToDateTextBox)
         Me.Guna2Panel1.Controls.Add(Me.PrintButton)
-        Me.Guna2Panel1.Controls.Add(Me.FromDateTextBox)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel1.Location = New System.Drawing.Point(0, 42)
         Me.Guna2Panel1.Name = "Guna2Panel1"
@@ -270,6 +222,40 @@ Partial Class VoucherReport
         Me.ProgressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault
         Me.ProgressBar.Visible = False
         '
+        'ToDate
+        '
+        Me.ToDate.BorderColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(218, Byte), Integer), CType(CType(223, Byte), Integer))
+        Me.ToDate.BorderThickness = 1
+        Me.ToDate.CheckedState.Parent = Me.ToDate
+        Me.ToDate.FillColor = System.Drawing.Color.White
+        Me.ToDate.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
+        Me.ToDate.HoverState.Parent = Me.ToDate
+        Me.ToDate.Location = New System.Drawing.Point(547, 3)
+        Me.ToDate.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
+        Me.ToDate.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
+        Me.ToDate.Name = "ToDate"
+        Me.ToDate.ShadowDecoration.Parent = Me.ToDate
+        Me.ToDate.Size = New System.Drawing.Size(134, 36)
+        Me.ToDate.TabIndex = 208
+        Me.ToDate.Value = New Date(2026, 3, 12, 22, 45, 26, 351)
+        '
+        'FromDate
+        '
+        Me.FromDate.BorderColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(218, Byte), Integer), CType(CType(223, Byte), Integer))
+        Me.FromDate.BorderThickness = 1
+        Me.FromDate.CheckedState.Parent = Me.FromDate
+        Me.FromDate.FillColor = System.Drawing.Color.White
+        Me.FromDate.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
+        Me.FromDate.HoverState.Parent = Me.FromDate
+        Me.FromDate.Location = New System.Drawing.Point(409, 3)
+        Me.FromDate.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
+        Me.FromDate.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
+        Me.FromDate.Name = "FromDate"
+        Me.FromDate.ShadowDecoration.Parent = Me.FromDate
+        Me.FromDate.Size = New System.Drawing.Size(134, 36)
+        Me.FromDate.TabIndex = 207
+        Me.FromDate.Value = New Date(2026, 3, 12, 22, 45, 26, 351)
+        '
         'VoucherReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -294,11 +280,11 @@ Partial Class VoucherReport
     Friend WithEvents Label As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2DataGridView1 As Guna.UI2.WinForms.Guna2DataGridView
     Friend WithEvents RefreshButton As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents ToDateTextBox As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents PrintButton As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents FromDateTextBox As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents ProgressBar As Guna.UI2.WinForms.Guna2ProgressBar
     Friend WithEvents TypeCombo As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents PaymentCombo As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents ToDate As Guna.UI2.WinForms.Guna2DateTimePicker
+    Friend WithEvents FromDate As Guna.UI2.WinForms.Guna2DateTimePicker
 End Class

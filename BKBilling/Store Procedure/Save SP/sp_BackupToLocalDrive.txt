@@ -10,7 +10,20 @@ BEGIN
     SET NOCOUNT ON;
     DECLARE @DbName NVARCHAR(100) = DB_NAME();
     DECLARE @FileName NVARCHAR(500);
+
+    -- 1. FIX: Missing slash after drive colon (e.g., D:Backups -> D:\Backups)
+    IF @FolderPath LIKE '_:%' AND @FolderPath NOT LIKE '_:\%'
+    BEGIN
+        SET @FolderPath = STUFF(@FolderPath, 3, 0, '\');
+    END
+
+    -- 2. FIX: Missing trailing slash (e.g., D:\Backups -> D:\Backups\)
+    IF RIGHT(RTRIM(@FolderPath), 1) <> '\'
+    BEGIN
+        SET @FolderPath = RTRIM(@FolderPath) + '\';
+    END
     
+    -- Now @FileName will correctly be 'D:\Backups\BKBilling_Full_...'
     SET @FileName = @FolderPath + @DbName + '_Full_' + 
                     REPLACE(REPLACE(REPLACE(CONVERT(NVARCHAR, GETDATE(), 120), '-', ''), ' ', '_'), ':', '') + '.bak';
 

@@ -1,24 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using BKBilling.Class;
 
 namespace BKBilling.Forms.Master
 {
     public partial class Companies : System.Web.UI.Page
     {
+        private string SortExpression { get => (string)ViewState["SortExp"] ?? "Company_Sno"; set => ViewState["SortExp"] = value; }
+        private string SortDirection { get => (string)ViewState["SortDir"] ?? "DESC"; set => ViewState["SortDir"] = value; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { SetDefaults(); LoadList(); }
-        }
-
-        private void SetDefaults()
-        {
-            C_FY.Text = new DateTime(DateTime.Now.Year, 4, 1).ToString("yyyy-MM-dd");
-            U_JoinDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            C_CurSym.Text = "₹";
-            C_Country.Text = "India";
+            if (!IsPostBack)
+            {
+                ShowSearchMode();
+                LoadList();
+            }
         }
 
         private void LoadList()
@@ -27,28 +28,137 @@ namespace BKBilling.Forms.Master
             {
                 using (SqlConnection conn = DbHelper.GetConnection())
                 {
-                    string sql = "SELECT Company_Sno, Company_Name, GSTIN, Phone, Created_Date FROM Company_Table ORDER BY Company_Sno DESC";
+                    string sql = "SELECT Company_Sno, Company_Name, GSTIN, Phone, Created_Date FROM Company_Table";
                     using (SqlDataAdapter da = new SqlDataAdapter(sql, conn))
                     {
                         DataTable dt = new DataTable();
                         da.Fill(dt);
-                        gvCompanies.DataSource = dt;
-                        gvCompanies.DataBind();
+                        ApplyFiltersAndBind(dt);
                     }
                 }
             }
             catch (Exception ex) { Alert("Error: " + ex.Message, "error"); }
         }
 
-        protected void btnOpenCreate_Click(object sender, EventArgs e) { ClearInputs(); pnlList.Visible = false; pnlForm.Visible = true; }
-        protected void btnBack_Click(object sender, EventArgs e) { pnlList.Visible = true; pnlForm.Visible = false; LoadList(); }
-
-        protected void gvCompanies_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
+        private void ApplyFiltersAndBind(DataTable dt)
         {
-            if (e.CommandName == "EditRecord") { LoadDataForEdit(Convert.ToInt64(e.CommandArgument)); }
+            List<string> filters = new List<string>();
+
+            // Global Search
+            if (!string.IsNullOrEmpty(txtSearchAll.Text))
+            {
+                string s = txtSearchAll.Text.Trim().Replace("'", "''");
+                filters.Add($"(Company_Name LIKE '%{s}%' OR GSTIN LIKE '%{s}%' OR Phone LIKE '%{s}%')");
+            }
+
+            // Flyout Filters
+            if (gvCompanies.HeaderRow != null)
+            {
+                TextBox fName = (TextBox)gvCompanies.HeaderRow.FindControl("flt_name");
+                if (fName != null && !string.IsNullOrEmpty(fName.Text))
+                    filters.Add($"Company_Name LIKE '%{fName.Text.Trim().Replace("'", "''")}%'");
+
+                TextBox fGst = (TextBox)gvCompanies.HeaderRow.FindControl("flt_gst");
+                if (fGst != null && !string.IsNullOrEmpty(fGst.Text))
+                    filters.Add($"GSTIN LIKE '%{fGst.Text.Trim().Replace("'", "''")}%'");
+            }
+
+            DataTable displayDt = dt;
+            if (filters.Count > 0)
+            {
+                try
+                {
+                    DataRow[] rows = dt.Select(string.Join(" AND ", filters));
+                    displayDt = rows.Length > 0 ? rows.CopyToDataTable() : dt.Clone();
+                }
+                catch { displayDt = dt.Clone(); }
+            }
+
+            DataView dv = displayDt.DefaultView;
+            dv.Sort = $"{SortExpression} {SortDirection}";
+            displayDt = dv.ToTable();
+
+            gvCompanies.PageSize = int.Parse(ddlPageSize.SelectedValue);
+            gvCompanies.DataSource = displayDt;
+            gvCompanies.DataBind();
+
+            litVisibleCount.Text = displayDt.Rows.Count.ToString();
         }
 
-        private void LoadDataForEdit(long sno)
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            if (hfViewMode.Value == "1") return;
+            if (string.IsNullOrWhiteSpace(C_Name.Text) || string.IsNullOrWhiteSpace(U_Username.Text)) { Alert("Company Name and Username are required!", "error"); return; }
+
+            bool isUpdate = !string.IsNullOrEmpty(hfCompanySno.Value);
+            if (!isUpdate || !string.IsNullOrWhiteSpace(U_Pass.Text))
+            {
+                if (U_Pass.Text != U_Confirm.Text) { Alert("Passwords do not match!", "error"); return; }
+                if (!isUpdate && string.IsNullOrWhiteSpace(U_Pass.Text)) { Alert("Password required for new accounts!", "error"); return; }
+            }
+
+            long savedCid = 0;
+            try
+            {
+                using (SqlConnection conn = DbHelper.GetConnection())
+                {
+                    if (conn.State == ConnectionState.Closed) conn.Open();
+                    using (SqlTransaction trans = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            string compSql = isUpdate ?
+                                @"UPDATE Company_Table SET Company_Name=@c1, Address_1=@c2, Address_2=@c3, State_Name=@c4, GSTIN=@c5, PAN=@c6, Country=@c7, Phone=@c8, Email=@c9, Currency_Symbol=@c11, Currency_Format=@c12, Financial_Year=@c13, Modified_Date=GETDATE() WHERE Company_Sno=@id" :
+                                @"INSERT INTO Company_Table (Company_Name, Address_1, Address_2, State_Name, GSTIN, PAN, Country, Phone, Email, Currency_Symbol, Currency_Format, Financial_Year, Created_Date) VALUES (@c1, @c2, @c3, @c4, @c5, @c6, @c7, @c8, @c9, @c11, @c12, @c13, GETDATE()); SELECT SCOPE_IDENTITY();";
+
+                            using (SqlCommand cmdC = new SqlCommand(compSql, conn, trans))
+                            {
+                                cmdC.Parameters.AddWithValue("@c1", C_Name.Text.Trim().ToUpper());
+                                cmdC.Parameters.AddWithValue("@c2", C_Add1.Text.Trim());
+                                cmdC.Parameters.AddWithValue("@c3", C_Add2.Text.Trim());
+                                cmdC.Parameters.AddWithValue("@c4", C_State.Text.Trim());
+                                cmdC.Parameters.AddWithValue("@c5", C_GST.Text.Trim().ToUpper());
+                                cmdC.Parameters.AddWithValue("@c6", C_PAN.Text.Trim().ToUpper());
+                                cmdC.Parameters.AddWithValue("@c7", C_Country.Text.Trim());
+                                cmdC.Parameters.AddWithValue("@c8", C_Phone.Text.Trim());
+                                cmdC.Parameters.AddWithValue("@c9", C_Email.Text.Trim().ToLower());
+                                cmdC.Parameters.AddWithValue("@c11", C_CurSym.Text.Trim());
+                                cmdC.Parameters.AddWithValue("@c12", C_CurFmt.SelectedValue);
+                                cmdC.Parameters.AddWithValue("@c13", string.IsNullOrEmpty(C_FY.Text) ? (object)DBNull.Value : C_FY.Text);
+                                if (isUpdate) { cmdC.Parameters.AddWithValue("@id", hfCompanySno.Value); cmdC.ExecuteNonQuery(); savedCid = Convert.ToInt64(hfCompanySno.Value); }
+                                else { savedCid = Convert.ToInt64(cmdC.ExecuteScalar()); }
+                            }
+
+                            string userSql = isUpdate ?
+                                @"UPDATE User_Table SET Username=@u2, FullName=@u4, Address_1=@u5, Address_2=@u52, Phone=@u6, Email=@u8, Join_Date=@u9, Modified_Date=GETDATE() " + (!string.IsNullOrWhiteSpace(U_Pass.Text) ? ", Password=@u3" : "") + " WHERE Company_No=@u1 AND Role='Admin'" :
+                                @"INSERT INTO User_Table (Company_No, Username, Password, FullName, Role, IsActive, Address_1, Address_2, Phone, Email, Join_Date, Created_Date) VALUES (@u1, @u2, @u3, @u4, 'Admin', 1, @u5, @u52, @u6, @u8, @u9, GETDATE())";
+                            using (SqlCommand cmdU = new SqlCommand(userSql, conn, trans))
+                            {
+                                cmdU.Parameters.AddWithValue("@u1", savedCid);
+                                cmdU.Parameters.AddWithValue("@u2", U_Username.Text.Trim());
+                                cmdU.Parameters.AddWithValue("@u4", U_FullName.Text.Trim().ToUpper());
+                                cmdU.Parameters.AddWithValue("@u5", U_Add1.Text.Trim());
+                                cmdU.Parameters.AddWithValue("@u52", U_Add2.Text.Trim());
+                                cmdU.Parameters.AddWithValue("@u6", U_Phone.Text.Trim());
+                                cmdU.Parameters.AddWithValue("@u8", U_Email.Text.Trim().ToLower());
+                                cmdU.Parameters.AddWithValue("@u9", string.IsNullOrEmpty(U_JoinDate.Text) ? (object)DBNull.Value : U_JoinDate.Text);
+                                if (!isUpdate || !string.IsNullOrWhiteSpace(U_Pass.Text)) cmdU.Parameters.AddWithValue("@u3", SecurityHelper.ComputeHash(U_Pass.Text));
+                                cmdU.ExecuteNonQuery();
+                            }
+                            trans.Commit();
+                        }
+                        catch { trans.Rollback(); throw; }
+                    }
+                }
+
+                if (hfInitWorkspace.Value == "true") { TablesCreation.CreateBusinessSchema(savedCid); }
+                Alert("Company data saved successfully!", "success");
+                btnBack_Click(null, null);
+            }
+            catch (Exception ex) { Alert("Save Error: " + ex.Message, "error"); }
+        }
+
+        private void LoadDataForEdit(long sno, bool isReadOnly)
         {
             try
             {
@@ -58,11 +168,12 @@ namespace BKBilling.Forms.Master
                                     u.Username AS AdminUser, u.FullName AS AdminName, u.Phone AS AdminPhone, 
                                     u.Email AS AdminEmail, u.Address_1 AS AdminAdd1, u.Address_2 AS AdminAdd2, u.Join_Date AS AdminJoinDate
                                    FROM Company_Table c 
-                                   LEFT JOIN User_Table u ON c.Company_Sno = u.Company_No AND u.Role='Admin'
+                                   LEFT JOIN User_Table u ON c.Company_Sno = u.Company_No AND u.User_Sno=1000000000
                                    WHERE c.Company_Sno = @sno";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@sno", sno);
+                        if (conn.State == ConnectionState.Closed) conn.Open();
                         using (SqlDataReader dr = cmd.ExecuteReader())
                         {
                             if (dr.Read())
@@ -88,7 +199,10 @@ namespace BKBilling.Forms.Master
                                 U_Add2.Text = dr["AdminAdd2"].ToString();
                                 U_JoinDate.Text = dr["AdminJoinDate"] != DBNull.Value ? Convert.ToDateTime(dr["AdminJoinDate"]).ToString("yyyy-MM-dd") : "";
                                 U_Pass.Text = U_Confirm.Text = "";
-                                pnlList.Visible = false; pnlForm.Visible = true;
+
+                                hfViewMode.Value = isReadOnly ? "1" : "0";
+                                SetFormState(isReadOnly);
+                                ShowAddMode();
                             }
                         }
                     }
@@ -97,99 +211,31 @@ namespace BKBilling.Forms.Master
             catch (Exception ex) { Alert("Load Error: " + ex.Message, "error"); }
         }
 
-        protected void btnSave_Click(object sender, EventArgs e)
+        private void SetFormState(bool isReadOnly)
         {
-            if (string.IsNullOrWhiteSpace(C_Name.Text) || string.IsNullOrWhiteSpace(U_Username.Text)) { Alert("Company Name and Username are required!", "error"); return; }
-            bool isUpdate = !string.IsNullOrEmpty(hfCompanySno.Value);
-            if (!isUpdate || !string.IsNullOrWhiteSpace(U_Pass.Text))
-            {
-                if (U_Pass.Text != U_Confirm.Text) { Alert("Passwords do not match!", "error"); return; }
-                if (!isUpdate && string.IsNullOrWhiteSpace(U_Pass.Text)) { Alert("Password required for new accounts!", "error"); return; }
-            }
-
-            long savedCid = 0;
-            try
-            {
-                using (SqlConnection conn = DbHelper.GetConnection())
-                {
-                    using (SqlTransaction trans = conn.BeginTransaction())
-                    {
-                        try
-                        {
-                            string compSql = isUpdate ?
-                                @"UPDATE Company_Table SET Company_Name=@c1, Address_1=@c2, Address_2=@c3, State_Name=@c4, GSTIN=@c5, PAN=@c6, Country=@c7, Phone=@c8, Email=@c9, Currency_Symbol=@c11, Currency_Format=@c12, Financial_Year=@c13, Modified_Date=GETDATE() WHERE Company_Sno=@id" :
-                                @"INSERT INTO Company_Table (Company_Name, Address_1, Address_2, State_Name, GSTIN, PAN, Country, Phone, Email, Currency_Symbol, Currency_Format, Financial_Year, Created_Date) VALUES (@c1, @c2, @c3, @c4, @c5, @c6, @c7, @c8, @c9, @c11, @c12, @c13, GETDATE()); SELECT SCOPE_IDENTITY();";
-
-                            using (SqlCommand cmdC = new SqlCommand(compSql, conn, trans))
-                            {
-                                cmdC.Parameters.AddWithValue("@c1", C_Name.Text.Trim());
-                                cmdC.Parameters.AddWithValue("@c2", C_Add1.Text.Trim());
-                                cmdC.Parameters.AddWithValue("@c3", C_Add2.Text.Trim());
-                                cmdC.Parameters.AddWithValue("@c4", C_State.Text.Trim());
-                                cmdC.Parameters.AddWithValue("@c5", C_GST.Text.Trim());
-                                cmdC.Parameters.AddWithValue("@c6", C_PAN.Text.Trim());
-                                cmdC.Parameters.AddWithValue("@c7", C_Country.Text.Trim());
-                                cmdC.Parameters.AddWithValue("@c8", C_Phone.Text.Trim());
-                                cmdC.Parameters.AddWithValue("@c9", C_Email.Text.Trim());
-                                cmdC.Parameters.AddWithValue("@c11", C_CurSym.Text.Trim());
-                                cmdC.Parameters.AddWithValue("@c12", C_CurFmt.SelectedValue);
-                                cmdC.Parameters.AddWithValue("@c13", string.IsNullOrEmpty(C_FY.Text) ? (object)DBNull.Value : C_FY.Text);
-                                if (isUpdate) { cmdC.Parameters.AddWithValue("@id", hfCompanySno.Value); cmdC.ExecuteNonQuery(); savedCid = Convert.ToInt64(hfCompanySno.Value); }
-                                else { savedCid = Convert.ToInt64(cmdC.ExecuteScalar()); }
-                            }
-
-                            string userSql = isUpdate ?
-                                @"UPDATE User_Table SET Username=@u2, FullName=@u4, Address_1=@u5, Address_2=@u52, Phone=@u6, Email=@u8, Join_Date=@u9, Modified_Date=GETDATE() " + (!string.IsNullOrWhiteSpace(U_Pass.Text) ? ", Password=@u3" : "") + " WHERE Company_No=@u1 AND Role='Admin'" :
-                                @"INSERT INTO User_Table (Company_No, Username, Password, FullName, Role, IsActive, Address_1, Address_2, Phone, Email, Join_Date, Created_Date) VALUES (@u1, @u2, @u3, @u4, 'Admin', 1, @u5, @u52, @u6, @u8, @u9, GETDATE())";
-                            using (SqlCommand cmdU = new SqlCommand(userSql, conn, trans))
-                            {
-                                cmdU.Parameters.AddWithValue("@u1", savedCid);
-                                cmdU.Parameters.AddWithValue("@u2", U_Username.Text.Trim());
-                                cmdU.Parameters.AddWithValue("@u4", U_FullName.Text.Trim());
-                                cmdU.Parameters.AddWithValue("@u5", U_Add1.Text.Trim());
-                                cmdU.Parameters.AddWithValue("@u52", U_Add2.Text.Trim());
-                                cmdU.Parameters.AddWithValue("@u6", U_Phone.Text.Trim());
-                                cmdU.Parameters.AddWithValue("@u8", U_Email.Text.Trim());
-                                cmdU.Parameters.AddWithValue("@u9", string.IsNullOrEmpty(U_JoinDate.Text) ? (object)DBNull.Value : U_JoinDate.Text);
-                                if (!isUpdate || !string.IsNullOrWhiteSpace(U_Pass.Text)) cmdU.Parameters.AddWithValue("@u3", SecurityHelper.ComputeHash(U_Pass.Text));
-                                cmdU.ExecuteNonQuery();
-                            }
-
-                            string settingsSql = @"INSERT INTO Form_Settings (Company_ID, Form_Name, Control_ID, Is_Enabled)
-                                SELECT @cid, t.Form_Name, t.Control_ID, 1
-                                FROM (VALUES ('Sales Invoice', 'liSalesOrder'), ('Sales Order', 'liSales'), ('Sales Return', 'liSalesReturn'), ('Quotation', 'liQuotation'), ('Purchase Invoice', 'liPurchase'), ('Purchase Order', 'liPurOrder'), ('Purchase Return', 'liPurReturn'), ('Voucher Entry', 'liVoucher'), ('Stock Adjustment', 'liAdjustment'), ('Branch Transfer', 'liBTransfer'), ('Ledger Creation', 'liLedger'), ('Ledger Groups', 'liGroupMaster'), ('Area Master', 'liAreaMaster'), ('Item Creation', 'liItem'), ('Item Group Master', 'liItemGroup'), ('Item Brand Master', 'liBrand'), ('Item Model Master', 'liModel'), ('Item Unit', 'liUOM'), ('Unit Conversion', 'liUnitConv'), ('Closing Stock Entry', 'liCStock'), ('Godown Master', 'liGodown'), ('DayBook Report', 'liDayBook'), ('Ledger Statement', 'liLedgerRep'), ('Cash / Bank Book', 'liCashBank'), ('Trial Balance', 'liTrial'), ('Balance Sheet', 'liBS'), ('Profit & Loss', 'liPL'), ('Stock Summary', 'liStockSum'), ('Stock Detail (In/Out)', 'liStockDet'), ('GSTR-1 (Sales)', 'liGSTR1'), ('GSTR-2 (Purchase)', 'liGSTR2'), ('GSTR-3B Summary', 'liGSTR3B'), ('HSN Summary', 'liHSN'), ('Company Setting', 'liCompSett'), ('Item Setting', 'liItemSett'), ('Form Setup', 'liFormSet'), ('User Creation', 'liUser'), ('Company Creation', 'liCompany')) AS t(Form_Name, Control_ID)
-                                WHERE NOT EXISTS (SELECT 1 FROM Form_Settings fs WHERE fs.Company_ID = @cid AND fs.Control_ID = t.Control_ID);";
-                            using (SqlCommand cmdS = new SqlCommand(settingsSql, conn, trans))
-                            {
-                                cmdS.Parameters.AddWithValue("@cid", savedCid);
-                                cmdS.ExecuteNonQuery();
-                            }
-                            trans.Commit();
-                        }
-                        catch { trans.Rollback(); throw; }
-                    }
-                }
-
-                if (hfInitWorkspace.Value == "true")
-                {
-                    TablesCreation.CreateBusinessSchema(savedCid);
-                    Alert("Record saved and Workspace initialized/updated successfully!", "success");
-                }
-                else
-                {
-                    Alert("Record saved successfully!", "success");
-                }
-                btnBack_Click(null, null);
-            }
-            catch (Exception ex) { Alert("Save Error: " + ex.Message, "error"); }
+            C_Name.Enabled = C_GST.Enabled = C_PAN.Enabled = C_FY.Enabled = C_CurSym.Enabled = C_CurFmt.Enabled =
+            C_Phone.Enabled = C_Email.Enabled = C_Add1.Enabled = C_Add2.Enabled = C_State.Enabled = C_Country.Enabled =
+            U_FullName.Enabled = U_JoinDate.Enabled = U_Username.Enabled = U_Phone.Enabled = U_Email.Enabled =
+            U_Pass.Enabled = U_Confirm.Enabled = U_Add1.Enabled = U_Add2.Enabled = !isReadOnly;
+            btnSave.Visible = !isReadOnly;
         }
 
-        private void Alert(string msg, string type = "success")
-        {
-            string script = $"showNotification('{msg.Replace("'", "\\'")}', '{type}');";
-            ScriptManager.RegisterStartupScript(this, GetType(), Guid.NewGuid().ToString(), script, true);
-        }
+        private void ShowSearchMode() { pnlList.Visible = phSearchControls.Visible = phSearchButtons.Visible = pnlFooter.Visible = true; pnlForm.Visible = phAddButtons.Visible = false; litTitle.Text = "Company Directory"; }
+        private void ShowAddMode() { pnlList.Visible = phSearchControls.Visible = phSearchButtons.Visible = pnlFooter.Visible = false; pnlForm.Visible = phAddButtons.Visible = true; litTitle.Text = hfViewMode.Value == "1" ? "View Company Details" : (hfCompanySno.Value == "" ? "Register New Company" : "Edit Company Details"); }
 
-        private void ClearInputs() { hfCompanySno.Value = ""; C_Name.Text = C_GST.Text = C_PAN.Text = C_Add1.Text = C_Add2.Text = C_State.Text = C_Phone.Text = C_Email.Text = ""; U_FullName.Text = U_Username.Text = U_Pass.Text = U_Confirm.Text = U_Phone.Text = U_Email.Text = U_Add1.Text = U_Add2.Text = ""; SetDefaults(); }
+        protected void GridFilter_Changed(object sender, EventArgs e) { LoadList(); }
+        protected void gvCompanies_Sorting(object sender, GridViewSortEventArgs e) { SortDirection = (SortExpression == e.SortExpression && SortDirection == "ASC") ? "DESC" : "ASC"; SortExpression = e.SortExpression; LoadList(); }
+        protected void gvCompanies_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "EditRecord") LoadDataForEdit(Convert.ToInt64(e.CommandArgument), false);
+            else if (e.CommandName == "ViewRecord") LoadDataForEdit(Convert.ToInt64(e.CommandArgument), true);
+        }
+        protected void btnOpenCreate_Click(object sender, EventArgs e) { hfCompanySno.Value = ""; hfViewMode.Value = "0"; ClearInputs(); SetFormState(false); ShowAddMode(); }
+        protected void btnBack_Click(object sender, EventArgs e) { ShowSearchMode(); LoadList(); }
+        protected void Pager_Click(object sender, EventArgs e) { string c = ((LinkButton)sender).CommandArgument; if (c == "Prev" && gvCompanies.PageIndex > 0) gvCompanies.PageIndex--; else if (c == "Next") gvCompanies.PageIndex++; LoadList(); }
+
+        private void SetDefaults() { C_FY.Text = new DateTime(DateTime.Now.Year, 4, 1).ToString("yyyy-MM-dd"); U_JoinDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); C_CurSym.Text = "₹"; C_Country.Text = "India"; }
+        private void ClearInputs() { C_Name.Text = C_GST.Text = C_PAN.Text = C_Add1.Text = C_Add2.Text = C_State.Text = C_Phone.Text = C_Email.Text = ""; U_FullName.Text = U_Username.Text = U_Pass.Text = U_Confirm.Text = U_Phone.Text = U_Email.Text = U_Add1.Text = U_Add2.Text = ""; SetDefaults(); }
+        private void Alert(string msg, string type) { ScriptManager.RegisterStartupScript(this, GetType(), "msg", $"showNotification('{msg.Replace("'", "\\'")}', '{type}');", true); }
     }
 }

@@ -43,7 +43,6 @@ namespace BKSoftwares
 
                 foreach (var item in jsonList)
                 {
-                    // Basic cleanup for null values in the JSON
                     string jsonID = (item.CompNo ?? "").Trim();
                     string jsonApp = (item.Application ?? "").Replace(" ", "").ToUpper();
 

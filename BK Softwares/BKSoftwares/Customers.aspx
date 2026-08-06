@@ -137,8 +137,8 @@
                                 <input type="number" id="txtSysCount" class="form-control" value="0" />
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label fw-semibold small text-uppercase">Phone</label>
-                                <input type="text" id="txtPhone" class="form-control" />
+                                <label class="form-label fw-semibold small text-uppercase">Version</label>
+                                <input type="text" id="txtVersion" class="form-control" value="0.0" />
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold small text-uppercase">Email</label>
@@ -155,6 +155,10 @@
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold small text-uppercase text-primary">Opening Balance (₹)</label>
                                 <input type="number" id="txtBalance" class="form-control fw-bold border-primary" value="0" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold small text-uppercase">Phone</label>
+                                <input type="text" id="txtPhone" class="form-control" />
                             </div>
                         </div>
                     </div>

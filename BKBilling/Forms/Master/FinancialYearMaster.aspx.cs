@@ -12,7 +12,11 @@ namespace BKBilling.Forms.Master
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["CompanyID"] == null) Response.Redirect("~/Login.aspx");
-            if (!IsPostBack) LoadData();
+            if (!IsPostBack)
+            {
+                litCid.Text = Session["CompanyID"].ToString();
+                LoadData();
+            }
         }
 
         private void LoadData()
@@ -21,10 +25,9 @@ namespace BKBilling.Forms.Master
             {
                 using (SqlConnection conn = DbHelper.GetConnection())
                 {
-                    // Query uses the 'ACTIVE_FIN_YEAR' key in Control_Table to mark the grid
                     string sql = @"
                         SELECT F.*, 
-                        CASE WHEN CAST(C.Ctl_Value AS INT) = F.FY_Sno THEN 1 ELSE 0 END as IsActiveYear
+                        CASE WHEN CAST(ISNULL(C.Ctl_Value, 0) AS INT) = F.FY_Sno THEN 1 ELSE 0 END as IsActiveYear
                         FROM FinYear_Table F
                         LEFT JOIN Control_Table C ON F.Company_No = C.Company_No AND C.Ctl_MtDesc = 'ACTIVE_FIN_YEAR'
                         WHERE F.Company_No = @cid ORDER BY F.StartDate DESC";
@@ -37,15 +40,14 @@ namespace BKBilling.Forms.Master
 
                     gvYears.DataSource = dt;
                     gvYears.DataBind();
+                    litVisibleCount.Text = dt.Rows.Count.ToString();
 
-                    // Load Dropdown
                     ddlActiveFY.DataSource = dt;
                     ddlActiveFY.DataTextField = "FY_Name";
                     ddlActiveFY.DataValueField = "FY_Sno";
                     ddlActiveFY.DataBind();
                     ddlActiveFY.Items.Insert(0, new ListItem("-- Select Year --", "0"));
 
-                    // Auto-select current active year in dropdown
                     DataRow[] activeRow = dt.Select("IsActiveYear = 1");
                     if (activeRow.Length > 0)
                         ddlActiveFY.SelectedValue = activeRow[0]["FY_Sno"].ToString();
@@ -57,6 +59,7 @@ namespace BKBilling.Forms.Master
         protected void btnSaveYear_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtFYName.Text)) { Alert("Enter Year Name", "error"); return; }
+            if (string.IsNullOrWhiteSpace(txtStart.Text) || string.IsNullOrWhiteSpace(txtEnd.Text)) { Alert("Dates are required", "error"); return; }
 
             try
             {
@@ -79,7 +82,7 @@ namespace BKBilling.Forms.Master
                     }
                 }
             }
-            catch (SqlException ex) { Alert(ex.Message, "error"); }
+            catch (Exception ex) { Alert(ex.Message, "error"); }
         }
 
         protected void btnSetActive_Click(object sender, EventArgs e)
@@ -94,13 +97,12 @@ namespace BKBilling.Forms.Master
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@Company_No", Session["CompanyID"]);
-                        cmd.Parameters.AddWithValue("@MtDesc", "ACTIVE_FIN_YEAR"); // Standard Key
+                        cmd.Parameters.AddWithValue("@MtDesc", "ACTIVE_FIN_YEAR");
                         cmd.Parameters.AddWithValue("@Value", ddlActiveFY.SelectedValue);
 
                         if (conn.State == ConnectionState.Closed) conn.Open();
                         cmd.ExecuteNonQuery();
 
-                        // Sync Session
                         Session["ActiveFY_Sno"] = ddlActiveFY.SelectedValue;
                         Session["ActiveFY_Name"] = ddlActiveFY.SelectedItem.Text;
 
@@ -112,10 +114,13 @@ namespace BKBilling.Forms.Master
             catch (Exception ex) { Alert(ex.Message, "error"); }
         }
 
+        protected void btnSync_Click(object sender, EventArgs e) { LoadData(); }
+
         private void Alert(string msg, string type)
         {
-            string script = $"showNotification('{msg.Replace("'", "\\'")}', '{type}');";
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "alert", script, true);
+            string clean = msg.Replace("'", "\\'").Replace("\r", "").Replace("\n", " ");
+            string script = $"showNotification('{clean}', '{type}');";
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), Guid.NewGuid().ToString(), script, true);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace BKBilling.Forms
             if (Session["UserName"] == null || Session["CompanyID"] == null) { Response.Redirect("Login.aspx"); return; }
             if (!IsPostBack) {
                 litUsername.Text = Session["UserName"].ToString();
+                //litUserEmail.Text = Session["UserName"].ToString();
                 litWelcomeUser.Text = Session["UserName"].ToString();
                 LoadCompanyName();
                 ApplyFormSettings();
@@ -64,6 +65,7 @@ namespace BKBilling.Forms
         }
 
         protected void btnMenuDash_Click(object sender, EventArgs e) { ShowWelcome(); }
+        protected void btnMyProfile_Click(object sender, EventArgs e) => LoadPage("Master/UserMaster.aspx?mode=profile");
         
         // --- TRANSACTIONS ---
         protected void btnSales_Click(object sender, EventArgs e) => LoadPage("Transaction/SalesForm.aspx");

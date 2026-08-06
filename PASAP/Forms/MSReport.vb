@@ -386,8 +386,6 @@ Public Class MSReport
         Try
             Using conn As SqlConnection = Tools.GetConnection()
                 conn.Open()
-
-                ' Zoom into the Voucher Table for this Member
                 Dim sql As String = "SELECT V_Date AS [Date], Bill_No AS [Bill No], " &
                                     "V_Type AS [Type], Purpose, Payment_Method AS [Method], " &
                                     "Amount, Remarks " &
@@ -412,12 +410,10 @@ Public Class MSReport
 
     Private Sub FormatDetailGrid()
         If Guna2DataGridView1.Columns.Count > 0 Then
-            ' Formatting for the detailed view
             Guna2DataGridView1.Columns("Amount").DefaultCellStyle.Format = "N2"
             Guna2DataGridView1.Columns("Amount").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             Guna2DataGridView1.Columns("Date").DefaultCellStyle.Format = "dd-MM-yyyy"
 
-            ' Color code the Type column
             For Each row As DataGridViewRow In Guna2DataGridView1.Rows
                 If row.Cells("Type").Value.ToString() = "RECEIPT" Then
                     row.Cells("Type").Style.ForeColor = Color.Green
