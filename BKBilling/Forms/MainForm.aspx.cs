@@ -10,7 +10,17 @@ namespace BKBilling.Forms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserName"] == null || Session["CompanyID"] == null) { Response.Redirect("Login.aspx"); return; }
+            SessionStatus status = SessionHelper.ValidateSession(Session);
+
+            if (status != SessionStatus.Valid)
+            {
+                SessionHelper.EndSession(Session);
+
+                Response.Redirect("Login.aspx?reason=" + status, false);
+                Context.ApplicationInstance.CompleteRequest();
+                return;
+            }
+
             if (!IsPostBack) {
                 litUsername.Text = Session["UserName"].ToString();
                 //litUserEmail.Text = Session["UserName"].ToString();
@@ -122,6 +132,16 @@ namespace BKBilling.Forms
         protected void btnFormSet_Click(object sender, EventArgs e) => LoadPage("Settings/FormSetting.aspx");
         protected void btnActivity_Click(object sender, EventArgs e) => LoadPage("ActivityForm.aspx");
 
-        protected void btnLogout_Click(object sender, EventArgs e) { Session.Clear(); Session.Abandon(); Response.Redirect("Login.aspx"); }
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            SessionHelper.EndSession(Session);
+
+            Response.Redirect(
+                "Login.aspx",
+                false);
+
+            Context.ApplicationInstance
+                   .CompleteRequest();
+        }
     }
 }

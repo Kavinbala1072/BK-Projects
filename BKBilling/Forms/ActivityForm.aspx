@@ -17,6 +17,7 @@
         .erp-wrapper { display: flex; flex-direction: column; height: 100vh; }
         .erp-header { padding: 15px 30px; border-bottom: 1px solid var(--erp-border); background: #fff; flex-shrink: 0; }
         .erp-body { flex-grow: 1; overflow-y: auto; background: #fff; position: relative; padding:5px;}
+        .erp-body { flex-grow: 1; overflow-y: auto; background: #fff; position: relative; padding:5px;}
         .erp-footer { padding: 10px 30px; border-top: 1px solid var(--erp-border); background: #fff; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
 
         /* Toolbars */
@@ -72,7 +73,7 @@
                                 <asp:PlaceHolder ID="phSearchControls" runat="server">
                                     <div class="search-pill">
                                         <i class="fas fa-search"></i>
-                                        <asp:TextBox ID="txtSearchAll" runat="server" CssClass="form-control" placeholder="Global Search..." AutoPostBack="true" OnTextChanged="GridFilter_Changed"></asp:TextBox>
+                                        <asp:TextBox ID="txtSearch" runat="server" AutoPostBack="true" OnTextChanged="txtSearch_TextChanged" CssClass="form-control" placeholder="Search..." />
                                     </div>
                                     <div class="date-box">
                                         <label>From</label>
@@ -99,18 +100,18 @@
 
                     <!-- BODY SECTION -->
                     <div class="erp-body">
-                        
                         <!-- VIEW 1: SEARCH SCREEN -->
                         <asp:Panel ID="pnlList" runat="server">
                             <div class="gv-container">
                                 <asp:GridView ID="gvLedgers" runat="server" AutoGenerateColumns="false" CssClass="gv-pro"
-                                    GridLines="None" ShowHeaderWhenEmpty="true" AllowSorting="true" OnSorting="gvLedgers_Sorting" OnRowCommand="gvLedgers_RowCommand"
-                                    AllowPaging="true" PagerSettings-Visible="false">
+                                    GridLines="None" ShowHeaderWhenEmpty="true" AllowSorting="true" OnSorting="gvLedgers_Sorting" 
+                                    OnRowCommand="gvLedgers_RowCommand" AllowPaging="true" PagerSettings-Visible="false">
                                     <Columns>
                                         <asp:TemplateField HeaderText="SNO" HeaderStyle-Width="60px">
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                         </asp:TemplateField>
 
+                                        <!-- 1. CODE -->
                                         <asp:TemplateField SortExpression="ledger_code">
                                             <HeaderTemplate>
                                                 <div class="hdr-wrap">
@@ -126,6 +127,7 @@
                                             <ItemTemplate><%# Eval("ledger_code") %></ItemTemplate>
                                         </asp:TemplateField>
 
+                                        <!-- 2. NAME -->
                                         <asp:TemplateField SortExpression="ledger_name">
                                             <HeaderTemplate>
                                                 <div class="hdr-wrap">
@@ -141,14 +143,53 @@
                                             <ItemTemplate><b><%# Eval("ledger_name") %></b></ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:BoundField DataField="LedgerGroup_Name" HeaderText="Under" SortExpression="LedgerGroup_Name" />
-                                        <asp:BoundField DataField="Ledger_Phone" HeaderText="Mobile" />
-                                        
-                                        <asp:TemplateField HeaderText="Use GST">
-                                            <ItemTemplate><%# Convert.ToBoolean(Eval("Use_GST")) ? "YES" : "NO" %></ItemTemplate>
+                                        <!-- 3. UNDER (GROUP) -->
+                                        <asp:TemplateField SortExpression="LedgerGroup_Name">
+                                            <HeaderTemplate>
+                                                <div class="hdr-wrap">
+                                                    <span>UNDER</span>
+                                                    <i class="fas fa-filter filt-icon" onclick="toggleFlyout(event, 'f_group')"></i>
+                                                    <div id="f_group" class="flyout-panel" onclick="event.stopPropagation()">
+                                                        <label class="form-label">Filter Group</label>
+                                                        <asp:TextBox ID="flt_group" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                                        <asp:Button runat="server" Text="Apply" CssClass="btn btn-primary btn-sm w-100" OnClick="GridFilter_Changed" />
+                                                    </div>
+                                                </div>
+                                            </HeaderTemplate>
+                                            <ItemTemplate><%# Eval("LedgerGroup_Name") %></ItemTemplate>
                                         </asp:TemplateField>
-                                        
-                                        <asp:BoundField DataField="Ledger_GST" HeaderText="Ledger GST" />
+
+                                        <!-- 4. MOBILE -->
+                                        <asp:TemplateField SortExpression="Ledger_Phone">
+                                            <HeaderTemplate>
+                                                <div class="hdr-wrap">
+                                                    <span>MOBILE</span>
+                                                    <i class="fas fa-filter filt-icon" onclick="toggleFlyout(event, 'f_phone')"></i>
+                                                    <div id="f_group" class="flyout-panel" onclick="event.stopPropagation()">
+                                                        <label class="form-label">Filter Mobile</label>
+                                                        <asp:TextBox ID="flt_phone" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                                        <asp:Button runat="server" Text="Apply" CssClass="btn btn-primary btn-sm w-100" OnClick="GridFilter_Changed" />
+                                                    </div>
+                                                </div>
+                                            </HeaderTemplate>
+                                            <ItemTemplate><%# Eval("Ledger_Phone") %></ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <!-- 5. GST -->
+                                        <asp:TemplateField SortExpression="Ledger_GST">
+                                            <HeaderTemplate>
+                                                <div class="hdr-wrap">
+                                                    <span>GSTIN</span>
+                                                    <i class="fas fa-filter filt-icon" onclick="toggleFlyout(event, 'f_gst')"></i>
+                                                    <div id="f_gst" class="flyout-panel" onclick="event.stopPropagation()">
+                                                        <label class="form-label">Filter GST</label>
+                                                        <asp:TextBox ID="flt_gst" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                                        <asp:Button runat="server" Text="Apply" CssClass="btn btn-primary btn-sm w-100" OnClick="GridFilter_Changed" />
+                                                    </div>
+                                                </div>
+                                            </HeaderTemplate>
+                                            <ItemTemplate><%# Eval("Ledger_GST") %></ItemTemplate>
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Action" ItemStyle-CssClass="text-center" HeaderStyle-Width="80px">
                                             <ItemTemplate>

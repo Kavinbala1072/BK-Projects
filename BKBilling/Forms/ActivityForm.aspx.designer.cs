@@ -60,13 +60,13 @@ namespace BKBilling.Forms
         protected global::System.Web.UI.WebControls.PlaceHolder phSearchControls;
 
         /// <summary>
-        /// txtSearchAll control.
+        /// txtSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchAll;
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
         /// txtDateFrom control.

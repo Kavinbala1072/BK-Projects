@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Services;
 using BKBilling.Class;
+using System.Web.UI;
 
 namespace BKBilling.Forms
 {
@@ -30,17 +31,21 @@ namespace BKBilling.Forms
                     message = "Your session has expired. Please log in again.";
                     break;
                 case "Superseded":
-                    message = "You have been logged out because your account was signed in from another device or browser.";
+                    message = "Account signed in from another device. Current session terminated.";
                     break;
                 case "NoSession":
-                    message = "You have been logged out. Please log in again.";
+                    message = "Security validation failed. Please log in again.";
                     break;
                 default:
                     return;
             }
 
-            string script = "alert(" + System.Web.HttpUtility.JavaScriptStringEncode(message, true) + ");";
-            ClientScript.RegisterStartupScript(this.GetType(), "SessionMessage", script, true);
+            // Updated to use the custom JS function showMsg(text, isError)
+            string script = $@"$(document).ready(function() {{ 
+                showMsg('{message}', true); 
+            }});";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "SessionMsg", script, true);
         }
 
         public class Response
@@ -98,10 +103,8 @@ namespace BKBilling.Forms
             if (user.Trim().Equals("BKAdmin", StringComparison.OrdinalIgnoreCase) && pass == "BK@2026")
             {
                 string cid = (string.IsNullOrEmpty(companyId) || companyId == "0") ? "1000" : companyId;
-
                 string newToken = SessionHelper.CreateSession("BKAdmin", cid, sessionHours);
                 string newExpiry = ((DateTime)System.Web.HttpContext.Current.Session["Expiry"]).ToString("yyyy-MM-dd HH:mm:ss");
-
                 return new Response { success = true, redirect = "MainForm.aspx", token = newToken, expiry = newExpiry };
             }
 
@@ -131,8 +134,6 @@ namespace BKBilling.Forms
                             int userSno = Convert.ToInt32(dr["User_Sno"]);
                             dr.Close();
 
-                            // Overwrites any existing Active_Sessions row for this user,
-                            // so if they're already logged in elsewhere, that session dies now.
                             string newToken = SessionHelper.CreateSession(fullName, companyId, sessionHours);
                             System.Web.HttpContext.Current.Session["UserID"] = userSno;
                             string newExpiry = ((DateTime)System.Web.HttpContext.Current.Session["Expiry"]).ToString("yyyy-MM-dd HH:mm:ss");
@@ -144,7 +145,6 @@ namespace BKBilling.Forms
             }
             catch (Exception ex)
             {
-                // NOTE: log ex server-side; avoid returning raw exception text to the client in production.
                 return new Response { success = false, message = "Database Error: " + ex.Message };
             }
 

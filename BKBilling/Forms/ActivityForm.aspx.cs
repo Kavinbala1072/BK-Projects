@@ -15,7 +15,17 @@ namespace BKBilling.Forms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["CompanyID"] == null) { Response.Redirect("~/Login.aspx"); return; }
+            //if (Session["CompanyID"] == null) { Response.Redirect("~/Login.aspx"); return; }
+            if (Session["UserName"] == null || Session["CompanyID"] == null) { Response.Redirect("~/Login.aspx"); return; }
+
+            SessionStatus status = SessionHelper.ValidateSession(Session);
+            if (status != SessionStatus.Valid)
+            {
+                SessionHelper.EndSession(Session);
+                Response.Redirect("~/Login.aspx?reason=" + status.ToString());
+                return;
+            }
+
             if (!IsPostBack)
             {
                 txtDateFrom.Text = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd");
@@ -35,7 +45,7 @@ namespace BKBilling.Forms
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@Company_No", Session["CompanyID"]);
-                        cmd.Parameters.AddWithValue("@SearchText", txtSearchAll.Text.Trim());
+                        cmd.Parameters.AddWithValue("@SearchText", txtSearch.Text.Trim());
                         cmd.Parameters.AddWithValue("@FromDate", txtDateFrom.Text);
                         cmd.Parameters.AddWithValue("@ToDate", txtDateTo.Text);
 
@@ -52,46 +62,50 @@ namespace BKBilling.Forms
 
         private void ApplyFiltersAndBind(DataTable dt)
         {
-            // litTotalCount shows total records matching SearchText and Dates
             litTotalCount.Text = dt.Rows.Count.ToString();
+            List<string> filterList = new List<string>();
 
-            List<string> flyoutFilters = new List<string>();
-
-            // MAINTAIN COLUMN FILTER CONDITION
             if (gvLedgers.HeaderRow != null)
             {
-                TextBox fCode = (TextBox)gvLedgers.HeaderRow.FindControl("flt_code");
-                if (fCode != null && !string.IsNullOrEmpty(fCode.Text))
-                    flyoutFilters.Add($"ledger_code LIKE '%{fCode.Text.Trim().Replace("'", "''")}%'");
-
-                TextBox fName = (TextBox)gvLedgers.HeaderRow.FindControl("flt_name");
-                if (fName != null && !string.IsNullOrEmpty(fName.Text))
-                    flyoutFilters.Add($"ledger_name LIKE '%{fName.Text.Trim().Replace("'", "''")}%'");
+                AddFilter(filterList, "flt_code", "ledger_code");
+                AddFilter(filterList, "flt_name", "ledger_name");
+                AddFilter(filterList, "flt_group", "LedgerGroup_Name");
+                AddFilter(filterList, "flt_phone", "Ledger_Phone");
+                AddFilter(filterList, "flt_gst", "Ledger_GST");
             }
 
             DataTable displayDt = dt;
-            if (flyoutFilters.Count > 0)
+            if (filterList.Count > 0)
             {
                 try
                 {
-                    DataRow[] rows = dt.Select(string.Join(" AND ", flyoutFilters));
-                    displayDt = rows.Length > 0 ? rows.CopyToDataTable() : dt.Clone();
+                    string combinedFilter = string.Join(" AND ", filterList);
+                    DataRow[] filteredRows = dt.Select(combinedFilter);
+                    displayDt = filteredRows.Length > 0 ? filteredRows.CopyToDataTable() : dt.Clone();
                 }
                 catch { displayDt = dt.Clone(); }
             }
 
-            // Sorting
             DataView dv = displayDt.DefaultView;
             dv.Sort = $"{SortExpression} {SortDirection}";
-            displayDt = dv.ToTable();
 
             gvLedgers.PageSize = int.Parse(ddlPageSize.SelectedValue);
-            gvLedgers.DataSource = displayDt;
+            gvLedgers.DataSource = dv;
             gvLedgers.DataBind();
 
-            // litVisibleCount shows how many are actually on current page/view
             litVisibleCount.Text = displayDt.Rows.Count.ToString();
         }
+
+        private void AddFilter(List<string> list, string controlID, string columnName)
+        {
+            TextBox tb = (TextBox)gvLedgers.HeaderRow.FindControl(controlID);
+            if (tb != null && !string.IsNullOrWhiteSpace(tb.Text))
+            {
+                string val = tb.Text.Trim().Replace("'", "''");
+                list.Add($"{columnName} LIKE '%{val}%'");
+            }
+        }
+
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -225,11 +239,30 @@ namespace BKBilling.Forms
         }
 
         protected void GridFilter_Changed(object sender, EventArgs e) { LoadList(); }
-        protected void gvLedgers_Sorting(object sender, GridViewSortEventArgs e) { SortDirection = (SortExpression == e.SortExpression && SortDirection == "ASC") ? "DESC" : "ASC"; SortExpression = e.SortExpression; LoadList(); }
+        protected void txtSearch_TextChanged(object sender, EventArgs e) { LoadList(); }
+        protected void gvLedgers_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            if (SortExpression == e.SortExpression)
+            {
+                SortDirection = (SortDirection == "ASC") ? "DESC" : "ASC";
+            }
+            else
+            {
+                SortExpression = e.SortExpression;
+                SortDirection = "ASC";
+            }
+            LoadList();
+        }
         protected void gvLedgers_RowCommand(object sender, GridViewCommandEventArgs e) { if (e.CommandName == "EditLedger") LoadLedgerForEdit(e.CommandArgument.ToString()); }
         protected void btnOpenCreate_Click(object sender, EventArgs e) { hfLedgerID.Value = ""; ClearInputs(); LoadDropdowns(); ShowAddMode(); }
         protected void btnBack_Click(object sender, EventArgs e) { ShowSearchMode(); LoadList(); }
-        protected void Pager_Click(object sender, EventArgs e) { string c = ((LinkButton)sender).CommandArgument; if (c == "Prev" && gvLedgers.PageIndex > 0) gvLedgers.PageIndex--; else if (c == "Next") gvLedgers.PageIndex++; LoadList(); }
+        protected void Pager_Click(object sender, EventArgs e)
+        {
+            string cmd = ((LinkButton)sender).CommandArgument;
+            if (cmd == "Prev" && gvLedgers.PageIndex > 0) gvLedgers.PageIndex--;
+            else if (cmd == "Next") gvLedgers.PageIndex++;
+            LoadList();
+        }
 
         private void ClearInputs()
         {
